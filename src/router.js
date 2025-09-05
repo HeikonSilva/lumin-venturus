@@ -3,7 +3,10 @@ const nav = `<a href="/src/#/">Home</a> |
                    <a href="/src/#/contact">Contact</a>`;
 
 const routes = {
-  "": `<h1>Home</h1>${nav}<p>Welcome home!</p>`,
+  "": `<div
+      class="absolute top-8 right-8 left-8 w-[100vw-4rem] h-16 bg-white rounded-lg"
+    ></div>
+    <div class="min-h-screen bg-neutral-950"></div>`,
   about: `<h1>About</h1>${nav}<p>This is a tiny SPA</p>`,
 };
 const render = (path) => {
