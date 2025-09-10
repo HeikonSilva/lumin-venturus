@@ -17,4 +17,4 @@ const analytics = getAnalytics(app);
 const auth = getAuth();
 auth.languageCode = "pt-BR";
 
-export { auth, provider };
+export { auth };
