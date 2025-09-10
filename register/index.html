@@ -1,11 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lumin — Cadastro</title>
+    <meta name="description" content="Crie sua conta no Lumin" />
+    <!-- Favicons -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="../assets/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="../assets/favicon/favicon.svg"
+    />
+    <link rel="shortcut icon" href="../assets/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../assets/favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="Lumin" />
+    <link rel="manifest" href="../assets/favicon/site.webmanifest" />
 
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style type="text/tailwindcss">
       @theme {
         --color-coffee-50: oklch(0.985 0.008 70);
@@ -21,8 +42,7 @@
         --color-coffee-950: oklch(0.14 0.02 40);
       }
     </style>
-
-    <style type="text/css">
+    <style>
       :root {
         --color-coffee-50: oklch(0.985 0.008 70);
         --color-coffee-100: oklch(0.945 0.015 70);
@@ -37,8 +57,6 @@
         --color-coffee-950: oklch(0.14 0.02 40);
         --radius-base: 18px;
       }
-
-      /* Apple‑like luminous / glass border utility */
       .lumi-border {
         position: relative;
         border-radius: var(--radius-base);
@@ -55,7 +73,6 @@
         overflow: hidden;
       }
       .lumi-border:before {
-        /* glow ring */
         content: "";
         position: absolute;
         inset: 0;
@@ -83,16 +100,6 @@
         mask-composite: exclude;
         pointer-events: none;
         mix-blend-mode: plus-lighter;
-      }
-      .lumi-border[data-variant="light"] {
-        background: linear-gradient(
-          140deg,
-          var(--color-coffee-100),
-          var(--color-coffee-200)
-        );
-        border-color: rgba(0, 0, 0, 0.08);
-        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5) inset,
-          0 8px 16px -6px rgba(120, 80, 50, 0.25);
       }
       html:not(.dark) .lumi-border:not([data-variant="dark"]) {
         background: linear-gradient(
@@ -127,23 +134,14 @@
           );
         mix-blend-mode: normal;
       }
-      .lumi-border:hover {
-        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset,
-          0 0 0 1px rgba(255, 255, 255, 0.05),
-          0 8px 28px -6px rgba(0, 0, 0, 0.6);
-      }
-      html:not(.dark) .lumi-border:hover {
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05) inset,
-          0 0 0 1px rgba(0, 0, 0, 0.03), 0 6px 20px -4px rgba(120, 80, 50, 0.25);
-      }
-
       .btn-primary {
         position: relative;
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        font-weight: 500;
+        padding: 0.75rem 1rem;
+        font-weight: 600;
         letter-spacing: 0.02em;
         border-radius: var(--radius-base);
         overflow: hidden;
@@ -182,45 +180,221 @@
       .btn-primary:active:before {
         filter: brightness(0.9);
       }
+      .btn-ghost {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.9rem;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        border-radius: var(--radius-base);
+        color: var(--color-coffee-200);
+        font-size: 0.85rem;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px) saturate(160%);
+        -webkit-backdrop-filter: blur(12px) saturate(160%);
+      }
+      .btn-ghost:hover {
+        border-color: rgba(255, 255, 255, 0.3);
+        color: var(--color-coffee-50);
+      }
+      html:not(.dark) .btn-ghost {
+        color: var(--color-coffee-700);
+        background: rgba(255, 255, 255, 0.55);
+        border: 1px solid rgba(0, 0, 0, 0.07);
+      }
+      html:not(.dark) .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.85);
+      }
+      .glass-nav {
+        backdrop-filter: blur(18px) saturate(160%);
+        -webkit-backdrop-filter: blur(18px) saturate(160%);
+      }
+      body:before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background: radial-gradient(
+            circle at 35% 25%,
+            var(--color-coffee-300) 10%,
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 75% 70%,
+            var(--color-coffee-500) 8%,
+            transparent 55%
+          ),
+          linear-gradient(
+            180deg,
+            var(--color-coffee-950),
+            var(--color-coffee-900)
+          );
+        opacity: 0.12;
+        pointer-events: none;
+      }
+      html:not(.dark) body {
+        background: var(--color-coffee-50);
+        color: var(--color-coffee-800);
+      }
+      html:not(.dark) body:before {
+        opacity: 0.25;
+        background: radial-gradient(
+            circle at 30% 25%,
+            var(--color-coffee-200) 10%,
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 80% 65%,
+            var(--color-coffee-300) 8%,
+            transparent 55%
+          ),
+          linear-gradient(
+            180deg,
+            var(--color-coffee-50),
+            var(--color-coffee-100)
+          );
+      }
     </style>
     <script type="module" src="../services/firebase.js"></script>
     <script type="module" src="../js/auth-handler.js"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-coffee-50: oklch(0.985 0.008 70);
+        --color-coffee-100: oklch(0.945 0.015 70);
+        --color-coffee-200: oklch(0.875 0.02 70);
+        --color-coffee-300: oklch(0.775 0.03 60);
+        --color-coffee-400: oklch(0.675 0.04 50);
+        --color-coffee-500: oklch(0.575 0.045 50);
+        --color-coffee-600: oklch(0.475 0.045 50);
+        --color-coffee-700: oklch(0.375 0.04 50);
+        --color-coffee-800: oklch(0.275 0.03 40);
+        --color-coffee-900: oklch(0.2 0.025 40);
+        --color-coffee-950: oklch(0.14 0.02 40);
+      }
+    </style>
   </head>
   <body
-    class="min-h-screen bg-coffee-100 dark:bg-coffee-800 text-coffee-800 dark:text-coffee-100 selection:bg-coffee-400/30 selection:text-coffee-50 antialiased text-center flex items-center justify-center"
+    class="min-h-screen bg-coffee-100 dark:bg-coffee-950 text-coffee-800 dark:text-coffee-100 selection:bg-coffee-400/30 selection:text-coffee-50 antialiased"
   >
-    <div
-      class="w-125 h-150 p-8 flex items-center justify-center bg-coffee-700 rounded-xl"
-    >
-      <form class="w-full" action="">
-        <h1 class="text-5xl font-bold">Cadastro</h1>
-
-        <div class="flex flex-col text-start w-full mt-8 p-6">
-          <span class="text-2xl">Usuário</span>
-          <input
-            type="text"
-            class="w-full mb-4 p-2 rounded-lg border border-coffee-300 bg-coffee-50 text-coffee-800 mt-2"
-          />
-
-          <span class="text-2xl">E-mail</span>
-          <input
-            type="email"
-            class="w-full mb-4 p-2 rounded-lg border border-coffee-300 bg-coffee-50 text-coffee-800 mt-2"
-          />
-
-          <span class="text-2xl">Senha</span>
-          <input
-            type="password"
-            class="w-full mb-4 p-2 rounded-lg border border-coffee-300 bg-coffee-50 text-coffee-800 mt-2"
-          />
-
-          <input
-            type="submit"
-            value="Cadastrar"
-            class="w-full mt-5 p-2 rounded-lg border border-coffee-800 bg-coffee-500 text-coffee-50 cursor-pointer hover:bg-coffee-600 transition-colors"
-          />
+    <nav class="fixed top-4 left-4 right-4 max-w-3xl mx-auto z-50">
+      <div
+        class="lumi-border glass-nav flex items-center justify-between px-4 h-12"
+      >
+        <a href="../" class="flex items-center gap-2">
+          <img src="../assets/lumi.svg" alt="Lumin" class="w-7 h-7" />
+          <span class="font-semibold text-coffee-400">Lumin</span>
+        </a>
+        <div class="flex items-center gap-2">
+          <a href="../login/" class="btn-ghost">Entrar</a>
+          <button id="modeToggle" aria-label="Alternar tema" class="btn-ghost">
+            <span id="modeLabel">Dark</span>
+          </button>
         </div>
-      </form>
-    </div>
+      </div>
+    </nav>
+
+    <main class="px-4 sm:px-6 pt-24 sm:pt-28 pb-10">
+      <section class="max-w-xl sm:max-w-3xl mx-auto">
+        <div
+          class="lumi-border p-6 sm:p-8 md:p-10 grid gap-6 md:grid-cols-2 items-start"
+        >
+          <div>
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold">
+              Crie sua conta
+            </h1>
+            <p class="mt-3 text-coffee-700 dark:text-coffee-400">
+              Comece a usar o Lumin para organizar seus estudos.
+            </p>
+          </div>
+
+          <form
+            class="space-y-4 text-left"
+            onsubmit="return false;"
+            autocomplete="on"
+          >
+            <div>
+              <label
+                class="block text-sm mb-1 text-coffee-700 dark:text-coffee-300"
+                for="reg-username"
+                >Usuário</label
+              >
+              <input
+                id="reg-username"
+                type="text"
+                class="w-full p-2 rounded-lg border border-coffee-300 dark:border-coffee-600 dark:bg-coffee-900/30 bg-coffee-100 text-coffee-900 dark:text-coffee-50 outline-none focus:border-coffee-400 placeholder:text-coffee-400 dark:placeholder:text-coffee-500"
+                placeholder="Seu usuário"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-sm mb-1 text-coffee-700 dark:text-coffee-300"
+                for="reg-email"
+                >E-mail</label
+              >
+              <input
+                id="reg-email"
+                type="email"
+                class="w-full p-2 rounded-lg border border-coffee-300 dark:border-coffee-600 bg-white dark:bg-coffee-900/30 text-coffee-900 dark:text-coffee-50 outline-none focus:border-coffee-400 placeholder:text-coffee-400 dark:placeholder:text-coffee-500"
+                placeholder="seuemail@exemplo.com"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-sm mb-1 text-coffee-700 dark:text-coffee-300"
+                for="reg-password"
+                >Senha</label
+              >
+              <input
+                id="reg-password"
+                type="password"
+                class="w-full p-2 rounded-lg border border-coffee-300 dark:border-coffee-600 bg-white dark:bg-coffee-900/30 text-coffee-900 dark:text-coffee-50 outline-none focus:border-coffee-400 placeholder:text-coffee-400 dark:placeholder:text-coffee-500"
+                placeholder="Crie uma senha"
+              />
+            </div>
+            <button type="submit" class="btn-primary w-full">
+              <span>Cadastrar</span>
+            </button>
+          </form>
+
+          <p
+            class="text-sm mt-6 text-center text-coffee-700 dark:text-coffee-400"
+          >
+            Já tem conta?
+            <a class="underline hover:text-coffee-300" href="../login/"
+              >Entrar</a
+            >
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const root = document.documentElement;
+      const toggle = document.getElementById("modeToggle");
+      const label = document.getElementById("modeLabel");
+      const PREF_KEY = "lumin-theme";
+      function applyTheme(theme) {
+        if (theme === "dark") root.classList.add("dark");
+        else root.classList.remove("dark");
+        if (label)
+          label.textContent = root.classList.contains("dark")
+            ? "Dark"
+            : "Light";
+      }
+      const stored =
+        localStorage.getItem(PREF_KEY) ||
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light");
+      applyTheme(stored);
+      toggle?.addEventListener("click", () => {
+        const next = root.classList.contains("dark") ? "light" : "dark";
+        localStorage.setItem(PREF_KEY, next);
+        applyTheme(next);
+      });
+    </script>
   </body>
 </html>
