@@ -1,6 +1,8 @@
 import {
   GoogleAuthProvider,
   signInWithPopup,
+  setPersistence,
+  browserSessionPersistence,
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 import { auth } from "../../services/firebase.js";
 

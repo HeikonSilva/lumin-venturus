@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
 
     <style type="text/tailwindcss">
       @theme {
@@ -184,25 +183,44 @@
         filter: brightness(0.9);
       }
     </style>
-</head>
-<body class="min-h-screen bg-coffee-100 dark:bg-coffee-800 text-coffee-800 dark:text-coffee-100 selection:bg-coffee-400/30 selection:text-coffee-50 antialiased text-center flex items-center justify-center">
-    <div class="w-125 h-150 p-8 flex items-center justify-center bg-coffee-700 rounded-xl">
+    <script type="module" src="../services/firebase.js"></script>
+    <script type="module" src="../js/auth-handler.js"></script>
+  </head>
+  <body
+    class="min-h-screen bg-coffee-100 dark:bg-coffee-800 text-coffee-800 dark:text-coffee-100 selection:bg-coffee-400/30 selection:text-coffee-50 antialiased text-center flex items-center justify-center"
+  >
+    <div
+      class="w-125 h-150 p-8 flex items-center justify-center bg-coffee-700 rounded-xl"
+    >
       <form class="w-full" action="">
         <h1 class="text-5xl font-bold">Cadastro</h1>
 
         <div class="flex flex-col text-start w-full mt-8 p-6">
           <span class="text-2xl">Usuário</span>
-          <input type="text" class="w-full mb-4 p-2 rounded-lg border border-coffee-300 bg-coffee-50 text-coffee-800 mt-2"/>
+          <input
+            type="text"
+            class="w-full mb-4 p-2 rounded-lg border border-coffee-300 bg-coffee-50 text-coffee-800 mt-2"
+          />
 
           <span class="text-2xl">E-mail</span>
-          <input type="email" class="w-full mb-4 p-2 rounded-lg border border-coffee-300 bg-coffee-50 text-coffee-800 mt-2"/>
+          <input
+            type="email"
+            class="w-full mb-4 p-2 rounded-lg border border-coffee-300 bg-coffee-50 text-coffee-800 mt-2"
+          />
 
           <span class="text-2xl">Senha</span>
-          <input type="password" class="w-full mb-4 p-2 rounded-lg border border-coffee-300 bg-coffee-50 text-coffee-800 mt-2"/>
+          <input
+            type="password"
+            class="w-full mb-4 p-2 rounded-lg border border-coffee-300 bg-coffee-50 text-coffee-800 mt-2"
+          />
 
-          <input type="submit" value="Cadastrar" class="w-full mt-5 p-2 rounded-lg border border-coffee-800 bg-coffee-500 text-coffee-50 cursor-pointer hover:bg-coffee-600 transition-colors"/>
+          <input
+            type="submit"
+            value="Cadastrar"
+            class="w-full mt-5 p-2 rounded-lg border border-coffee-800 bg-coffee-500 text-coffee-50 cursor-pointer hover:bg-coffee-600 transition-colors"
+          />
         </div>
       </form>
     </div>
-</body>
+  </body>
 </html>

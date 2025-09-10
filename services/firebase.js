@@ -1,6 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+import {
+  getAuth,
+  browserSessionPersistence,
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDwR8hqqQIH-_aCodqWdH601wPj0PcRIHk",
@@ -15,6 +18,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth();
+
 auth.languageCode = "pt-BR";
 
 export { auth };
