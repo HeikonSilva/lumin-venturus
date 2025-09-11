@@ -3,7 +3,6 @@ import {
   signInWithPopup,
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 import { auth } from "../../services/firebase.js";
-import { sendVerificationEmail } from "../../js/send-email.js";
 
 const provider = new GoogleAuthProvider();
 

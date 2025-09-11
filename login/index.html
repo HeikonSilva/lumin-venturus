@@ -279,9 +279,10 @@
     </style>
     <script type="module" src="../services/firebase.js"></script>
     <script type="module" src="../js/auth-handler.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="module" src="../js/send-email.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script> -->
+    <!-- <script type="module" src="../js/send-email.js"></script> -->
     <script type="module" src="./functions/login-with-google.js"></script>
+    <script type="module" src="./functions/login-with-magic-link.js"></script>
   </head>
   <body
     class="min-h-screen bg-coffee-100 dark:bg-coffee-950 text-coffee-800 dark:text-coffee-100 selection:bg-coffee-400/30 selection:text-coffee-50 antialiased"
@@ -312,34 +313,22 @@
           </p>
 
           <form
+            name="magic-link"
             class="mt-6 space-y-4"
             onsubmit="return false;"
             autocomplete="on"
           >
             <div>
               <label
-                for="username"
+                for="email"
                 class="block text-sm mb-1 text-coffee-700 dark:text-coffee-300"
-                >Usuário</label
+                >Email</label
               >
               <input
-                id="username"
-                type="text"
+                id="email"
+                type="email"
                 class="w-full p-2 rounded-lg border border-coffee-300 dark:border-coffee-600 bg-white/70 dark:bg-coffee-900/30 text-coffee-900 dark:text-coffee-50 outline-none focus:border-coffee-400 placeholder:text-coffee-400 dark:placeholder:text-coffee-500"
-                placeholder="Seu usuário"
-              />
-            </div>
-            <div>
-              <label
-                for="password"
-                class="block text-sm mb-1 text-coffee-700 dark:text-coffee-300"
-                >Senha</label
-              >
-              <input
-                id="password"
-                type="password"
-                class="w-full p-2 rounded-lg border border-coffee-300 dark:border-coffee-600 bg-white/70 dark:bg-coffee-900/30 text-coffee-900 dark:text-coffee-50 outline-none focus:border-coffee-400 placeholder:text-coffee-400 dark:placeholder:text-coffee-500"
-                placeholder="Sua senha"
+                placeholder="Seu Email"
               />
             </div>
             <button type="submit" class="btn-primary w-full">
@@ -353,7 +342,7 @@
             <div class="h-px bg-coffee-700/40 dark:bg-white/10 flex-1"></div>
           </div>
 
-          <div class="mt-4 flex justify-center">
+          <div class="mt-4 flex justify-center gap-2">
             <button
               id="login-google"
               aria-label="Entrar com Google"
@@ -381,6 +370,27 @@
                   d="M43.611 20.083H42V20H24v8h11.303c-1.009 2.823-2.941 5.176-5.497 6.881.002-.001.003-.002.005-.004l6.197 5.238C34.054 42.115 38.5 44 44 44c0-6.627 0-13.255 0-20 0-1.341-.138-2.651-.389-3.917z"
                 />
               </svg>
+            </button>
+            <button
+              id="login-guest"
+              aria-label="Entrar como convidado"
+              class="inline-flex items-center justify-center w-32 h-11 rounded-full border border-coffee-300 dark:border-coffee-600 bg-white dark:bg-coffee-900 hover:bg-coffee-50 dark:hover:bg-coffee-800 transition"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                />
+              </svg>
+              <span>Convidado</span>
             </button>
           </div>
           <p
