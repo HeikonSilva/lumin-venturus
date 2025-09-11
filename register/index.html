@@ -260,6 +260,7 @@
     </style>
     <script type="module" src="../services/firebase.js"></script>
     <script type="module" src="../js/auth-handler.js"></script>
+
     <style type="text/tailwindcss">
       @theme {
         --color-coffee-50: oklch(0.985 0.008 70);
@@ -275,6 +276,7 @@
         --color-coffee-950: oklch(0.14 0.02 40);
       }
     </style>
+    <script type="module" src="./functions/register.js"></script>
   </head>
   <body
     class="min-h-screen bg-coffee-100 dark:bg-coffee-950 text-coffee-800 dark:text-coffee-100 selection:bg-coffee-400/30 selection:text-coffee-50 antialiased"
@@ -311,6 +313,7 @@
           </div>
 
           <form
+            name="registerForm"
             class="space-y-4 text-left"
             onsubmit="return false;"
             autocomplete="on"
@@ -318,11 +321,11 @@
             <div>
               <label
                 class="block text-sm mb-1 text-coffee-700 dark:text-coffee-300"
-                for="reg-email"
+                for="email"
                 >E-mail</label
               >
               <input
-                id="reg-email"
+                id="email"
                 type="email"
                 class="w-full p-2 rounded-lg border border-coffee-300 dark:border-coffee-600 bg-white dark:bg-coffee-900/30 text-coffee-900 dark:text-coffee-50 outline-none focus:border-coffee-400 placeholder:text-coffee-400 dark:placeholder:text-coffee-500"
                 placeholder="seuemail@exemplo.com"
@@ -331,11 +334,11 @@
             <div>
               <label
                 class="block text-sm mb-1 text-coffee-700 dark:text-coffee-300"
-                for="reg-password"
+                for="password"
                 >Senha</label
               >
               <input
-                id="reg-password"
+                id="password"
                 type="password"
                 class="w-full p-2 rounded-lg border border-coffee-300 dark:border-coffee-600 bg-white dark:bg-coffee-900/30 text-coffee-900 dark:text-coffee-50 outline-none focus:border-coffee-400 placeholder:text-coffee-400 dark:placeholder:text-coffee-500"
                 placeholder="Crie uma senha"

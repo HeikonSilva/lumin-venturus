@@ -282,7 +282,8 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script> -->
     <!-- <script type="module" src="../js/send-email.js"></script> -->
     <script type="module" src="./functions/login-with-google.js"></script>
-    <script type="module" src="./functions/login-with-magic-link.js"></script>
+    <script type="module" src="./functions/login-with-password.js"></script>
+    <script type="module" src="./functions/login-anonymus.js"></script>
   </head>
   <body
     class="min-h-screen bg-coffee-100 dark:bg-coffee-950 text-coffee-800 dark:text-coffee-100 selection:bg-coffee-400/30 selection:text-coffee-50 antialiased"
@@ -313,7 +314,7 @@
           </p>
 
           <form
-            name="magic-link"
+            name="loginForm"
             class="mt-6 space-y-4"
             onsubmit="return false;"
             autocomplete="on"
@@ -329,6 +330,19 @@
                 type="email"
                 class="w-full p-2 rounded-lg border border-coffee-300 dark:border-coffee-600 bg-white/70 dark:bg-coffee-900/30 text-coffee-900 dark:text-coffee-50 outline-none focus:border-coffee-400 placeholder:text-coffee-400 dark:placeholder:text-coffee-500"
                 placeholder="Seu Email"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-sm mb-1 text-coffee-700 dark:text-coffee-300"
+                for="password"
+                >Senha</label
+              >
+              <input
+                id="password"
+                type="password"
+                class="w-full p-2 rounded-lg border border-coffee-300 dark:border-coffee-600 bg-white dark:bg-coffee-900/30 text-coffee-900 dark:text-coffee-50 outline-none focus:border-coffee-400 placeholder:text-coffee-400 dark:placeholder:text-coffee-500"
+                placeholder="Crie uma senha"
               />
             </div>
             <button type="submit" class="btn-primary w-full">
