@@ -42,302 +42,10 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style type="text/tailwindcss">
-      @theme {
-        --color-coffee-50: oklch(0.985 0.008 70);
-        --color-coffee-100: oklch(0.945 0.015 70);
-        --color-coffee-200: oklch(0.875 0.02 70);
-        --color-coffee-300: oklch(0.775 0.03 60);
-        --color-coffee-400: oklch(0.675 0.04 50);
-        --color-coffee-500: oklch(0.575 0.045 50);
-        --color-coffee-600: oklch(0.475 0.045 50);
-        --color-coffee-700: oklch(0.375 0.04 50);
-        --color-coffee-800: oklch(0.275 0.03 40);
-        --color-coffee-900: oklch(0.2 0.025 40);
-        --color-coffee-950: oklch(0.14 0.02 40);
-      }
-    </style>
-    <style>
-      :root {
-        --color-coffee-50: oklch(0.985 0.008 70);
-        --color-coffee-100: oklch(0.945 0.015 70);
-        --color-coffee-200: oklch(0.875 0.02 70);
-        --color-coffee-300: oklch(0.775 0.03 60);
-        --color-coffee-400: oklch(0.675 0.04 50);
-        --color-coffee-500: oklch(0.575 0.045 50);
-        --color-coffee-600: oklch(0.475 0.045 50);
-        --color-coffee-700: oklch(0.375 0.04 50);
-        --color-coffee-800: oklch(0.275 0.03 40);
-        --color-coffee-900: oklch(0.2 0.025 40);
-        --color-coffee-950: oklch(0.14 0.02 40);
-        --radius-base: 18px;
-      }
-      /* Apple‑like luminous / glass border utility */
-      .lumi-border {
-        position: relative;
-        border-radius: var(--radius-base);
-        background: linear-gradient(
-          145deg,
-          color-mix(in oklab, var(--color-coffee-800) 96%, black 5%) 0%,
-          var(--color-coffee-900) 100%
-        );
-        border: 1px solid
-          color-mix(in oklab, var(--color-coffee-300) 40%, transparent);
-        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04) inset,
-          0 0 12px -2px rgba(255, 255, 255, 0.08),
-          0 8px 24px -4px rgba(0, 0, 0, 0.55);
-        overflow: hidden;
-      }
-      .lumi-border:before {
-        /* glow ring */
-        content: "";
-        position: absolute;
-        inset: 0;
-        padding: 1px;
-        border-radius: inherit;
-        background: radial-gradient(
-            circle at 20% 15%,
-            rgba(255, 255, 255, 0.18),
-            transparent 60%
-          ),
-          linear-gradient(
-            120deg,
-            rgba(255, 255, 255, 0.25),
-            rgba(255, 255, 255, 0) 60%
-          ),
-          linear-gradient(
-            160deg,
-            rgba(203, 170, 150, 0.35),
-            rgba(203, 170, 150, 0) 70%
-          );
-        -webkit-mask: linear-gradient(#000 0 0) content-box,
-          linear-gradient(#000 0 0);
-        mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        pointer-events: none;
-        mix-blend-mode: plus-lighter;
-      }
-      .lumi-border[data-variant="light"] {
-        background: linear-gradient(
-          140deg,
-          var(--color-coffee-100),
-          var(--color-coffee-200)
-        );
-        border-color: rgba(0, 0, 0, 0.08);
-        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5) inset,
-          0 8px 16px -6px rgba(120, 80, 50, 0.25);
-      }
-      html:not(.dark) .lumi-border:not([data-variant="dark"]) {
-        background: linear-gradient(
-          145deg,
-          var(--color-coffee-50),
-          var(--color-coffee-100)
-        );
-        border-color: color-mix(
-          in oklab,
-          var(--color-coffee-400) 35%,
-          transparent
-        );
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04) inset,
-          0 4px 14px -4px rgba(120, 80, 50, 0.18),
-          0 0 24px -6px rgba(160, 120, 90, 0.25);
-      }
-      html:not(.dark) .lumi-border:not([data-variant="dark"]):before {
-        background: radial-gradient(
-            circle at 25% 20%,
-            rgba(160, 120, 90, 0.35),
-            transparent 60%
-          ),
-          linear-gradient(
-            120deg,
-            rgba(255, 255, 255, 0.65),
-            rgba(255, 255, 255, 0) 60%
-          ),
-          linear-gradient(
-            160deg,
-            rgba(200, 170, 150, 0.55),
-            rgba(200, 170, 150, 0) 70%
-          );
-        mix-blend-mode: normal;
-      }
-      .lumi-border:hover {
-        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset,
-          0 0 0 1px rgba(255, 255, 255, 0.05),
-          0 8px 28px -6px rgba(0, 0, 0, 0.6);
-      }
-      html:not(.dark) .lumi-border:hover {
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05) inset,
-          0 0 0 1px rgba(0, 0, 0, 0.03), 0 6px 20px -4px rgba(120, 80, 50, 0.25);
-      }
-      .text-gradient {
-        background: linear-gradient(
-          90deg,
-          var(--color-coffee-200),
-          var(--color-coffee-400),
-          var(--color-coffee-200)
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-      html:not(.dark) .text-gradient {
-        background: linear-gradient(
-          90deg,
-          var(--color-coffee-400),
-          var(--color-coffee-300),
-          var(--color-coffee-400)
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-      .btn-primary {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        font-weight: 500;
-        letter-spacing: 0.02em;
-        border-radius: var(--radius-base);
-        overflow: hidden;
-        color: var(--color-coffee-50);
-        font-size: 0.95rem;
-      }
-      .btn-primary:before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          90deg,
-          var(--color-coffee-500),
-          var(--color-coffee-600)
-        );
-        opacity: 0.9;
-      }
-      .btn-primary:after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(
-          circle at 30% 20%,
-          rgba(255, 255, 255, 0.35),
-          transparent 60%
-        );
-        mix-blend-mode: overlay;
-      }
-      .btn-primary span {
-        position: relative;
-        z-index: 10;
-      }
-      .btn-primary:hover:before {
-        filter: brightness(1.05);
-      }
-      .btn-primary:active:before {
-        filter: brightness(0.9);
-      }
-      .glass-nav {
-        backdrop-filter: blur(18px) saturate(160%);
-        -webkit-backdrop-filter: blur(18px) saturate(160%);
-      }
-      .section-title {
-        font-size: 1.875rem;
-        line-height: 2.25rem;
-        font-weight: 600;
-        color: var(--color-coffee-100);
-      }
-      @media (min-width: 768px) {
-        .section-title {
-          font-size: 2.25rem;
-          line-height: 2.5rem;
-        }
-      }
-      body {
-        font-feature-settings: "rlig" 1, "calt" 1;
-      }
-      body:before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        z-index: -1;
-        background: radial-gradient(
-            circle at 35% 25%,
-            var(--color-coffee-300) 10%,
-            transparent 55%
-          ),
-          radial-gradient(
-            circle at 75% 70%,
-            var(--color-coffee-500) 8%,
-            transparent 55%
-          ),
-          linear-gradient(
-            180deg,
-            var(--color-coffee-950),
-            var(--color-coffee-900)
-          );
-        opacity: 0.12;
-        pointer-events: none;
-      }
-      html:not(.dark) body {
-        background: var(--color-coffee-50);
-        color: var(--color-coffee-800);
-      }
-      html:not(.dark) body:before {
-        opacity: 0.25;
-        background: radial-gradient(
-            circle at 30% 25%,
-            var(--color-coffee-200) 10%,
-            transparent 55%
-          ),
-          radial-gradient(
-            circle at 80% 65%,
-            var(--color-coffee-300) 8%,
-            transparent 55%
-          ),
-          linear-gradient(
-            180deg,
-            var(--color-coffee-50),
-            var(--color-coffee-100)
-          );
-      }
-      /* Variante light para títulos */
-      html:not(.dark) .section-title {
-        color: var(--color-coffee-600);
-      }
-      /* Botão secundário estilizado */
-      .btn-ghost {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        font-weight: 500;
-        letter-spacing: 0.02em;
-        border-radius: var(--radius-base);
-        color: var(--color-coffee-200);
-        font-size: 0.95rem;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(12px) saturate(160%);
-        -webkit-backdrop-filter: blur(12px) saturate(160%);
-      }
-      .btn-ghost:hover {
-        border-color: rgba(255, 255, 255, 0.3);
-        color: var(--color-coffee-50);
-      }
-      html:not(.dark) .btn-ghost {
-        color: var(--color-coffee-700);
-        background: rgba(255, 255, 255, 0.55);
-        border: 1px solid rgba(0, 0, 0, 0.07);
-      }
-      html:not(.dark) .btn-ghost:hover {
-        background: rgba(255, 255, 255, 0.85);
-      }
-    </style>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body
-    class="min-h-screen bg-coffee-100 dark:bg-coffee-950 text-coffee-800 dark:text-coffee-100 selection:bg-coffee-400/30 selection:text-coffee-50 antialiased"
+    class="min-h-screen bg-lumi-100 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 selection:bg-lumi-400/30 selection:text-lumi-50 antialiased"
   >
     <nav class="fixed top-4 left-4 right-4 xl:left-16 xl:right-16 z-50">
       <div
@@ -350,59 +58,54 @@
               class="w-9 h-9"
               aria-label="Lumin Logo"
             >
-              <circle
-                class="fill-coffee-50"
-                cx="137.28"
-                cy="137.28"
-                r="58.52"
-              />
+              <circle class="fill-lumi-50" cx="137.28" cy="137.28" r="58.52" />
               <path
-                class="fill-coffee-500"
+                class="fill-lumi-500"
                 d="M151.65,56.06h-28.73c-4.06,0-6.95-3.97-5.69-7.83l14.37-44.1c1.79-5.5,9.58-5.5,11.37,0l14.37,44.1c1.26,3.86-1.62,7.83-5.69,7.83Z"
               />
               <path
-                class="fill-coffee-500"
+                class="fill-lumi-500"
                 d="M122.91,218.5h28.73c4.06,0,6.95,3.97,5.69,7.83l-14.37,44.1c-1.79,5.5-9.58,5.5-11.37,0l-14.37-44.1c-1.26-3.86,1.62-7.83,5.69-7.83Z"
               />
               <path
-                class="fill-coffee-500"
+                class="fill-lumi-500"
                 d="M218.5,151.65v-28.73c0-4.06,3.97-6.95,7.83-5.69l44.1,14.37c5.5,1.79,5.5,9.58,0,11.37l-44.1,14.37c-3.86,1.26-7.83-1.62-7.83-5.69Z"
               />
               <path
-                class="fill-coffee-500"
+                class="fill-lumi-500"
                 d="M209.04,84.8l-14.64-14.64c-2.07-2.07-1.52-5.56,1.09-6.89l29.79-15.15c3.72-1.89,7.68,2.08,5.79,5.79l-15.15,29.79c-1.33,2.61-4.82,3.16-6.89,1.09Z"
               />
               <path
-                class="fill-coffee-500"
+                class="fill-lumi-500"
                 d="M194.4,203.51l14.64-14.64c2.07-2.07,5.56-1.52,6.89,1.09l15.15,29.79c1.89,3.72-2.08,7.68-5.79,5.79l-29.79-15.15c-2.61-1.33-3.16-4.82-1.09-6.89Z"
               />
               <path
-                class="fill-coffee-500"
+                class="fill-lumi-500"
                 d="M56.06,122.91v28.73c0,4.06-3.97,6.95-7.83,5.69l-44.1-14.37c-5.5-1.79-5.5-9.58,0-11.37l44.1-14.37c3.86-1.26,7.83,1.62,7.83,5.69Z"
               />
               <path
-                class="fill-coffee-500"
+                class="fill-lumi-500"
                 d="M80.16,71.06l-14.64,14.64c-2.07,2.07-5.56,1.52-6.89-1.09l-15.15-29.79c-1.89-3.72,2.08-7.68,5.79-5.79l29.79,15.15c2.61,1.33,3.16,4.82,1.09,6.89Z"
               />
               <path
-                class="fill-coffee-500"
+                class="fill-lumi-500"
                 d="M65.52,188.87l14.64,14.64c2.07,2.07,1.52,5.56-1.09,6.89l-29.79,15.15c-3.72,1.89-7.68-2.08-5.79-5.79l15.15-29.79c1.33-2.61,4.82-3.16,6.89-1.09Z"
               />
             </svg>
           </div>
           <span
-            class="font-semibold text-lg tracking-wide text-coffee-400 dark:text-coffee-400"
+            class="font-semibold text-lg tracking-wide text-lumi-400 dark:text-lumi-400"
             >Lumin</span
           >
         </div>
         <div class="hidden md:flex items-center gap-6 text-sm">
-          <a href="#features" class="hover:text-coffee-300 transition-colors"
+          <a href="#features" class="hover:text-lumi-300 transition-colors"
             >Recursos</a
           >
-          <a href="#sobre" class="hover:text-coffee-300 transition-colors"
+          <a href="#sobre" class="hover:text-lumi-300 transition-colors"
             >Sobre</a
           >
-          <a href="#equipe" class="hover:text-coffee-300 transition-colors"
+          <a href="#equipe" class="hover:text-lumi-300 transition-colors"
             >Equipe</a
           >
         </div>
@@ -433,7 +136,7 @@
             <span class="text-gradient">Organize, Aprenda & Evolua</span>
           </h1>
           <p
-            class="mt-6 text-lg md:text-xl text-coffee-400 dark:text-coffee-400 max-w-2xl"
+            class="mt-6 text-lg md:text-xl text-lumi-400 dark:text-lumi-400 max-w-2xl"
           >
             A <strong>Lumin</strong> é sua agenda acadêmica inteligente:
             centralize tarefas, provas e atividades e receba apoio de IA para
@@ -448,7 +151,7 @@
         <div class="flex justify-center lg:justify-end">
           <div class="relative">
             <div
-              class="absolute inset-0 bg-gradient-to-br from-coffee-300/20 to-coffee-500/20 rounded-full blur-3xl scale-110"
+              class="absolute inset-0 bg-gradient-to-br from-lumi-300/20 to-lumi-500/20 rounded-full blur-3xl scale-110"
             ></div>
             <svg
               viewBox="0 0 274.56 274.56"
@@ -456,41 +159,41 @@
               aria-label="Lumin Logo"
             >
               <circle
-                class="fill-coffee-100 dark:fill-coffee-50"
+                class="fill-lumi-100 dark:fill-lumi-50"
                 cx="137.28"
                 cy="137.28"
                 r="58.52"
               />
               <path
-                class="fill-coffee-500 dark:fill-coffee-500"
+                class="fill-lumi-500 dark:fill-lumi-500"
                 d="M151.65,56.06h-28.73c-4.06,0-6.95-3.97-5.69-7.83l14.37-44.1c1.79-5.5,9.58-5.5,11.37,0l14.37,44.1c1.26,3.86-1.62,7.83-5.69,7.83Z"
               />
               <path
-                class="fill-coffee-500 dark:fill-coffee-500"
+                class="fill-lumi-500 dark:fill-lumi-500"
                 d="M122.91,218.5h28.73c4.06,0,6.95,3.97,5.69,7.83l-14.37,44.1c-1.79,5.5-9.58,5.5-11.37,0l-14.37-44.1c-1.26-3.86,1.62-7.83,5.69-7.83Z"
               />
               <path
-                class="fill-coffee-500 dark:fill-coffee-500"
+                class="fill-lumi-500 dark:fill-lumi-500"
                 d="M218.5,151.65v-28.73c0-4.06,3.97-6.95,7.83-5.69l44.1,14.37c5.5,1.79,5.5,9.58,0,11.37l-44.1,14.37c-3.86,1.26-7.83-1.62-7.83-5.69Z"
               />
               <path
-                class="fill-coffee-500 dark:fill-coffee-500"
+                class="fill-lumi-500 dark:fill-lumi-500"
                 d="M209.04,84.8l-14.64-14.64c-2.07-2.07-1.52-5.56,1.09-6.89l29.79-15.15c3.72-1.89,7.68,2.08,5.79,5.79l-15.15,29.79c-1.33,2.61-4.82,3.16-6.89,1.09Z"
               />
               <path
-                class="fill-coffee-500 dark:fill-coffee-500"
+                class="fill-lumi-500 dark:fill-lumi-500"
                 d="M194.4,203.51l14.64-14.64c2.07-2.07,5.56-1.52,6.89,1.09l15.15,29.79c1.89,3.72-2.08,7.68-5.79,5.79l-29.79-15.15c-2.61-1.33-3.16-4.82-1.09-6.89Z"
               />
               <path
-                class="fill-coffee-500 dark:fill-coffee-500"
+                class="fill-lumi-500 dark:fill-lumi-500"
                 d="M56.06,122.91v28.73c0,4.06-3.97,6.95-7.83,5.69l-44.1-14.37c-5.5-1.79-5.5-9.58,0-11.37l44.1-14.37c3.86-1.26,7.83,1.62,7.83,5.69Z"
               />
               <path
-                class="fill-coffee-500 dark:fill-coffee-500"
+                class="fill-lumi-500 dark:fill-lumi-500"
                 d="M80.16,71.06l-14.64,14.64c-2.07,2.07-5.56,1.52-6.89-1.09l-15.15-29.79c-1.89-3.72,2.08-7.68,5.79-5.79l29.79,15.15c2.61,1.33,3.16,4.82,1.09,6.89Z"
               />
               <path
-                class="fill-coffee-500 dark:fill-coffee-500"
+                class="fill-lumi-500 dark:fill-lumi-500"
                 d="M65.52,188.87l14.64,14.64c2.07,2.07,1.52,5.56-1.09,6.89l-29.79,15.15c-3.72,1.89-7.68-2.08-5.79-5.79l15.15-29.79c1.33-2.61,4.82-3.16,6.89-1.09Z"
               />
             </svg>
@@ -503,63 +206,51 @@
       <h2 class="section-title mb-10">Recursos em Destaque</h2>
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <div class="lumi-border p-6 flex flex-col gap-3">
-          <h3
-            class="font-semibold text-lg text-coffee-600 dark:text-coffee-300"
-          >
+          <h3 class="font-semibold text-lg text-lumi-600 dark:text-lumi-300">
             Planejamento Inteligente
           </h3>
-          <p class="text-sm text-coffee-400 dark:text-coffee-400/80">
+          <p class="text-sm text-lumi-400 dark:text-lumi-400/80">
             Sugestões automáticas de organização baseadas na sua carga de
             estudos.
           </p>
         </div>
         <div class="lumi-border p-6 flex flex-col gap-3">
-          <h3
-            class="font-semibold text-lg text-coffee-600 dark:text-coffee-300"
-          >
+          <h3 class="font-semibold text-lg text-lumi-600 dark:text-lumi-300">
             Prioridades Dinâmicas
           </h3>
-          <p class="text-sm text-coffee-400 dark:text-coffee-400/80">
+          <p class="text-sm text-lumi-400 dark:text-lumi-400/80">
             Tarefas reordenadas conforme prazos e importância mudam.
           </p>
         </div>
         <div class="lumi-border p-6 flex flex-col gap-3">
-          <h3
-            class="font-semibold text-lg text-coffee-600 dark:text-coffee-300"
-          >
+          <h3 class="font-semibold text-lg text-lumi-600 dark:text-lumi-300">
             Acompanhamento de Progresso
           </h3>
-          <p class="text-sm text-coffee-400 dark:text-coffee-400/80">
+          <p class="text-sm text-lumi-400 dark:text-lumi-400/80">
             Métricas claras para manter ritmo sem sobrecarga.
           </p>
         </div>
         <div class="lumi-border p-6 flex flex-col gap-3">
-          <h3
-            class="font-semibold text-lg text-coffee-600 dark:text-coffee-300"
-          >
+          <h3 class="font-semibold text-lg text-lumi-600 dark:text-lumi-300">
             Assistente com IA
           </h3>
-          <p class="text-sm text-coffee-400 dark:text-coffee-400/80">
+          <p class="text-sm text-lumi-400 dark:text-lumi-400/80">
             Crie planos de estudo, resumos e lembretes personalizados.
           </p>
         </div>
         <div class="lumi-border p-6 flex flex-col gap-3">
-          <h3
-            class="font-semibold text-lg text-coffee-600 dark:text-coffee-300"
-          >
+          <h3 class="font-semibold text-lg text-lumi-600 dark:text-lumi-300">
             Sincronização Multi‑Dispositivo
           </h3>
-          <p class="text-sm text-coffee-400 dark:text-coffee-400/80">
+          <p class="text-sm text-lumi-400 dark:text-lumi-400/80">
             Acesse em qualquer lugar com consistência e segurança.
           </p>
         </div>
         <div class="lumi-border p-6 flex flex-col gap-3">
-          <h3
-            class="font-semibold text-lg text-coffee-600 dark:text-coffee-300"
-          >
+          <h3 class="font-semibold text-lg text-lumi-600 dark:text-lumi-300">
             Modo Foco
           </h3>
-          <p class="text-sm text-coffee-400 dark:text-coffee-400/80">
+          <p class="text-sm text-lumi-400 dark:text-lumi-400/80">
             Sessões temporizadas para otimizar seu tempo de estudo.
           </p>
         </div>
@@ -573,12 +264,12 @@
         <div>
           <h2 class="section-title mb-4">Sobre o Projeto</h2>
           <p
-            class="leading-relaxed text-coffee-400 dark:text-coffee-400/80 text-base md:text-lg"
+            class="leading-relaxed text-lumi-400 dark:text-lumi-400/80 text-base md:text-lg"
           >
-            A <strong class="text-coffee-200">Lumin</strong> nasceu para
-            resolver o caos acadêmico: atividades dispersas, prazos esquecidos e
-            falta de visibilidade do progresso. Unimos organização estruturada
-            com inteligência artificial para sugerir priorizações, ajustar
+            A <strong class="text-lumi-200">Lumin</strong> nasceu para resolver
+            o caos acadêmico: atividades dispersas, prazos esquecidos e falta de
+            visibilidade do progresso. Unimos organização estruturada com
+            inteligência artificial para sugerir priorizações, ajustar
             planejamentos e oferecer suporte contextual ao estudo. <br /><br />
             O foco é entregar uma experiência clara, acolhedora e eficiente, com
             mais aprendizado. Interface minimalista, feedback rápido e recursos
@@ -590,12 +281,12 @@
           data-variant="light"
         >
           <div
-            class="absolute inset-0 bg-gradient-to-br from-coffee-400/20 to-coffee-700/40"
+            class="absolute inset-0 bg-gradient-to-br from-lumi-400/20 to-lumi-700/40"
           ></div>
           <div
             class="absolute inset-0 flex items-center justify-center text-center p-6"
           >
-            <p class="text-coffee-700/80 text-sm md:text-base font-medium">
+            <p class="text-lumi-700/80 text-sm md:text-base font-medium">
               Espaço reservado para mockup / screenshot da aplicação.
             </p>
           </div>
@@ -606,7 +297,7 @@
       <div class="lumi-border p-10 md:p-14">
         <h2 class="section-title mb-8">Nossa Equipe</h2>
         <p
-          class="text-coffee-400 dark:text-coffee-400/80 max-w-3xl leading-relaxed mb-10"
+          class="text-lumi-400 dark:text-lumi-400/80 max-w-3xl leading-relaxed mb-10"
         >
           Somos estudantes da ETEC Lauro Gomes (1º ano de EDS) motivados por
           construir soluções úteis enquanto aprendemos tecnologias modernas.
@@ -615,58 +306,58 @@
         <ul class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <li class="group">
             <div
-              class="lumi-border aspect-square mb-3 flex items-center justify-center bg-coffee-200/5"
+              class="lumi-border aspect-square mb-3 flex items-center justify-center bg-lumi-200/5"
             >
               <span
-                class="text-5xl font-light text-coffee-500/50 group-hover:text-coffee-400 transition-colors"
+                class="text-5xl font-light text-lumi-500/50 group-hover:text-lumi-400 transition-colors"
                 >H</span
               >
             </div>
             <p class="font-medium">Heikon Silva Costa</p>
-            <!-- <p class="text-xs text-coffee-400">Coordenação & Dev</p> -->
+            <!-- <p class="text-xs text-lumi-400">Coordenação & Dev</p> -->
           </li>
           <li class="group">
             <div
-              class="lumi-border aspect-square mb-3 flex items-center justify-center bg-coffee-200/5"
+              class="lumi-border aspect-square mb-3 flex items-center justify-center bg-lumi-200/5"
             >
               <span
-                class="text-5xl font-light text-coffee-500/50 group-hover:text-coffee-400 transition-colors"
+                class="text-5xl font-light text-lumi-500/50 group-hover:text-lumi-400 transition-colors"
                 >J</span
               >
             </div>
             <p class="font-medium">Jhonatan Oliveira Aranha</p>
-            <!-- <p class="text-xs text-coffee-400">Backend & Infra</p> -->
+            <!-- <p class="text-xs text-lumi-400">Backend & Infra</p> -->
           </li>
           <li class="group">
             <div
-              class="lumi-border aspect-square mb-3 flex items-center justify-center bg-coffee-200/5"
+              class="lumi-border aspect-square mb-3 flex items-center justify-center bg-lumi-200/5"
             >
               <span
-                class="text-5xl font-light text-coffee-500/50 group-hover:text-coffee-400 transition-colors"
+                class="text-5xl font-light text-lumi-500/50 group-hover:text-lumi-400 transition-colors"
                 >A</span
               >
             </div>
             <p class="font-medium">Arthur Pereira Faria</p>
-            <!-- <p class="text-xs text-coffee-400">Frontend & UX</p> -->
+            <!-- <p class="text-xs text-lumi-400">Frontend & UX</p> -->
           </li>
           <!-- <li class="group">
             <div
-              class="lumi-border aspect-square mb-3 flex items-center justify-center bg-coffee-200/5"
+              class="lumi-border aspect-square mb-3 flex items-center justify-center bg-lumi-200/5"
             >
               <span
-                class="text-5xl font-light text-coffee-500/50 group-hover:text-coffee-400 transition-colors"
+                class="text-5xl font-light text-lumi-500/50 group-hover:text-lumi-400 transition-colors"
                 >N</span
               >
             </div>
             <p class="font-medium">Nicolas</p>
-            <p class="text-xs text-coffee-400">Pesquisa & Conteúdo</p>
+            <p class="text-xs text-lumi-400">Pesquisa & Conteúdo</p>
           </li> -->
         </ul>
       </div>
     </section>
 
     <!-- <footer
-      class="px-6 md:px-10 max-w-7xl mx-auto pb-4 text-xs text-coffee-400 flex flex-col md:flex-row justify-between gap-4"
+      class="px-6 md:px-10 max-w-7xl mx-auto pb-4 text-xs text-lumi-400 flex flex-col md:flex-row justify-between gap-4"
     >
       <p>&copy; <span id="year"></span> Lumin. Todos os direitos reservados.</p>
       <p>Feito com foco em aprendizado e impacto real.</p>

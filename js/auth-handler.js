@@ -12,6 +12,10 @@ onAuthStateChanged(auth, (user) => {
       path === "/register"
     ) {
       window.location.replace("/dashboard/");
+      console.log(user);
+      if (!user.email) {
+        console.log("Convidado");
+      }
     }
   } else {
     // Se não autenticado, redireciona de /dashboard para /login

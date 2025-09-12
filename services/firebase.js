@@ -4,6 +4,7 @@ import {
   getAuth,
   browserSessionPersistence,
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDwR8hqqQIH-_aCodqWdH601wPj0PcRIHk",
@@ -13,12 +14,14 @@ const firebaseConfig = {
   messagingSenderId: "104923062444",
   appId: "1:104923062444:web:99bb84452475415bdd3f09",
   measurementId: "G-QVG7HH519C",
+  databaseURL: "https://lumin-4cf31-default-rtdb.firebaseio.com",
 };
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth();
+const database = getDatabase(app);
 
 auth.languageCode = "pt-BR";
 
-export { auth };
+export { auth, database };
