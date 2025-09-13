@@ -1,9 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
-import {
-  getAuth,
-  browserSessionPersistence,
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 import { getDatabase } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
 const firebaseConfig = {
@@ -20,8 +17,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth();
-const database = getDatabase(app);
+const db = getDatabase();
 
 auth.languageCode = "pt-BR";
 
-export { auth, database };
+export { auth, db };
