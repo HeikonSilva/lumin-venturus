@@ -29,6 +29,9 @@
 
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="../style.css" />
+
+    <script type="module" src="../services/firebase.js"></script>
+    <script type="module" src="../js/auth-handler.js"></script>
   </head>
   <body
     class="min-h-screen bg-lumi-100 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 selection:bg-lumi-400/30 selection:text-lumi-50 antialiased"
@@ -67,7 +70,7 @@
           <li>
             <a
               class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10"
-              href="#"
+              href="./calendar/"
             >
               <svg
                 width="18"
@@ -88,7 +91,7 @@
           <li>
             <a
               class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10"
-              href="#"
+              href="./ai/"
             >
               <svg
                 width="18"
@@ -104,32 +107,6 @@
                 />
               </svg>
               <span>Ações de IA</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10"
-              href="#"
-            >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                class="text-lumi-300"
-              >
-                <path
-                  d="M12 15.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                />
-                <path
-                  d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06A1.65 1.65 0 0015 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 008.6 15a1.65 1.65 0 00-1.82-.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 008.6 4.6c.48 0 .94-.19 1.28-.53l.06-.06a2 2 0 112.83 2.83l-.06.06c-.34.34-.53.8-.53 1.28 0 .48.19.94.53 1.28l.06.06c.34.34.8.53 1.28.53.48 0 .94-.19 1.28-.53l.06-.06a2 2 0 112.83 2.83l-.06.06c-.34.34-.53.8-.53 1.28Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                />
-              </svg>
-              <span>Configurações</span>
             </a>
           </li>
         </ul>
@@ -256,56 +233,6 @@
           overflow-x: auto;
         "
       >
-        <!-- Column: Backlog -->
-        <div class="grid gap-3">
-          <div class="flex items-center justify-between px-1">
-            <div class="flex items-center gap-2">
-              <span
-                class="inline-block w-2 h-2 rounded-full bg-lumi-400"
-              ></span>
-              <h2 class="text-sm font-semibold">Backlog</h2>
-              <span class="text-[11px] px-1.5 py-0.5 rounded-full bg-white/10"
-                >3</span
-              >
-            </div>
-            <button class="text-lumi-400 hover:text-lumi-200">+</button>
-          </div>
-          <article class="lumi-border p-4 grid gap-2">
-            <h3 class="font-medium">Estudar Matemática - Funções</h3>
-            <div class="flex flex-wrap gap-1 text-[11px]">
-              <span class="px-1.5 py-0.5 rounded bg-white/10">Alta</span>
-              <span class="px-1.5 py-0.5 rounded bg-white/5">Matemática</span>
-            </div>
-            <div class="mt-1 flex items-center gap-2 text-xs text-lumi-400">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 8v5l3 2"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                />
-              </svg>
-              <span>25 Jan</span>
-            </div>
-          </article>
-          <article class="lumi-border p-4 grid gap-2">
-            <h3 class="font-medium">Revisar História - Revolução Industrial</h3>
-            <div class="flex flex-wrap gap-1 text-[11px]">
-              <span class="px-1.5 py-0.5 rounded bg-white/10">Média</span>
-              <span class="px-1.5 py-0.5 rounded bg-white/5">História</span>
-            </div>
-            <div class="mt-1 flex items-center gap-2 text-xs text-lumi-400">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 8v5l3 2"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                />
-              </svg>
-              <span>28 Jan</span>
-            </div>
-          </article>
-        </div>
-
         <!-- Column: A Fazer -->
         <div class="grid gap-3">
           <div class="flex items-center justify-between px-1">
@@ -366,39 +293,6 @@
             >
               <span>Amanhã</span>
               <span>3/4</span>
-            </div>
-          </article>
-        </div>
-
-        <!-- Column: Revisão -->
-        <div class="grid gap-3">
-          <div class="flex items-center justify-between px-1">
-            <div class="flex items-center gap-2">
-              <span
-                class="inline-block w-2 h-2 rounded-full bg-lumi-400"
-              ></span>
-              <h2 class="text-sm font-semibold">Revisão</h2>
-              <span class="text-[11px] px-1.5 py-0.5 rounded-full bg-white/10"
-                >1</span
-              >
-            </div>
-            <button class="text-lumi-400 hover:text-lumi-200">+</button>
-          </div>
-          <article class="lumi-border p-4 grid gap-2">
-            <h3 class="font-medium">Química - Tabela Periódica</h3>
-            <div class="flex flex-wrap gap-1 text-[11px]">
-              <span class="px-1.5 py-0.5 rounded bg-white/10">Baixa</span>
-              <span class="px-1.5 py-0.5 rounded bg-white/5">Química</span>
-            </div>
-            <div class="mt-1 flex items-center gap-2 text-xs text-lumi-400">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 8v5l3 2"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                />
-              </svg>
-              <span>30 Jan</span>
             </div>
           </article>
         </div>

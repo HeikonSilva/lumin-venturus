@@ -204,9 +204,9 @@ html:not(.dark) .btn-ghost:hover {
 .text-gradient {
   background: linear-gradient(
     90deg,
-    var(--color-lumi-200),
     var(--color-lumi-400),
-    var(--color-lumi-200)
+    var(--color-lumi-200),
+    var(--color-lumi-400)
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -215,9 +215,9 @@ html:not(.dark) .btn-ghost:hover {
 html:not(.dark) .text-gradient {
   background: linear-gradient(
     90deg,
-    var(--color-lumi-400),
     var(--color-lumi-300),
-    var(--color-lumi-400)
+    var(--color-lumi-200),
+    var(--color-lumi-300)
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -280,4 +280,202 @@ html:not(.dark) body:before {
       transparent 55%
     ),
     linear-gradient(180deg, var(--color-lumi-50), var(--color-lumi-100));
+}
+
+/* FullCalendar Dark Theme Customization */
+.fc {
+  background: transparent;
+  color: var(--lumi-100);
+}
+
+.fc-theme-standard .fc-scrollgrid {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: transparent;
+}
+
+.fc-col-header-cell {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--lumi-300);
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 1rem 0.5rem;
+}
+
+.fc-daygrid-day {
+  background: transparent;
+  min-height: 120px;
+}
+
+.fc-daygrid-day:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.fc-day-today {
+  background: rgba(147, 184, 204, 0.1) !important;
+}
+
+.fc-daygrid-day-number {
+  color: var(--lumi-200);
+  font-weight: 500;
+  padding: 0.5rem;
+}
+
+.fc-day-other .fc-daygrid-day-number {
+  color: var(--lumi-500);
+}
+
+.fc-toolbar {
+  margin-bottom: 1.5rem;
+}
+
+.fc-toolbar-chunk {
+  align-items: center;
+}
+
+.fc-button-primary {
+  background: rgba(147, 184, 204, 0.2);
+  border: 1px solid rgba(147, 184, 204, 0.3);
+  color: var(--lumi-300);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.fc-button-primary:hover {
+  background: rgba(147, 184, 204, 0.3);
+  border-color: rgba(147, 184, 204, 0.5);
+}
+
+.fc-button-primary:disabled {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--lumi-500);
+}
+
+.fc-toolbar-title {
+  color: var(--lumi-200);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.fc-event {
+  background: var(--lumi-400);
+  border: 1px solid var(--lumi-500);
+  border-radius: 6px;
+  color: var(--lumi-900);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 2px 6px;
+  margin: 1px 0;
+}
+
+.fc-event.high-priority {
+  background: #ef4444;
+  border-color: #dc2626;
+  color: white;
+}
+
+.fc-event.medium-priority {
+  background: #f59e0b;
+  border-color: #d97706;
+  color: white;
+}
+
+.fc-event.completed {
+  background: #10b981;
+  border-color: #059669;
+  color: white;
+  opacity: 0.8;
+}
+
+.fc-event:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.fc-event-title {
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+.fc-more-link {
+  color: var(--lumi-400);
+  font-size: 0.75rem;
+  text-decoration: none;
+}
+
+.fc-more-link:hover {
+  color: var(--lumi-300);
+  text-decoration: underline;
+}
+
+/* Light theme overrides */
+html:not(.dark) .fc {
+  color: var(--lumi-800);
+}
+
+html:not(.dark) .fc-theme-standard .fc-scrollgrid {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+html:not(.dark) .fc-theme-standard td,
+html:not(.dark) .fc-theme-standard th {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+html:not(.dark) .fc-col-header-cell {
+  background: rgba(0, 0, 0, 0.02);
+  color: var(--lumi-600);
+}
+
+html:not(.dark) .fc-daygrid-day:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+html:not(.dark) .fc-day-today {
+  background: rgba(147, 184, 204, 0.15) !important;
+}
+
+html:not(.dark) .fc-daygrid-day-number {
+  color: var(--lumi-700);
+}
+
+html:not(.dark) .fc-day-other .fc-daygrid-day-number {
+  color: var(--lumi-400);
+}
+
+html:not(.dark) .fc-button-primary {
+  background: rgba(147, 184, 204, 0.15);
+  border: 1px solid rgba(147, 184, 204, 0.3);
+  color: var(--lumi-700);
+}
+
+html:not(.dark) .fc-button-primary:hover {
+  background: rgba(147, 184, 204, 0.25);
+}
+
+html:not(.dark) .fc-button-primary:disabled {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: var(--lumi-400);
+}
+
+html:not(.dark) .fc-toolbar-title {
+  color: var(--lumi-800);
+}
+
+html:not(.dark) .fc-more-link {
+  color: var(--lumi-600);
+}
+
+html:not(.dark) .fc-more-link:hover {
+  color: var(--lumi-700);
 }
