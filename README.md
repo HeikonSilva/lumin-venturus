@@ -32,32 +32,33 @@ Lumin é uma plataforma web moderna que oferece:
 
 ## 🚀 Funcionalidades
 
-### ✅ Implementadas
+<!-- ### ✅ Implementadas
 
-- Sistema completo de autenticação (login/registro)
+- Autenticação de usuários (Supabase Auth)
+- Kanban de tarefas com realtime (criar/listar/mover) e drag & drop
+- Modo escuro/claro
 
 ### 🔄 Em Desenvolvimento
 
 - Calendário de estudos
-- Assistente IA para sugestões de estudo
-- Modo escuro/claro
-- CRUD completo de tarefas com Firebase Realtime Database
+- Assistente IA (sugestões e ações operacionais)
+- Edição e exclusão de tarefas (CRUD completo)
 - Sistema de notificações
 - Relatórios de produtividade
 - Integração com APIs externas
-- Sistema de gamificação
+- Sistema de gamificação -->
 
 ## 🛠️ Tecnologias Utilizadas
 
 - **Frontend**: HTML5, CSS3 (Tailwind CSS), JavaScript (ES6+)
-- **Backend**: Firebase (Authentication + Realtime Database)
-- **Bibliotecas**: FullCalendar.js para calendário
+- **Backend**: Supabase (Auth, Postgres, Realtime)
+- **Bibliotecas**: FullCalendar.js (planejado)
 - **Ferramentas**: Git, VS Code, Five Server (desenvolvimento)
 
 ## 📋 Pré-requisitos
 
 - Navegador web moderno (Chrome, Firefox, Safari, Edge)
-- Conexão com internet (para Firebase)
+- Conexão com internet (para bibliotecas CDN)
 - Editor de código (recomendado: VS Code)
 - Git instalado
 
@@ -70,9 +71,9 @@ git clone https://github.com/HeikonSilva/lumin-venturus.git
 cd lumin-venturus
 ```
 
-### 2. Configuração do Firebase
+### 2. Configuração do Supabase
 
-O projeto já está configurado com Firebase. As credenciais estão em `services/firebase.js`.
+Defina as credenciais do Supabase em `services/supabase.js` e garanta que `services/db.js` exporta o cliente corretamente.
 
 ### 3. Execução Local
 
