@@ -302,32 +302,11 @@
       <p>Feito com foco em aprendizado e impacto real.</p>
     </footer> -->
 
-    <script>
-      // const y = document.getElementById("year");
-      // if (y) y.textContent = new Date().getFullYear();
-      const root = document.documentElement;
-      const toggle = document.getElementById("modeToggle");
-      const label = document.getElementById("modeLabel");
-      const PREF_KEY = "lumin-theme";
-      function applyTheme(theme) {
-        if (theme === "dark") {
-          root.classList.add("dark");
-        } else {
-          root.classList.remove("dark");
-        }
-        label.textContent = root.classList.contains("dark") ? "Dark" : "Light";
-      }
-      const stored =
-        localStorage.getItem(PREF_KEY) ||
-        (window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light");
-      applyTheme(stored);
-      toggle?.addEventListener("click", () => {
-        const next = root.classList.contains("dark") ? "light" : "dark";
-        localStorage.setItem(PREF_KEY, next);
-        applyTheme(next);
-      });
-    </script>
+    <!-- <script>
+      const y = document.getElementById("year");
+      if (y) y.textContent = new Date().getFullYear();
+    </script> -->
+
+    <script type="module" src="../js/theme-provider.js"></script>
   </body>
 </html>
