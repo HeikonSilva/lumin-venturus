@@ -117,7 +117,9 @@
             estudar melhor.
           </p>
           <div class="mt-10 flex flex-wrap gap-4">
-            <button class="btn-primary"><span>Testar agora</span></button>
+            <a data-route="/login/" class="btn-primary"
+              ><span>Testar agora</span></a
+            >
             <a href="#features" class="btn-ghost text-sm">Ver Recursos</a>
           </div>
         </div>
@@ -127,50 +129,11 @@
             <div
               class="absolute inset-0 bg-gradient-to-br from-lumi-300/20 to-lumi-500/20 rounded-full blur-3xl scale-110"
             ></div>
-            <svg
-              viewBox="0 0 274.56 274.56"
+            <img
+              src="./assets/lumi.svg"
               class="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 drop-shadow-2xl"
-              aria-label="Lumin Logo"
-            >
-              <circle
-                class="fill-lumi-100 dark:fill-lumi-50"
-                cx="137.28"
-                cy="137.28"
-                r="58.52"
-              />
-              <path
-                class="fill-lumi-500 dark:fill-lumi-500"
-                d="M151.65,56.06h-28.73c-4.06,0-6.95-3.97-5.69-7.83l14.37-44.1c1.79-5.5,9.58-5.5,11.37,0l14.37,44.1c1.26,3.86-1.62,7.83-5.69,7.83Z"
-              />
-              <path
-                class="fill-lumi-500 dark:fill-lumi-500"
-                d="M122.91,218.5h28.73c4.06,0,6.95,3.97,5.69,7.83l-14.37,44.1c-1.79,5.5-9.58,5.5-11.37,0l-14.37-44.1c-1.26-3.86,1.62-7.83,5.69-7.83Z"
-              />
-              <path
-                class="fill-lumi-500 dark:fill-lumi-500"
-                d="M218.5,151.65v-28.73c0-4.06,3.97-6.95,7.83-5.69l44.1,14.37c5.5,1.79,5.5,9.58,0,11.37l-44.1,14.37c-3.86,1.26-7.83-1.62-7.83-5.69Z"
-              />
-              <path
-                class="fill-lumi-500 dark:fill-lumi-500"
-                d="M209.04,84.8l-14.64-14.64c-2.07-2.07-1.52-5.56,1.09-6.89l29.79-15.15c3.72-1.89,7.68,2.08,5.79,5.79l-15.15,29.79c-1.33,2.61-4.82,3.16-6.89,1.09Z"
-              />
-              <path
-                class="fill-lumi-500 dark:fill-lumi-500"
-                d="M194.4,203.51l14.64-14.64c2.07-2.07,5.56-1.52,6.89,1.09l15.15,29.79c1.89,3.72-2.08,7.68-5.79,5.79l-29.79-15.15c-2.61-1.33-3.16-4.82-1.09-6.89Z"
-              />
-              <path
-                class="fill-lumi-500 dark:fill-lumi-500"
-                d="M56.06,122.91v28.73c0,4.06-3.97,6.95-7.83,5.69l-44.1-14.37c-5.5-1.79-5.5-9.58,0-11.37l44.1-14.37c3.86-1.26,7.83,1.62,7.83,5.69Z"
-              />
-              <path
-                class="fill-lumi-500 dark:fill-lumi-500"
-                d="M80.16,71.06l-14.64,14.64c-2.07,2.07-5.56,1.52-6.89-1.09l-15.15-29.79c-1.89-3.72,2.08-7.68,5.79-5.79l29.79,15.15c2.61,1.33,3.16,4.82,1.09,6.89Z"
-              />
-              <path
-                class="fill-lumi-500 dark:fill-lumi-500"
-                d="M65.52,188.87l14.64,14.64c2.07,2.07,1.52,5.56-1.09,6.89l-29.79,15.15c-3.72,1.89-7.68-2.08-5.79-5.79l15.15-29.79c1.33-2.61,4.82-3.16,6.89-1.09Z"
-              />
-            </svg>
+              alt=""
+            />
           </div>
         </div>
       </div>
@@ -178,7 +141,7 @@
 
     <section id="features" class="px-6 md:px-10 max-w-7xl mx-auto pb-28">
       <h2 class="section-title mb-10">Recursos em Destaque</h2>
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
         <div class="lumi-border p-6 flex flex-col gap-3">
           <h3 class="font-semibold text-lg text-lumi-600 dark:text-lumi-300">
             Planejamento Inteligente
@@ -198,14 +161,6 @@
         </div>
         <div class="lumi-border p-6 flex flex-col gap-3">
           <h3 class="font-semibold text-lg text-lumi-600 dark:text-lumi-300">
-            Acompanhamento de Progresso
-          </h3>
-          <p class="text-sm text-lumi-400 dark:text-lumi-100">
-            Métricas claras para manter ritmo sem sobrecarga.
-          </p>
-        </div>
-        <div class="lumi-border p-6 flex flex-col gap-3">
-          <h3 class="font-semibold text-lg text-lumi-600 dark:text-lumi-300">
             Assistente com IA
           </h3>
           <p class="text-sm text-lumi-400 dark:text-lumi-100">
@@ -218,14 +173,6 @@
           </h3>
           <p class="text-sm text-lumi-400 dark:text-lumi-100">
             Acesse em qualquer lugar com consistência e segurança.
-          </p>
-        </div>
-        <div class="lumi-border p-6 flex flex-col gap-3">
-          <h3 class="font-semibold text-lg text-lumi-600 dark:text-lumi-300">
-            Modo Foco
-          </h3>
-          <p class="text-sm text-lumi-400 dark:text-lumi-100">
-            Sessões temporizadas para otimizar seu tempo de estudo.
           </p>
         </div>
       </div>
@@ -257,12 +204,8 @@
           <div
             class="absolute inset-0 bg-gradient-to-br from-lumi-400/20 to-lumi-700/40"
           ></div>
-          <div
-            class="absolute inset-0 flex items-center justify-center text-center p-6"
-          >
-            <p class="text-lumi-700/80 text-sm md:text-base font-medium">
-              Espaço reservado para mockup / screenshot da aplicação.
-            </p>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <img src="./assets/app.png" class="h-full" alt="" />
           </div>
         </div>
       </div>
