@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lumin | Contato</title>
+    <meta name="description" content="Organize, Aprenda & Evolua" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://heikonsilva.github.io/lumin-venturus/"
+    />
+    <meta property="og:title" content="Lumin" />
+    <meta property="og:description" content="Organize, Aprenda & Evolua" />
+    <meta property="og:image" content="../assets/meta.png" />
+    <!-- X (Twitter) -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://heikonsilva.github.io/lumin-venturus/"
+    />
+    <meta property="twitter:title" content="Lumin" />
+    <meta property="twitter:description" content="Organize, Aprenda & Evolua" />
+    <meta property="twitter:image" content="../assets/meta.png" />
+    <!-- Favicons -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="../assets/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="../assets/favicon/favicon.svg"
+    />
+    <link rel="shortcut icon" href="../assets/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../assets/favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="Lumin" />
+    <link rel="manifest" href="../assets/favicon/site.webmanifest" />
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="../style.css" />
+    <script type="module" src="../services/firebase.js"></script>
+    <script type="module" src="../js/auth-handler.js"></script>
+    <script type="module" src="./functions/login-with-google.js"></script>
+    <script type="module" src="./functions/login-with-password.js"></script>
+    <script type="module" src="./functions/login-anonymus.js"></script>
+  </head>
+  <body
+    class="min-h-screen bg-lumi-100 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 selection:bg-lumi-400/30 selection:text-lumi-50 antialiased"
+  >
+    <nav class="fixed top-4 left-4 right-4 xl:left-16 xl:right-16 z-50">
+      <div
+        class="lumi-border glass-nav flex items-center justify-between px-4 md:px-6 h-14"
+      >
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 flex items-center justify-center">
+            <svg
+              viewBox="0 0 274.56 274.56"
+              class="w-9 h-9"
+              aria-label="Lumin Logo"
+            >
+              <circle class="fill-lumi-50" cx="137.28" cy="137.28" r="58.52" />
+              <path
+                class="fill-lumi-500"
+                d="M151.65,56.06h-28.73c-4.06,0-6.95-3.97-5.69-7.83l14.37-44.1c1.79-5.5,9.58-5.5,11.37,0l14.37,44.1c1.26,3.86-1.62,7.83-5.69,7.83Z"
+              />
+              <path
+                class="fill-lumi-500"
+                d="M122.91,218.5h28.73c4.06,0,6.95,3.97,5.69,7.83l-14.37,44.1c-1.79,5.5-9.58,5.5-11.37,0l-14.37-44.1c-1.26-3.86,1.62-7.83,5.69-7.83Z"
+              />
+              <path
+                class="fill-lumi-500"
+                d="M218.5,151.65v-28.73c0-4.06,3.97-6.95,7.83-5.69l44.1,14.37c5.5,1.79,5.5,9.58,0,11.37l-44.1,14.37c-3.86,1.26-7.83-1.62-7.83-5.69Z"
+              />
+              <path
+                class="fill-lumi-500"
+                d="M209.04,84.8l-14.64-14.64c-2.07-2.07-1.52-5.56,1.09-6.89l29.79-15.15c3.72-1.89,7.68,2.08,5.79,5.79l-15.15,29.79c-1.33,2.61-4.82,3.16-6.89,1.09Z"
+              />
+              <path
+                class="fill-lumi-500"
+                d="M194.4,203.51l14.64-14.64c2.07-2.07,5.56-1.52,6.89,1.09l15.15,29.79c1.89,3.72-2.08,7.68-5.79,5.79l-29.79-15.15c-2.61-1.33-3.16-4.82-1.09-6.89Z"
+              />
+              <path
+                class="fill-lumi-500"
+                d="M56.06,122.91v28.73c0,4.06-3.97,6.95-7.83,5.69l-44.1-14.37c-5.5-1.79-5.5-9.58,0-11.37l44.1-14.37c3.86-1.26,7.83,1.62,7.83,5.69Z"
+              />
+              <path
+                class="fill-lumi-500"
+                d="M80.16,71.06l-14.64,14.64c-2.07,2.07-5.56,1.52-6.89-1.09l-15.15-29.79c-1.89-3.72,2.08-7.68,5.79-5.79l29.79,15.15c2.61,1.33,3.16,4.82,1.09,6.89Z"
+              />
+              <path
+                class="fill-lumi-500"
+                d="M65.52,188.87l14.64,14.64c2.07,2.07,1.52,5.56-1.09,6.89l-29.79,15.15c-3.72,1.89-7.68-2.08-5.79-5.79l15.15-29.79c1.33-2.61,4.82-3.16,6.89-1.09Z"
+              />
+            </svg>
+          </div>
+          <span
+            class="font-semibold text-lg tracking-wide text-lumi-400 dark:text-lumi-400"
+            >Lumin</span
+          >
+        </div>
+        <div class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#features" class="hover:text-lumi-300 transition-colors"
+            >Recursos</a
+          >
+          <a href="#sobre" class="hover:text-lumi-300 transition-colors"
+            >Sobre</a
+          >
+          <a href="#equipe" class="hover:text-lumi-300 transition-colors"
+            >Equipe</a
+          >
+        </div>
+        <div class="flex items-center gap-3">
+          <button
+            id="modeToggle"
+            aria-label="Alternar tema"
+            class="btn-ghost text-xs"
+          >
+            <span id="modeLabel">Dark</span>
+          </button>
+          <a href="/login/">
+            <button
+              class="cursor-pointer btn-primary text-sm shadow-md shadow-black/40"
+            >
+              <span>Entrar</span>
+            </button>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="px-4 sm:px-6 pt-24 sm:pt-28 pb-10">
+      <section class="max-w-xl mx-auto">
+        <div class="lumi-border p-6 sm:p-8 md:p-10">
+          <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold">Contate-nos</h1>
+          <p class="mt-3 text-lumi-700 dark:text-lumi-400">
+            Comunique-se conosco para dúvidas, sugestões ou feedbacks.
+          </p>
+
+          <form
+            name="messageForm"
+            class="mt-6 space-y-4"
+            onsubmit="return false;"
+            autocomplete="on"
+          >
+            <div>
+              <label
+                for="name"
+                class="block text-sm mb-1 text-lumi-700 dark:text-lumi-100"
+                >Nome</label
+              >
+              <input
+                id="name"
+                type="text"
+                class="w-full p-2 rounded-lg border border-lumi-300 dark:border-lumi-600 bg-white/70 dark:bg-lumi-900/30 text-lumi-900 dark:text-lumi-50 outline-none focus:border-lumi-400 placeholder:text-lumi-400 dark:placeholder:text-lumi-500"
+                placeholder="Seu nome"
+              />
+            </div>
+            <div>
+              <label
+                for="email"
+                class="block text-sm mb-1 text-lumi-700 dark:text-lumi-100"
+                >Email</label
+              >
+              <input
+                id="email"
+                type="email"
+                class="w-full p-2 rounded-lg border border-lumi-300 dark:border-lumi-600 bg-white/70 dark:bg-lumi-900/30 text-lumi-900 dark:text-lumi-50 outline-none focus:border-lumi-400 placeholder:text-lumi-400 dark:placeholder:text-lumi-500"
+                placeholder="Seu e-mail"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-sm mb-1 text-lumi-700 dark:text-lumi-100"
+                for="message"
+                >Mensagem</label
+              >
+              <textarea
+                id="message"
+                type="tex"
+                class="w-full p-2 rounded-lg border border-lumi-300 dark:border-lumi-600 bg-white dark:bg-lumi-900/30 text-lumi-900 dark:text-lumi-50 outline-none focus:border-lumi-400 placeholder:text-lumi-400 dark:placeholder:text-lumi-500 resize-none"
+                placeholder="Sua mensagem" rows="4" maxlength="1000"></textarea>
+            </div>
+            <button type="submit" class="btn-primary w-full cursor-pointer">
+              <span>Enviar</span>
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const root = document.documentElement;
+      const toggle = document.getElementById("modeToggle");
+      const label = document.getElementById("modeLabel");
+      const PREF_KEY = "lumin-theme";
+      function applyTheme(theme) {
+        if (theme === "dark") root.classList.add("dark");
+        else root.classList.remove("dark");
+        if (label)
+          label.textContent = root.classList.contains("dark")
+            ? "Dark"
+            : "Light";
+      }
+      const stored =
+        localStorage.getItem(PREF_KEY) ||
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light");
+      applyTheme(stored);
+      toggle?.addEventListener("click", () => {
+        const next = root.classList.contains("dark") ? "light" : "dark";
+        localStorage.setItem(PREF_KEY, next);
+        applyTheme(next);
+      });
+    </script>
+  </body>
+</html>
