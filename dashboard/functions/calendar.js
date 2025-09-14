@@ -8,7 +8,7 @@
  * - Enables selection and editing
  * @param {HTMLElement} el
  */
-import { supabase } from "../../services/db.js";
+import { supabase } from "../../services/supabase.js";
 import {
   listenEvents,
   getEventsOnce,

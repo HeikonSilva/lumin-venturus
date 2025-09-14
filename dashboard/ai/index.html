@@ -113,7 +113,11 @@
           </li>
         </ul>
       </nav>
-      <div class="flex items-center justify-between">
+      <div id="userInfo" class="mb-3"></div>
+      <div class="grid gap-2">
+        <button id="logoutBtn" class="btn-ghost w-full flex justify-center">
+          Sair
+        </button>
         <button id="modeToggle" class="btn-ghost w-full flex justify-center">
           <span id="modeLabel">Dark</span>
         </button>
@@ -121,7 +125,7 @@
     </aside>
 
     <!-- Main AI Assistant -->
-    <main class="pt-8 px-4 md:pl-72 md:pr-72 xl:pr-[22rem] xl:pl-72 pb-8">
+    <main class="pt-8 px-4 md:pl-72 md:pr-[22rem] xl:pr-[26rem] xl:pl-72 pb-8">
       <header class="mb-6">
         <div class="flex items-center gap-3 mb-2">
           <svg
@@ -150,10 +154,12 @@
             </h2>
             <div class="relative">
               <textarea
+                id="aiInput"
                 class="w-full h-24 p-4 pr-12 rounded-lg bg-white/5 border border-white/10 outline-none text-sm placeholder:text-lumi-500 resize-none"
                 placeholder="Descreva o que você precisa de ajuda... Ex: 'Organize meu cronograma de estudos para a próxima semana'"
               ></textarea>
               <button
+                id="aiSend"
                 class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-lumi-400 hover:bg-lumi-500 transition-colors flex items-center justify-center"
               >
                 <svg
@@ -170,7 +176,7 @@
           </div>
 
           <!-- Quick Suggestions -->
-          <div class="mb-6">
+          <!-- <div class="mb-6">
             <p class="text-sm text-lumi-400 mb-3">Sugestões rápidas:</p>
             <div class="flex flex-wrap gap-2">
               <button
@@ -194,11 +200,17 @@
                 Detectar bloqueios
               </button>
             </div>
-          </div>
+          </div> -->
         </div>
 
-        <!-- AI Suggestions -->
+        <!-- Conversation Feed -->
         <div class="lumi-border p-6">
+          <div id="aiFeed" class="max-h-[50vh] overflow-auto"></div>
+        </div>
+
+        <div id="aiFeed" class="max-h-[50vh] overflow-auto mt-4"></div>
+        <!-- AI Suggestions (static demo block kept) -->
+        <!-- <div class="lumi-border p-6">
           <div class="flex items-center gap-3 mb-4">
             <div
               class="w-8 h-8 rounded-full bg-lumi-400 flex items-center justify-center"
@@ -273,10 +285,10 @@
             <button class="btn-ghost text-sm">Personalizar</button>
             <button class="btn-ghost text-sm">Salvar Template</button>
           </div>
-        </div>
+        </div> -->
 
         <!-- Study Schedule Suggestion -->
-        <div class="lumi-border p-6">
+        <!-- <div class="lumi-border p-6">
           <div class="flex items-center gap-3 mb-4">
             <div
               class="w-8 h-8 rounded-full bg-lumi-400 flex items-center justify-center"
@@ -353,10 +365,30 @@
             </button>
             <button class="btn-ghost text-sm">Ajustar Horários</button>
           </div>
-        </div>
+        </div> -->
       </section>
     </main>
 
-    <script type="module" src="../js/theme-provider.js"></script>
+    <!-- Right Sidebar: Recent Chats -->
+    <aside
+      class="hidden xl:flex fixed right-4 top-4 bottom-4 w-72 flex-col gap-3 z-30"
+    >
+      <div class="lumi-border p-4 flex items-center justify-between h-14">
+        <span class="font-semibold text-lumi-200">Conversas</span>
+        <button id="newChatBtn" class="btn-ghost text-xs">Nova</button>
+      </div>
+      <div class="lumi-border p-3 text-sm flex-1 overflow-auto">
+        <div id="aiChats" class="grid gap-1"></div>
+      </div>
+    </aside>
+
+    <script type="module" src="../../js/theme-provider.js"></script>
+    <script type="module" src="../functions/ai-ui.js"></script>
+    <script type="module">
+      import { setupLogout } from "../functions/logout.js";
+      import { mountUserInfo } from "../functions/user-info.js";
+      mountUserInfo("userInfo");
+      setupLogout("logoutBtn");
+    </script>
   </body>
 </html>

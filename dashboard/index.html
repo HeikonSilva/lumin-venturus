@@ -111,7 +111,11 @@
           </li>
         </ul>
       </nav>
-      <div class="flex items-center justify-between">
+      <div id="userInfo" class="mb-3"></div>
+      <div class="grid gap-2">
+        <button id="logoutBtn" class="btn-ghost w-full flex justify-center">
+          Sair
+        </button>
         <button id="modeToggle" class="btn-ghost w-full flex justify-center">
           <span id="modeLabel">Dark</span>
         </button>
@@ -119,7 +123,7 @@
     </aside>
 
     <!-- Right Panel -->
-    <aside
+    <!-- <aside
       class="hidden xl:flex fixed right-4 top-4 bottom-4 w-72 flex-col gap-3 z-30"
     >
       <div
@@ -167,7 +171,7 @@
           menores para melhorar a organização.
         </p>
       </div>
-    </aside>
+    </aside> -->
 
     <!-- Main Board -->
     <main class="pt-8 px-4 md:pl-72 md:pr-16 xl:pr-[22rem] xl:pl-72 pb-8">
@@ -188,7 +192,7 @@
         <h1 class="text-xl font-semibold">Kanban Board</h1>
       </header>
 
-      <section class="grid gap-6 md:grid-cols-3">
+      <section class="grid gap-6 md:grid-cols-3 items-start">
         <!-- Column: A Fazer -->
         <div class="grid gap-3" id="kanban-a-fazer">
           <!-- Modal para adicionar tarefa -->
@@ -433,6 +437,10 @@
 
     <script type="module" src="../js/theme-provider.js"></script>
     <script type="module">
+      import { setupLogout } from "./functions/logout.js";
+      import { mountUserInfo } from "./functions/user-info.js";
+      mountUserInfo("userInfo");
+      setupLogout("logoutBtn");
       import {
         createTask,
         getTasks,

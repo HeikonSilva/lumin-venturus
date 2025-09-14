@@ -46,7 +46,7 @@
 
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="../style.css" />
-    <script type="module" src="../services/db.js"></script>
+    <script type="module" src="../services/supabase.js"></script>
     <script type="module" src="../js/auth-handler.js"></script>
     <script type="module" src="../login/functions/login-anonymus.js"></script>
     <script
@@ -63,17 +63,33 @@
   >
     <nav class="fixed top-4 left-4 right-4 max-w-3xl mx-auto z-50">
       <div
-        class="lumi-border glass-nav flex items-center justify-between px-4 h-12"
+        class="lumi-border glass-nav px-4 h-12 flex items-center justify-between"
       >
-        <a href="../" class="flex items-center gap-2">
+        <a data-route="/" class="flex items-center gap-2">
           <img src="../assets/lumi.svg" alt="Lumin" class="w-7 h-7" />
           <span class="font-semibold text-lumi-400">Lumin</span>
         </a>
-        <div class="flex items-center gap-2">
-          <a href="../register/" class="btn-ghost">Cadastrar</a>
+        <div class="hidden md:flex items-center gap-4 text-sm" id="desktopMenu">
+          <a data-route="/features/" class="hover:text-lumi-300">Produtos</a>
+          <a data-route="/about-us/" class="hover:text-lumi-300">Sobre</a>
+          <a data-route="/contact-us/" class="hover:text-lumi-300">Contato</a>
+          <a data-route="/login/" class="btn-ghost">Entrar</a>
+          <a data-route="/register/" class="btn-ghost">Cadastrar</a>
           <button id="modeToggle" aria-label="Alternar tema" class="btn-ghost">
             <span id="modeLabel">Dark</span>
           </button>
+        </div>
+        <button id="menuToggle" class="btn-ghost backdrop-blur-3xl md:hidden">
+          Menu
+        </button>
+      </div>
+      <div id="mobileMenu" class="hidden md:hidden mt-2 lumi-border p-3">
+        <div class="grid gap-2 text-sm">
+          <a data-route="/features/" class="hover:text-lumi-300">Produtos</a>
+          <a data-route="/about-us/" class="hover:text-lumi-300">Sobre</a>
+          <a data-route="/contact-us/" class="hover:text-lumi-300">Contato</a>
+          <a data-route="/login/" class="btn-ghost">Entrar</a>
+          <a data-route="/register/" class="btn-ghost">Cadastrar</a>
         </div>
       </div>
     </nav>
@@ -117,6 +133,14 @@
                 class="w-full p-2 rounded-lg border border-lumi-300 dark:border-lumi-600 bg-white dark:bg-lumi-900/30 text-lumi-900 dark:text-lumi-50 outline-none focus:border-lumi-400 placeholder:text-lumi-400 dark:placeholder:text-lumi-500"
                 placeholder="Crie uma senha"
               />
+              <div class="mt-2 text-right">
+                <a
+                  href="#"
+                  id="forgotPwd"
+                  class="text-sm underline hover:text-lumi-300"
+                  >Esqueci minha senha</a
+                >
+              </div>
             </div>
             <button type="submit" class="btn-primary w-full">
               <span>Entrar</span>
@@ -133,7 +157,7 @@
             <button
               id="login-google"
               aria-label="Entrar com Google"
-              class="inline-flex items-center justify-center w-11 h-11 rounded-full border border-lumi-300 dark:border-lumi-600 bg-white dark:bg-lumi-900 hover:bg-lumi-50 dark:hover:bg-lumi-800 transition"
+              class="btn-social w-11 h-11"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +185,7 @@
             <button
               id="login-guest"
               aria-label="Entrar como convidado"
-              class="inline-flex items-center justify-center w-32 h-11 rounded-full border border-lumi-300 dark:border-lumi-600 bg-white dark:bg-lumi-900 hover:bg-lumi-50 dark:hover:bg-lumi-800 transition"
+              class="btn-social w-32 h-11"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -191,5 +215,11 @@
     </main>
 
     <script type="module" src="../js/theme-provider.js"></script>
+    <script type="module" src="../js/nav.js"></script>
+    <script type="module" src="./functions/reset-password.js"></script>
+    <script type="module">
+      import { setupResetPassword } from "./functions/reset-password.js";
+      setupResetPassword();
+    </script>
   </body>
 </html>

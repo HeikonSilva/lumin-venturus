@@ -1,4 +1,4 @@
-import { supabase } from "../../services/db.js";
+import { supabase } from "../../services/supabase.js";
 
 // Calendar view works directly on the tasks table, interpreting end_date as the deadline.
 // Map task -> calendar event shape

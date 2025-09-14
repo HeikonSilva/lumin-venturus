@@ -26,7 +26,7 @@
     <meta name="apple-mobile-web-app-title" content="Lumin" />
     <link rel="manifest" href="../assets/favicon/site.webmanifest" />
     <link rel="stylesheet" href="../style.css" />
-    <script type="module" src="../services/db.js"></script>
+    <script type="module" src="../services/supabase.js"></script>
     <script type="module" src="../js/auth-handler.js"></script>
     <script type="module" src="./functions/register.js"></script>
   </head>
@@ -35,17 +35,34 @@
   >
     <nav class="fixed top-4 left-4 right-4 max-w-3xl mx-auto z-50">
       <div
-        class="lumi-border glass-nav flex items-center justify-between px-4 h-12"
+        class="lumi-border glass-nav px-4 h-12 flex items-center justify-between"
       >
-        <a href="../" class="flex items-center gap-2">
+        <a data-route="/" class="flex items-center gap-2">
           <img src="../assets/lumi.svg" alt="Lumin" class="w-7 h-7" />
           <span class="font-semibold text-lumi-400">Lumin</span>
         </a>
-        <div class="flex items-center gap-2">
-          <a href="../login/" class="btn-ghost">Entrar</a>
+        <div class="hidden md:flex items-center gap-4 text-sm" id="desktopMenu">
+          <a data-route="/features/" class="hover:text-lumi-300">Produtos</a>
+          <a data-route="/about-us/" class="hover:text-lumi-300">Sobre</a>
+          <a data-route="/contact-us/" class="hover:text-lumi-300">Contato</a>
+          <a data-route="/login/" class="btn-ghost">Entrar</a>
+          <a data-route="/register/" class="btn-ghost">Cadastrar</a>
           <button id="modeToggle" aria-label="Alternar tema" class="btn-ghost">
             <span id="modeLabel">Dark</span>
           </button>
+        </div>
+        <button id="menuToggle" class="md:hidden btn-ghost">Menu</button>
+      </div>
+      <div
+        id="mobileMenu"
+        class="hidden md:hidden mt-2 lumi-border p-3 backdrop-blur-3xl"
+      >
+        <div class="grid gap-2 text-sm">
+          <a data-route="/features/" class="hover:text-lumi-300">Produtos</a>
+          <a data-route="/about-us/" class="hover:text-lumi-300">Sobre</a>
+          <a data-route="/contact-us/" class="hover:text-lumi-300">Contato</a>
+          <a data-route="/login/" class="btn-ghost">Entrar</a>
+          <a data-route="/register/" class="btn-ghost">Cadastrar</a>
         </div>
       </div>
     </nav>
@@ -156,5 +173,6 @@
     </main>
 
     <script type="module" src="../js/theme-provider.js"></script>
+    <script type="module" src="../js/nav.js"></script>
   </body>
 </html>

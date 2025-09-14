@@ -167,6 +167,13 @@ html:not(.dark) .text-gradient {
   color: transparent;
 }
 
+/* Ensure the mobile menu button hides on >= md regardless of .btn-ghost display */
+@media (width >= 48rem) {
+  #menuToggle {
+    display: none !important;
+  }
+}
+
 .section-title {
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -442,4 +449,86 @@ html:not(.dark) .fc-more-link {
 
 html:not(.dark) .fc-more-link:hover {
   color: var(--color-lumi-700);
+}
+
+/* Ensure event text is readable in light theme */
+html:not(.dark) .fc .fc-event,
+html:not(.dark) .fc .fc-event .fc-event-main,
+html:not(.dark) .fc .fc-event .fc-event-title,
+html:not(.dark) .fc .fc-event .fc-event-time {
+  color: var(--color-lumi-800) !important;
+}
+
+/* ---------- Forms: unified inputs/buttons across themes ---------- */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-lumi-100);
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+textarea {
+  resize: vertical;
+}
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-lumi-600);
+}
+/* Light theme variants */
+html:not(.dark) input[type="text"],
+html:not(.dark) input[type="email"],
+html:not(.dark) input[type="password"],
+html:not(.dark) input[type="date"],
+html:not(.dark) input[type="number"],
+html:not(.dark) textarea,
+html:not(.dark) select {
+  border-color: rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  color: var(--color-lumi-800);
+}
+html:not(.dark) input::placeholder,
+html:not(.dark) textarea::placeholder {
+  color: var(--color-lumi-500);
+}
+/* Focus ring */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: rgba(147, 184, 204, 0.6);
+}
+
+/* Social/secondary auth button */
+.btn-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 2.75rem;
+  padding: 0 0.9rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-lumi-100);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.btn-social:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+html:not(.dark) .btn-social {
+  border-color: rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  color: var(--color-lumi-800);
+}
+html:not(.dark) .btn-social:hover {
+  background: #f8fafc;
 }

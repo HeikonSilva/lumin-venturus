@@ -111,7 +111,11 @@
           </li>
         </ul>
       </nav>
-      <div class="flex items-center justify-between">
+      <div id="userInfo" class="mb-3"></div>
+      <div class="grid gap-2">
+        <button id="logoutBtn" class="btn-ghost w-full flex justify-center">
+          Sair
+        </button>
         <button id="modeToggle" class="btn-ghost w-full flex justify-center">
           <span id="modeLabel">Dark</span>
         </button>
@@ -119,7 +123,7 @@
     </aside>
 
     <!-- Right Panel -->
-    <aside
+    <!-- <aside
       class="hidden xl:flex fixed right-4 top-4 bottom-4 w-72 flex-col gap-3 z-30"
     >
       <div
@@ -184,7 +188,7 @@
           </div>
         </div>
       </div>
-    </aside>
+    </aside> -->
 
     <!-- Main Calendar -->
     <main class="pt-8 px-4 md:pl-72 md:pr-72 xl:pr-[22rem] xl:pl-72 pb-8">
@@ -213,8 +217,12 @@
     <!-- FullCalendar JS -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js"></script>
 
-    <script type="module" src="../js/theme-provider.js"></script>
+    <script type="module" src="../../js/theme-provider.js"></script>
     <script type="module">
+      import { setupLogout } from "../functions/logout.js";
+      import { mountUserInfo } from "../functions/user-info.js";
+      mountUserInfo("userInfo");
+      setupLogout("logoutBtn");
       import { initCalendar } from "../functions/calendar.js";
       document.addEventListener("DOMContentLoaded", () => {
         const el = document.getElementById("calendar");

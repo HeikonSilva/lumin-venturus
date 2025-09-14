@@ -1,4 +1,4 @@
-import { supabase } from "../services/db.js";
+import { supabase } from "../services/supabase.js";
 
 function getBasePrefix() {
   const parts = window.location.pathname.split("/").filter(Boolean);

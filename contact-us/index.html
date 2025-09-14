@@ -63,67 +63,33 @@
   >
     <nav class="fixed top-4 left-4 right-4 xl:left-16 xl:right-16 z-50">
       <div
-        class="lumi-border glass-nav flex items-center justify-between px-4 md:px-6 h-14"
+        class="lumi-border glass-nav px-4 md:px-6 h-14 flex items-center justify-between"
       >
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 flex items-center justify-center">
-            <svg
-              viewBox="0 0 274.56 274.56"
-              class="w-9 h-9"
-              aria-label="Lumin Logo"
-            >
-              <circle class="fill-lumi-50" cx="137.28" cy="137.28" r="58.52" />
-              <path
-                class="fill-lumi-500"
-                d="M151.65,56.06h-28.73c-4.06,0-6.95-3.97-5.69-7.83l14.37-44.1c1.79-5.5,9.58-5.5,11.37,0l14.37,44.1c1.26,3.86-1.62,7.83-5.69,7.83Z"
-              />
-              <path
-                class="fill-lumi-500"
-                d="M122.91,218.5h28.73c4.06,0,6.95,3.97,5.69,7.83l-14.37,44.1c-1.79,5.5-9.58,5.5-11.37,0l-14.37-44.1c-1.26-3.86,1.62-7.83,5.69-7.83Z"
-              />
-              <path
-                class="fill-lumi-500"
-                d="M218.5,151.65v-28.73c0-4.06,3.97-6.95,7.83-5.69l44.1,14.37c5.5,1.79,5.5,9.58,0,11.37l-44.1,14.37c-3.86,1.26-7.83-1.62-7.83-5.69Z"
-              />
-              <path
-                class="fill-lumi-500"
-                d="M209.04,84.8l-14.64-14.64c-2.07-2.07-1.52-5.56,1.09-6.89l29.79-15.15c3.72-1.89,7.68,2.08,5.79,5.79l-15.15,29.79c-1.33,2.61-4.82,3.16-6.89,1.09Z"
-              />
-              <path
-                class="fill-lumi-500"
-                d="M194.4,203.51l14.64-14.64c2.07-2.07,5.56-1.52,6.89,1.09l15.15,29.79c1.89,3.72-2.08,7.68-5.79,5.79l-29.79-15.15c-2.61-1.33-3.16-4.82-1.09-6.89Z"
-              />
-              <path
-                class="fill-lumi-500"
-                d="M56.06,122.91v28.73c0,4.06-3.97,6.95-7.83,5.69l-44.1-14.37c-5.5-1.79-5.5-9.58,0-11.37l44.1-14.37c3.86-1.26,7.83,1.62,7.83,5.69Z"
-              />
-              <path
-                class="fill-lumi-500"
-                d="M80.16,71.06l-14.64,14.64c-2.07,2.07-5.56,1.52-6.89-1.09l-15.15-29.79c-1.89-3.72,2.08-7.68,5.79-5.79l29.79,15.15c2.61,1.33,3.16,4.82,1.09,6.89Z"
-              />
-              <path
-                class="fill-lumi-500"
-                d="M65.52,188.87l14.64,14.64c2.07,2.07,1.52,5.56-1.09,6.89l-29.79,15.15c-3.72,1.89-7.68-2.08-5.79-5.79l15.15-29.79c1.33-2.61,4.82-3.16,6.89-1.09Z"
-              />
-            </svg>
-          </div>
+        <a data-route="/" class="flex items-center gap-3">
+          <img src="../assets/lumi.svg" alt="Lumin" class="w-9 h-9" />
           <span
             class="font-semibold text-lg tracking-wide text-lumi-400 dark:text-lumi-400"
             >Lumin</span
           >
-        </div>
-        <div class="hidden md:flex items-center gap-6 text-sm">
-          <a href="#features" class="hover:text-lumi-300 transition-colors"
-            >Recursos</a
+        </a>
+        <div class="hidden md:flex items-center gap-6 text-sm" id="desktopMenu">
+          <a
+            data-route="/features/"
+            class="hover:text-lumi-300 transition-colors"
+            >Produtos</a
           >
-          <a href="#sobre" class="hover:text-lumi-300 transition-colors"
+          <a
+            data-route="/about-us/"
+            class="hover:text-lumi-300 transition-colors"
             >Sobre</a
           >
-          <a href="#equipe" class="hover:text-lumi-300 transition-colors"
-            >Equipe</a
+          <a
+            data-route="/contact-us/"
+            class="hover:text-lumi-300 transition-colors"
+            >Contato</a
           >
-        </div>
-        <div class="flex items-center gap-3">
+          <a data-route="/login/" class="btn-ghost">Entrar</a>
+          <a data-route="/register/" class="btn-ghost">Cadastrar</a>
           <button
             id="modeToggle"
             aria-label="Alternar tema"
@@ -131,13 +97,19 @@
           >
             <span id="modeLabel">Dark</span>
           </button>
-          <a href="/login/">
-            <button
-              class="cursor-pointer btn-primary text-sm shadow-md shadow-black/40"
-            >
-              <span>Entrar</span>
-            </button>
-          </a>
+        </div>
+        <button id="menuToggle" class="btn-ghost md:hidden">Menu</button>
+      </div>
+      <div
+        id="mobileMenu"
+        class="hidden md:hidden mt-2 lumi-border p-3 backdrop-blur-3xl"
+      >
+        <div class="grid gap-2 text-sm">
+          <a data-route="/features/" class="hover:text-lumi-300">Produtos</a>
+          <a data-route="/about-us/" class="hover:text-lumi-300">Sobre</a>
+          <a data-route="/contact-us/" class="hover:text-lumi-300">Contato</a>
+          <a data-route="/login/" class="btn-ghost">Entrar</a>
+          <a data-route="/register/" class="btn-ghost">Cadastrar</a>
         </div>
       </div>
     </nav>
@@ -240,5 +212,6 @@
     </main>
 
     <script type="module" src="../js/theme-provider.js"></script>
+    <script type="module" src="../js/nav.js"></script>
   </body>
 </html>
