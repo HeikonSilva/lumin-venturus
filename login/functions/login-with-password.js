@@ -1,22 +1,24 @@
-import { auth } from "../../services/firebase.js";
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+import { supabase } from "../../services/db.js";
 
 const form = document.loginForm;
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const email = form.email.value;
   const password = form.password.value;
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    alert(`Falha no login: ${error.message}`);
+    return;
+  }
+
+  if (data?.session) {
+    // auth-handler cuidará do redirect
+  }
 });

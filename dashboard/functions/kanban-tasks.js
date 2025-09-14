@@ -1,35 +1,92 @@
-import { db } from "../../services/firebase.js";
-import {
-  ref,
-  push,
-  onValue,
-  remove,
-  set,
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+import { supabase } from "../../services/db.js";
 
-// Caminho base por usuário
-const userBase = (userId) => `users/${userId}/kanban`;
+// Tipos esperados de task:
+// {
+//   id: string (uuid),
+//   user_id: string,
+//   status: 'a-fazer' | 'em-progresso' | 'concluido',
+//   priority: 'Alta' | 'Média' | 'Baixa',
+//   type: string,
+//   name: string,
+//   description?: string,
+//   start_date?: string (ISO),
+//   end_date?: string (ISO),
+//   created_at: string (ISO)
+// }
 
 // Cria uma nova task no Kanban (por usuário)
-export function createTask(userId, column, taskData) {
-  const tasksRef = ref(db, `${userBase(userId)}/${column}`);
-  return push(tasksRef, taskData);
+export async function createTask(userId, column, taskData) {
+  const payload = {
+    user_id: userId,
+    status: column,
+    priority: taskData.priority || "Média",
+    type: taskData.type || "outro",
+    name: taskData.name || taskData.title || "Sem título",
+    description: taskData.description || null,
+    start_date: taskData.start_date || null,
+    end_date: taskData.end_date || taskData.dueDate || null,
+  };
+  const { data, error } = await supabase
+    .from("tasks")
+    .insert(payload)
+    .select("*")
+    .single();
+  if (error) throw error;
+  return data;
 }
 
-// Obtém todas as tasks de uma coluna do Kanban (por usuário)
+// Obtém todas as tasks de uma coluna do Kanban (por usuário) com realtime
 export function getTasks(userId, column, callback) {
-  const tasksRef = ref(db, `${userBase(userId)}/${column}`);
-  onValue(tasksRef, (snapshot) => {
-    const data = snapshot.val() || {};
-    callback(Object.entries(data).map(([id, value]) => ({ id, ...value })));
-  });
+  let isInitial = true;
+  // Fetch inicial
+  supabase
+    .from("tasks")
+    .select("*")
+    .eq("user_id", userId)
+    .eq("status", column)
+    .order("created_at", { ascending: true })
+    .then(({ data, error }) => {
+      if (!error && Array.isArray(data)) callback(data);
+    });
+
+  // Realtime por tabela filtrando por user_id
+  const channel = supabase
+    .channel(`tasks_${userId}_${column}`)
+    .on(
+      "postgres_changes",
+      {
+        event: "*",
+        schema: "public",
+        table: "tasks",
+        filter: `user_id=eq.${userId}`,
+      },
+      async () => {
+        // Refetch da coluna específica
+        const { data, error } = await supabase
+          .from("tasks")
+          .select("*")
+          .eq("user_id", userId)
+          .eq("status", column)
+          .order("created_at", { ascending: true });
+        if (!error && Array.isArray(data)) callback(data);
+      }
+    )
+    .subscribe();
+
+  // Retorna função para unsubscribe, caso necessário no futuro
+  return () => {
+    try {
+      supabase.removeChannel(channel);
+    } catch {}
+  };
 }
 
 // Move task entre colunas
 export async function moveTask(userId, fromColumn, toColumn, task) {
-  const fromRef = ref(db, `${userBase(userId)}/${fromColumn}/${task.id}`);
-  const toRef = ref(db, `${userBase(userId)}/${toColumn}/${task.id}`);
-  // Cria no destino e remove da origem (preserva id)
-  await set(toRef, { ...task, status: toColumn });
-  await remove(fromRef);
+  const { error } = await supabase
+    .from("tasks")
+    .update({ status: toColumn })
+    .eq("id", task.id)
+    .eq("user_id", userId);
+  if (error) throw error;
 }

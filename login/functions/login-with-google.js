@@ -1,27 +1,24 @@
-import {
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-import { auth } from "../../services/firebase.js";
-
-const provider = new GoogleAuthProvider();
+import { supabase } from "../../services/db.js";
 
 const loginWithGoogle = document.getElementById("login-google");
 
 if (loginWithGoogle) {
   loginWithGoogle.addEventListener("click", () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        const user = result.user;
-        console.log(user);
+    // Para apps estáticos, use redirecionamento OAuth
+    const redirectTo = new URL("../dashboard/", location.href).href;
+    supabase.auth
+      .signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo,
+          queryParams: {
+            access_type: "offline",
+            prompt: "consent",
+          },
+        },
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const email = error.customData.email;
-        const credential = GoogleAuthProvider.credentialFromError(error);
+      .then(({ error }) => {
+        if (error) alert(`Erro ao entrar com Google: ${error.message}`);
       });
   });
 }

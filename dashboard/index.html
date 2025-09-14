@@ -30,7 +30,7 @@
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="../style.css" />
 
-    <script type="module" src="../services/firebase.js"></script>
+    <script type="module" src="../services/db.js"></script>
     <script type="module" src="../js/auth-handler.js"></script>
   </head>
   <body
@@ -213,10 +213,20 @@
                   <label class="block text-sm mb-1 text-lumi-300">Título</label>
                   <input
                     type="text"
-                    name="title"
+                    name="name"
                     required
                     class="w-full p-2 rounded-lg border border-lumi-300 bg-white/10 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100"
                   />
+                </div>
+                <div>
+                  <label class="block text-sm mb-1 text-lumi-300"
+                    >Descrição</label
+                  >
+                  <textarea
+                    name="description"
+                    rows="3"
+                    class="w-full p-2 rounded-lg border border-lumi-300 bg-white/10 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100"
+                  ></textarea>
                 </div>
                 <div>
                   <label class="block text-sm mb-1 text-lumi-300">Tipo</label>
@@ -231,17 +241,7 @@
                     <option value="outro">Outro</option>
                   </select>
                 </div>
-                <div>
-                  <label class="block text-sm mb-1 text-lumi-300"
-                    >Matéria</label
-                  >
-                  <input
-                    type="text"
-                    name="subject"
-                    required
-                    class="w-full p-2 rounded-lg border border-lumi-300 bg-white/10 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100"
-                  />
-                </div>
+
                 <div>
                   <label class="block text-sm mb-1 text-lumi-300"
                     >Prioridade</label
@@ -256,16 +256,27 @@
                     <option value="Baixa">Baixa</option>
                   </select>
                 </div>
-                <div>
-                  <label class="block text-sm mb-1 text-lumi-300"
-                    >Data de entrega</label
-                  >
-                  <input
-                    type="date"
-                    name="dueDate"
-                    required
-                    class="w-full p-2 rounded-lg border border-lumi-300 bg-white/10 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100"
-                  />
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-sm mb-1 text-lumi-300"
+                      >Início</label
+                    >
+                    <input
+                      type="date"
+                      name="start_date"
+                      class="w-full p-2 rounded-lg border border-lumi-300 bg-white/10 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm mb-1 text-lumi-300"
+                      >Entrega</label
+                    >
+                    <input
+                      type="date"
+                      name="end_date"
+                      class="w-full p-2 rounded-lg border border-lumi-300 bg-white/10 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100"
+                    />
+                  </div>
                 </div>
                 <button type="submit" class="btn-primary mt-2">
                   <span>Adicionar</span>
@@ -427,8 +438,7 @@
         getTasks,
         moveTask,
       } from "./functions/kanban-tasks.js";
-      import { auth } from "../services/firebase.js";
-      import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+      import { supabase } from "../services/db.js";
 
       const columns = [
         { key: "a-fazer", title: "A Fazer" },
@@ -442,6 +452,19 @@
         "em-progresso": {},
         concluido: {},
       };
+
+      // Helpers para atualizar UI imediatamente (optimistic UI)
+      const tasksArray = (columnKey) =>
+        Object.values(tasksByColumn[columnKey] || {});
+      function upsertTaskInColumn(columnKey, task) {
+        tasksByColumn[columnKey] ||= {};
+        tasksByColumn[columnKey][task.id] = task;
+        renderColumn(columnKey, tasksArray(columnKey));
+      }
+      function removeTaskFromColumn(columnKey, id) {
+        if (tasksByColumn[columnKey]) delete tasksByColumn[columnKey][id];
+        renderColumn(columnKey, tasksArray(columnKey));
+      }
 
       // Renderização por coluna
       function renderColumn(columnKey, tasks) {
@@ -471,20 +494,15 @@
           article.setAttribute("draggable", "true");
           article.dataset.id = task.id;
           article.dataset.from = columnKey;
-          const due = task.dueDate
-            ? new Date(task.dueDate).toLocaleDateString("pt-BR")
+          const due = task.end_date
+            ? new Date(task.end_date).toLocaleDateString("pt-BR")
             : "";
           article.innerHTML = `
-            <h3 class="font-medium">${task.title}</h3>
+            <h3 class="font-medium">${task.name || task.title}</h3>
             <div class="flex flex-wrap gap-1 text-[11px]">
               <span class="px-1.5 py-0.5 rounded bg-white/10">${
                 task.priority || "Normal"
               }</span>
-              ${
-                task.subject
-                  ? `<span class=\"px-1.5 py-0.5 rounded bg-white/5\">${task.subject}</span>`
-                  : ""
-              }
               ${
                 task.type
                   ? `<span class=\"px-1.5 py-0.5 rounded bg-white/5\">${task.type}</span>`
@@ -517,7 +535,7 @@
       let currentUser = null;
       let targetColumnForModal = "a-fazer";
 
-      onAuthStateChanged(auth, (user) => {
+      function initForUser(user) {
         currentUser = user;
         if (!user) return; // auth-handler cuidará do redirect
 
@@ -527,11 +545,22 @@
           if (listEl) {
             listEl.innerHTML = `<div class=\"flex justify-center py-6\" data-spinner>\n  <svg class=\"animate-spin h-6 w-6 text-lumi-400\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\">\n    <circle class=\"opacity-25\" cx=\"12\" cy=\"12\" r=\"10\" stroke=\"currentColor\" stroke-width=\"4\"></circle>\n    <path class=\"opacity-75\" fill=\"currentColor\" d=\"M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z\"></path>\n  </svg>\n</div>`;
           }
-          getTasks(user.uid, key, (tasks) => {
+          getTasks(user.id, key, (tasks) => {
             // Atualiza cache e renderiza
             renderColumn(key, tasks);
           });
         });
+      }
+
+      // Sessão inicial
+      supabase.auth.getSession().then(({ data }) => {
+        const user = data.session?.user || null;
+        initForUser(user);
+      });
+      // Mudanças futuras
+      supabase.auth.onAuthStateChange((_event, session) => {
+        const user = session?.user || null;
+        initForUser(user);
       });
 
       // Modal wiring
@@ -562,21 +591,37 @@
         });
         closeModal?.addEventListener("click", hideModal);
 
-        form?.addEventListener("submit", (e) => {
+        form?.addEventListener("submit", async (e) => {
           e.preventDefault();
           if (!currentUser) return;
           const data = Object.fromEntries(new FormData(form));
-          createTask(currentUser.uid, targetColumnForModal, {
-            title: data.title,
+          const payload = {
+            name: data.name,
+            description: data.description,
             type: data.type,
-            subject: data.subject,
             priority: data.priority,
-            dueDate: data.dueDate,
-            status: targetColumnForModal,
-            createdAt: Date.now(),
-          });
-          form.reset();
-          hideModal();
+            start_date: data.start_date
+              ? new Date(data.start_date).toISOString()
+              : null,
+            end_date: data.end_date
+              ? new Date(data.end_date).toISOString()
+              : null,
+          };
+          try {
+            // Cria no banco e usa o retorno para atualizar a UI imediatamente
+            const created = await createTask(
+              currentUser.id,
+              targetColumnForModal,
+              payload
+            );
+            upsertTaskInColumn(targetColumnForModal, created);
+          } catch (err) {
+            console.error("Falha ao criar tarefa:", err);
+            alert("Não foi possível criar a tarefa agora.");
+          } finally {
+            form.reset();
+            hideModal();
+          }
         });
 
         // Drag & Drop: configura zonas de drop nas colunas
@@ -600,7 +645,7 @@
             zone.addEventListener("dragleave", () => {
               removeHighlight();
             });
-            zone.addEventListener("drop", (e) => {
+            zone.addEventListener("drop", async (e) => {
               e.preventDefault();
               removeHighlight();
               let payload = null;
@@ -613,7 +658,22 @@
               if (!id || !from || !currentUser || from === to) return;
               const task = tasksByColumn[from]?.[id];
               if (!task) return;
-              moveTask(currentUser.uid, from, to, task);
+
+              // Optimistic UI: move imediatamente
+              const originalFrom = from;
+              const originalTask = { ...task };
+              try {
+                removeTaskFromColumn(originalFrom, id);
+                const updated = { ...task, status: to };
+                upsertTaskInColumn(to, updated);
+                await moveTask(currentUser.id, originalFrom, to, task);
+              } catch (err) {
+                // Rollback visual se falhar
+                console.error("Falha ao mover tarefa:", err);
+                removeTaskFromColumn(to, id);
+                upsertTaskInColumn(originalFrom, originalTask);
+                alert("Não foi possível mover a tarefa.");
+              }
             });
           });
         }

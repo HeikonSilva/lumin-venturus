@@ -46,11 +46,17 @@
 
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="../style.css" />
-    <script type="module" src="../services/firebase.js"></script>
+    <script type="module" src="../services/db.js"></script>
     <script type="module" src="../js/auth-handler.js"></script>
-    <script type="module" src="./functions/login-with-google.js"></script>
-    <script type="module" src="./functions/login-with-password.js"></script>
-    <script type="module" src="./functions/login-anonymus.js"></script>
+    <script type="module" src="../login/functions/login-anonymus.js"></script>
+    <script
+      type="module"
+      src="../login/functions/login-with-google.js"
+    ></script>
+    <script
+      type="module"
+      src="../login/functions/login-with-password.js"
+    ></script>
   </head>
   <body
     class="min-h-screen bg-lumi-100 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 selection:bg-lumi-400/30 selection:text-lumi-50 antialiased"

@@ -25,9 +25,8 @@
     />
     <meta name="apple-mobile-web-app-title" content="Lumin" />
     <link rel="manifest" href="../assets/favicon/site.webmanifest" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="../style.css" />
-    <script type="module" src="../services/firebase.js"></script>
+    <script type="module" src="../services/db.js"></script>
     <script type="module" src="../js/auth-handler.js"></script>
     <script type="module" src="./functions/register.js"></script>
   </head>
@@ -65,47 +64,93 @@
             </p>
           </div>
 
-          <form
-            name="registerForm"
-            class="space-y-4 text-left"
-            onsubmit="return false;"
-            autocomplete="on"
-          >
-            <div>
-              <label
-                class="block text-sm mb-1 text-lumi-700 dark:text-lumi-300"
-                for="email"
-                >E-mail</label
-              >
-              <input
-                id="email"
-                type="email"
-                class="w-full p-2 rounded-lg border border-lumi-300 dark:border-lumi-600 bg-white dark:bg-lumi-900/30 text-lumi-900 dark:text-lumi-50 outline-none focus:border-lumi-400 placeholder:text-lumi-400 dark:placeholder:text-lumi-500"
-                placeholder="seuemail@exemplo.com"
-              />
-            </div>
-            <div>
-              <label
-                class="block text-sm mb-1 text-lumi-700 dark:text-lumi-300"
-                for="password"
-                >Senha</label
-              >
-              <input
-                id="password"
-                type="password"
-                class="w-full p-2 rounded-lg border border-lumi-300 dark:border-lumi-600 bg-white dark:bg-lumi-900/30 text-lumi-900 dark:text-lumi-50 outline-none focus:border-lumi-400 placeholder:text-lumi-400 dark:placeholder:text-lumi-500"
-                placeholder="Crie uma senha"
-              />
-            </div>
-            <button type="submit" class="btn-primary w-full">
-              <span>Cadastrar</span>
-            </button>
-          </form>
+          <!-- Painel de Cadastro (visível inicialmente) -->
+          <div id="signup-panel" class="md:col-span-1">
+            <form
+              name="registerForm"
+              class="space-y-4 text-left"
+              onsubmit="return false;"
+              autocomplete="on"
+            >
+              <div>
+                <label
+                  class="block text-sm mb-1 text-lumi-700 dark:text-lumi-300"
+                  for="email"
+                  >E-mail</label
+                >
+                <input
+                  id="email"
+                  type="email"
+                  class="w-full p-2 rounded-lg border border-lumi-300 dark:border-lumi-600 bg-white dark:bg-lumi-900/30 text-lumi-900 dark:text-lumi-50 outline-none focus:border-lumi-400 placeholder:text-lumi-400 dark:placeholder:text-lumi-500"
+                  placeholder="seuemail@exemplo.com"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-sm mb-1 text-lumi-700 dark:text-lumi-300"
+                  for="password"
+                  >Senha</label
+                >
+                <input
+                  id="password"
+                  type="password"
+                  class="w-full p-2 rounded-lg border border-lumi-300 dark:border-lumi-600 bg-white dark:bg-lumi-900/30 text-lumi-900 dark:text-lumi-50 outline-none focus:border-lumi-400 placeholder:text-lumi-400 dark:placeholder:text-lumi-500"
+                  placeholder="Crie uma senha"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn-primary w-full">
+                <span>Cadastrar</span>
+              </button>
+            </form>
 
-          <p class="text-sm mt-6 text-center text-lumi-700 dark:text-lumi-400">
-            Já tem conta?
-            <a class="underline hover:text-lumi-300" href="../login/">Entrar</a>
-          </p>
+            <p
+              class="text-sm mt-6 text-center text-lumi-700 dark:text-lumi-400"
+            >
+              Já tem conta?
+              <a class="underline hover:text-lumi-300" href="../login/"
+                >Entrar</a
+              >
+            </p>
+          </div>
+
+          <!-- Painel de Verificação de E-mail (oculto inicialmente) -->
+          <div id="verify-panel" class="hidden md:col-span-2">
+            <div class="text-center py-8 px-4">
+              <div
+                class="mx-auto w-14 h-14 rounded-full bg-lumi-400/20 flex items-center justify-center mb-4 border border-lumi-300 dark:border-lumi-700"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="w-7 h-7 text-lumi-400"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M2.25 6.75A2.25 2.25 0 0 1 4.5 4.5h15a2.25 2.25 0 0 1 2.25 2.25v10.5A2.25 2.25 0 0 1 19.5 19.5h-15a2.25 2.25 0 0 1-2.25-2.25V6.75Zm3.03-.75a.75.75 0 0 0-.53.22L3.44 7.98l8.06 5.37 8.06-5.37-1.31-1.76a.75.75 0 0 0-.53-.22h-12.4Zm16.22 3.17-6.81 4.54 6.81 4.54V9.17ZM12 14.52 4.97 9.99v8.03H19.5V9.99L12 14.52Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <h2 class="text-2xl font-semibold">Verifique seu e-mail</h2>
+              <p class="mt-2 text-lumi-700 dark:text-lumi-400">
+                Enviamos um link de confirmação para
+                <strong id="verify-email" class="text-lumi-400"></strong>. Abra
+                seu e-mail e clique no link para ativar sua conta.
+              </p>
+              <p class="mt-4 text-sm text-lumi-600 dark:text-lumi-500">
+                Não recebeu?
+                <button id="resend-email" class="underline hover:text-lumi-300">
+                  Reenviar
+                </button>
+              </p>
+              <a href="../login/" class="btn-ghost mt-6 inline-flex"
+                >Ir para o login</a
+              >
+            </div>
+          </div>
         </div>
       </section>
     </main>

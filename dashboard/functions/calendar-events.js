@@ -1,48 +1,98 @@
-import { db } from "../../services/firebase.js";
-import {
-  ref,
-  push,
-  set,
-  remove,
-  onValue,
-  get,
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+import { supabase } from "../../services/db.js";
 
-const userBase = (userId) => `users/${userId}/calendar/events`;
-
-// Subscribe to all events for a user. Emits an array of { id, title, start, end, allDay, className?, description? }
-export function listenEvents(userId, callback) {
-  const eventsRef = ref(db, userBase(userId));
-  return onValue(eventsRef, (snap) => {
-    const data = snap.val() || {};
-    const items = Object.entries(data).map(([id, value]) => ({ id, ...value }));
-    callback(items);
-  });
+// Calendar view works directly on the tasks table, interpreting end_date as the deadline.
+// Map task -> calendar event shape
+function toEvent(task) {
+  return {
+    id: task.id,
+    title: task.name,
+    start: task.start_date || task.end_date || null,
+    end: task.end_date || null,
+    allDay: true,
+    extendedProps: {
+      rid: task.id,
+      priority: task.priority,
+      status: task.status,
+      type: task.type,
+      description: task.description || "",
+    },
+  };
 }
 
-// Fetch events once (no subscription)
 export async function getEventsOnce(userId) {
-  const eventsRef = ref(db, userBase(userId));
-  const snap = await get(eventsRef);
-  const data = snap.val() || {};
-  return Object.entries(data).map(([id, value]) => ({ id, ...value }));
+  const { data, error } = await supabase
+    .from("tasks")
+    .select("*")
+    .eq("user_id", userId);
+  if (error) throw error;
+  return (data || []).map(toEvent);
 }
 
-// Create a new event and return its key
+export function listenEvents(userId, callback) {
+  // initial fetch
+  getEventsOnce(userId).then((items) => callback(items));
+
+  const channel = supabase
+    .channel(`tasks_calendar_${userId}`)
+    .on(
+      "postgres_changes",
+      {
+        event: "*",
+        schema: "public",
+        table: "tasks",
+        filter: `user_id=eq.${userId}`,
+      },
+      async () => {
+        const items = await getEventsOnce(userId);
+        callback(items);
+      }
+    )
+    .subscribe();
+
+  return () => {
+    try {
+      supabase.removeChannel(channel);
+    } catch {}
+  };
+}
+
 export async function createEvent(userId, event) {
-  const eventsRef = ref(db, userBase(userId));
-  const res = await push(eventsRef, event);
-  return res.key;
+  // Create task from calendar (default status a-fazer, priority Média)
+  const norm = (v) => (v === "" || v === undefined ? null : v);
+  const payload = {
+    user_id: userId,
+    status: "a-fazer",
+    priority: "Média",
+    type: "calendario",
+    name: event.title,
+    description: "",
+    start_date: norm(event.start) || null,
+    end_date: norm(event.end) || norm(event.start) || null,
+  };
+  const { data, error } = await supabase
+    .from("tasks")
+    .insert(payload)
+    .select("id")
+    .single();
+  if (error) throw error;
+  return data.id;
 }
 
-// Update existing event by id
-export function updateEvent(userId, id, event) {
-  const eventRef = ref(db, `${userBase(userId)}/${id}`);
-  return set(eventRef, event);
+export async function updateEvent(userId, id, event) {
+  const norm = (v) => (v === "" || v === undefined ? null : v);
+  const { error } = await supabase
+    .from("tasks")
+    .update({ start_date: norm(event.start), end_date: norm(event.end) })
+    .eq("id", id)
+    .eq("user_id", userId);
+  if (error) throw error;
 }
 
-// Delete event by id
-export function deleteEvent(userId, id) {
-  const eventRef = ref(db, `${userBase(userId)}/${id}`);
-  return remove(eventRef);
+export async function deleteEvent(userId, id) {
+  const { error } = await supabase
+    .from("tasks")
+    .delete()
+    .eq("id", id)
+    .eq("user_id", userId);
+  if (error) throw error;
 }
