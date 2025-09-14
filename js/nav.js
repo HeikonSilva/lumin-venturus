@@ -2,9 +2,10 @@
 (function () {
   function getBasePrefix() {
     const parts = window.location.pathname.split("/").filter(Boolean);
-    if (parts.length > 1 && /github\.io$/.test(window.location.host)) {
-      // On GitHub Pages: /<user>/<repo>/...
-      return `/${parts[0]}`;
+    if (/github\.io$/.test(window.location.host)) {
+      // On GitHub Pages project sites, pathname is /<repo>/... even on root
+      const repo = parts[0] || "";
+      return repo ? `/${repo}` : "";
     }
     return "";
   }
