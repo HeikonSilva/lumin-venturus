@@ -118,45 +118,6 @@
       </div>
     </aside>
 
-    <!-- Top Bar -->
-    <nav class="fixed left-4 right-4 md:left-72 md:right-72 top-4 z-40">
-      <div
-        class="lumi-border glass-nav h-14 px-3 sm:px-4 flex items-center gap-3"
-      >
-        <div class="flex items-center gap-2 flex-1">
-          <div class="hidden md:flex items-center gap-2 flex-1">
-            <div class="relative flex-1">
-              <input
-                class="w-full h-10 pl-9 pr-3 rounded-lg bg-white/5 border border-white/10 outline-none text-sm placeholder:text-lumi-500"
-                placeholder="Buscar tarefas..."
-              />
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                class="absolute left-3 top-1/2 -translate-y-1/2 text-lumi-400"
-              >
-                <path
-                  d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 110-15 7.5 7.5 0 010 15Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div class="flex items-center gap-2">
-          <button class="btn-primary hidden sm:inline-flex" id="openTaskModal">
-            <span>Adicionar Tarefa</span>
-          </button>
-          <div
-            class="w-8 h-8 rounded-full bg-white/10 border border-white/10"
-          ></div>
-        </div>
-      </div>
-    </nav>
-
     <!-- Right Panel -->
     <aside
       class="hidden xl:flex fixed right-4 top-4 bottom-4 w-72 flex-col gap-3 z-30"
@@ -169,7 +130,9 @@
           class="w-6 h-6 rounded-full bg-white/10 border border-white/10"
         ></div>
       </div>
-      <div class="lumi-border p-4 overflow-auto">
+      <div
+        class="lumi-border p-4 bg-white/5 dark:bg-white/5 rounded-xl overflow-auto"
+      >
         <h3 class="text-sm font-semibold text-lumi-200 mb-3">
           Sugestões Rápidas
         </h3>
@@ -197,7 +160,7 @@
           </li>
         </ul>
       </div>
-      <div class="lumi-border p-4">
+      <div class="lumi-border p-4 bg-white/5 dark:bg-white/5 rounded-xl">
         <h3 class="text-sm font-semibold text-lumi-200 mb-3">Dica do Dia</h3>
         <p class="text-xs text-lumi-400 leading-relaxed">
           Considere dividir a tarefa "Estudar Matemática - Funções" em tópicos
@@ -207,7 +170,7 @@
     </aside>
 
     <!-- Main Board -->
-    <main class="pt-24 px-4 md:pl-72 md:pr-72 xl:pr-[22rem] xl:pl-72 pb-8">
+    <main class="pt-8 px-4 md:pl-72 md:pr-16 xl:pr-[22rem] xl:pl-72 pb-8">
       <header class="mb-4 flex items-center gap-3">
         <svg
           width="18"
@@ -225,126 +188,234 @@
         <h1 class="text-xl font-semibold">Kanban Board</h1>
       </header>
 
-      <section
-        class="grid gap-4 lg:gap-6"
-        style="
-          grid-auto-columns: minmax(260px, 1fr);
-          grid-auto-flow: column;
-          overflow-x: auto;
-        "
-      >
+      <section class="grid gap-6 md:grid-cols-3">
         <!-- Column: A Fazer -->
-        <div class="grid gap-3">
+        <div class="grid gap-3" id="kanban-a-fazer">
+          <!-- Modal para adicionar tarefa -->
+          <div
+            id="modal-task"
+            class="fixed inset-0 z-50 hidden bg-black/40 items-center justify-center p-4"
+          >
+            <div
+              class="bg-white dark:bg-lumi-900 rounded-2xl p-8 w-full max-w-md shadow-xl border border-lumi-300 relative"
+            >
+              <button
+                id="close-modal"
+                class="absolute top-3 right-3 text-lumi-400 hover:text-lumi-200 text-xl"
+              >
+                &times;
+              </button>
+              <h2 class="text-lg font-semibold text-lumi-400 mb-4">
+                Adicionar Tarefa
+              </h2>
+              <form id="form-task" class="grid gap-4">
+                <div>
+                  <label class="block text-sm mb-1 text-lumi-300">Título</label>
+                  <input
+                    type="text"
+                    name="title"
+                    required
+                    class="w-full p-2 rounded-lg border border-lumi-300 bg-white/10 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm mb-1 text-lumi-300">Tipo</label>
+                  <select
+                    name="type"
+                    required
+                    class="w-full p-2 rounded-lg border border-lumi-300 bg-white/10 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100"
+                  >
+                    <option value="prova">Prova</option>
+                    <option value="trabalho">Trabalho</option>
+                    <option value="licao">Lição de casa</option>
+                    <option value="outro">Outro</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm mb-1 text-lumi-300"
+                    >Matéria</label
+                  >
+                  <input
+                    type="text"
+                    name="subject"
+                    required
+                    class="w-full p-2 rounded-lg border border-lumi-300 bg-white/10 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm mb-1 text-lumi-300"
+                    >Prioridade</label
+                  >
+                  <select
+                    name="priority"
+                    required
+                    class="w-full p-2 rounded-lg border border-lumi-300 bg-white/10 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100"
+                  >
+                    <option value="Alta">Alta</option>
+                    <option value="Média">Média</option>
+                    <option value="Baixa">Baixa</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm mb-1 text-lumi-300"
+                    >Data de entrega</label
+                  >
+                  <input
+                    type="date"
+                    name="dueDate"
+                    required
+                    class="w-full p-2 rounded-lg border border-lumi-300 bg-white/10 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100"
+                  />
+                </div>
+                <button type="submit" class="btn-primary mt-2">
+                  <span>Adicionar</span>
+                </button>
+              </form>
+            </div>
+          </div>
           <div class="flex items-center justify-between px-1">
             <div class="flex items-center gap-2">
               <span
                 class="inline-block w-2 h-2 rounded-full bg-lumi-400"
               ></span>
               <h2 class="text-sm font-semibold">A Fazer</h2>
-              <span class="text-[11px] px-1.5 py-0.5 rounded-full bg-white/10"
-                >2</span
+              <span
+                id="count-a-fazer"
+                class="text-[11px] px-1.5 py-0.5 rounded-full bg-white/10"
+                >0</span
               >
             </div>
-            <button class="text-lumi-400 hover:text-lumi-200">+</button>
-          </div>
-          <article class="lumi-border p-4 grid gap-2">
-            <h3 class="font-medium">Fazer exercícios de Física</h3>
-            <div class="flex flex-wrap gap-1 text-[11px]">
-              <span class="px-1.5 py-0.5 rounded bg-white/10">Alta</span>
-              <span class="px-1.5 py-0.5 rounded bg-white/5">Física</span>
-            </div>
-            <div class="mt-2 h-1.5 bg-white/5 rounded-full">
-              <div class="h-full w-2/3 bg-lumi-500 rounded-full"></div>
-            </div>
-            <div
-              class="flex items-center justify-between text-xs text-lumi-400"
+            <button
+              class="text-lumi-400 hover:text-lumi-200"
+              id="open-modal-task"
             >
-              <span>Hoje</span>
-              <span>2/5</span>
+              +
+            </button>
+          </div>
+          <div id="tasks-a-fazer" class="space-y-3 min-h-[80px] p-1 rounded-lg">
+            <div class="flex justify-center py-6" data-spinner>
+              <svg
+                class="animate-spin h-6 w-6 text-lumi-400"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                ></path>
+              </svg>
             </div>
-          </article>
+          </div>
         </div>
 
         <!-- Column: Em Progresso -->
-        <div class="grid gap-3">
+        <div class="grid gap-3" id="kanban-em-progresso">
           <div class="flex items-center justify-between px-1">
             <div class="flex items-center gap-2">
               <span
                 class="inline-block w-2 h-2 rounded-full bg-lumi-400"
               ></span>
               <h2 class="text-sm font-semibold">Em Progresso</h2>
-              <span class="text-[11px] px-1.5 py-0.5 rounded-full bg-white/10"
-                >1</span
+              <span
+                id="count-em-progresso"
+                class="text-[11px] px-1.5 py-0.5 rounded-full bg-white/10"
+                >0</span
               >
             </div>
-            <button class="text-lumi-400 hover:text-lumi-200">+</button>
-          </div>
-          <article class="lumi-border p-4 grid gap-2">
-            <h3 class="font-medium">Redação - Dissertação Argumentativa</h3>
-            <div class="flex flex-wrap gap-1 text-[11px]">
-              <span class="px-1.5 py-0.5 rounded bg-white/10">Média</span>
-              <span class="px-1.5 py-0.5 rounded bg-white/5">Português</span>
-            </div>
-            <div class="mt-2 h-1.5 bg-white/5 rounded-full">
-              <div class="h-full w-3/4 bg-lumi-500 rounded-full"></div>
-            </div>
-            <div
-              class="flex items-center justify-between text-xs text-lumi-400"
+            <button
+              class="text-lumi-400 hover:text-lumi-200"
+              data-open-modal-column="em-progresso"
             >
-              <span>Amanhã</span>
-              <span>3/4</span>
+              +
+            </button>
+          </div>
+          <div
+            id="tasks-em-progresso"
+            class="space-y-3 min-h-[80px] p-1 rounded-lg"
+          >
+            <div class="flex justify-center py-6" data-spinner>
+              <svg
+                class="animate-spin h-6 w-6 text-lumi-400"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                ></path>
+              </svg>
             </div>
-          </article>
+          </div>
         </div>
 
         <!-- Column: Concluído -->
-        <div class="grid gap-3">
+        <div class="grid gap-3" id="kanban-concluido">
           <div class="flex items-center justify-between px-1">
             <div class="flex items-center gap-2">
               <span
                 class="inline-block w-2 h-2 rounded-full bg-lumi-400"
               ></span>
               <h2 class="text-sm font-semibold">Concluído</h2>
-              <span class="text-[11px] px-1.5 py-0.5 rounded-full bg-white/10"
-                >2</span
+              <span
+                id="count-concluido"
+                class="text-[11px] px-1.5 py-0.5 rounded-full bg-white/10"
+                >0</span
               >
             </div>
-            <button class="text-lumi-400 hover:text-lumi-200">+</button>
+            <button
+              class="text-lumi-400 hover:text-lumi-200"
+              data-open-modal-column="concluido"
+            >
+              +
+            </button>
           </div>
-          <article class="lumi-border p-4 grid gap-2 opacity-80">
-            <h3 class="font-medium">Biologia - Sistema Digestivo</h3>
-            <div class="flex flex-wrap gap-1 text-[11px]">
-              <span class="px-1.5 py-0.5 rounded bg-white/10">Concluído</span>
-              <span class="px-1.5 py-0.5 rounded bg-white/5">Biologia</span>
-            </div>
-            <div class="mt-1 flex items-center gap-2 text-xs text-lumi-400">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 8v5l3 2"
+          <div
+            id="tasks-concluido"
+            class="space-y-3 min-h-[80px] p-1 rounded-lg"
+          >
+            <div class="flex justify-center py-6" data-spinner>
+              <svg
+                class="animate-spin h-6 w-6 text-lumi-400"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
                   stroke="currentColor"
-                  stroke-width="1.5"
-                />
-              </svg>
-              <span>22 Jan</span>
-            </div>
-          </article>
-          <article class="lumi-border p-4 grid gap-2 opacity-80">
-            <h3 class="font-medium">Geografia - Clima do Brasil</h3>
-            <div class="flex flex-wrap gap-1 text-[11px]">
-              <span class="px-1.5 py-0.5 rounded bg-white/10">Concluído</span>
-              <span class="px-1.5 py-0.5 rounded bg-white/5">Geografia</span>
-            </div>
-            <div class="mt-1 flex items-center gap-2 text-xs text-lumi-400">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  stroke-width="4"
+                ></circle>
                 <path
-                  d="M12 8v5l3 2"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                />
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                ></path>
               </svg>
-              <span>20 Jan</span>
             </div>
-          </article>
+          </div>
         </div>
       </section>
     </main>
@@ -372,6 +443,205 @@
         const next = root.classList.contains("dark") ? "light" : "dark";
         localStorage.setItem(PREF_KEY, next);
         applyTheme(next);
+      });
+    </script>
+    <script type="module">
+      import {
+        createTask,
+        getTasks,
+        moveTask,
+      } from "./functions/kanban-tasks.js";
+      import { auth } from "../services/firebase.js";
+      import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+      const columns = [
+        { key: "a-fazer", title: "A Fazer" },
+        { key: "em-progresso", title: "Em Progresso" },
+        { key: "concluido", title: "Concluído" },
+      ];
+
+      // Cache de tarefas por coluna para DnD
+      const tasksByColumn = {
+        "a-fazer": {},
+        "em-progresso": {},
+        concluido: {},
+      };
+
+      // Renderização por coluna
+      function renderColumn(columnKey, tasks) {
+        const listEl = document.getElementById(`tasks-${columnKey}`);
+        const countEl = document.getElementById(`count-${columnKey}`);
+        if (!listEl) return;
+        listEl.innerHTML = "";
+        if (countEl) countEl.textContent = tasks.length;
+
+        // Atualiza cache
+        const map = {};
+        tasks.forEach((t) => (map[t.id] = t));
+        tasksByColumn[columnKey] = map;
+
+        if (tasks.length === 0) {
+          const empty = document.createElement("div");
+          empty.className = "text-sm text-lumi-400 px-2 py-4";
+          empty.textContent = "Ainda não foram criadas tarefas.";
+          listEl.appendChild(empty);
+          return;
+        }
+
+        tasks.forEach((task) => {
+          const article = document.createElement("article");
+          article.className =
+            "lumi-border p-6 bg-white/5 dark:bg-white/5 rounded-xl grid gap-3";
+          article.setAttribute("draggable", "true");
+          article.dataset.id = task.id;
+          article.dataset.from = columnKey;
+          const due = task.dueDate
+            ? new Date(task.dueDate).toLocaleDateString("pt-BR")
+            : "";
+          article.innerHTML = `
+            <h3 class="font-medium">${task.title}</h3>
+            <div class="flex flex-wrap gap-1 text-[11px]">
+              <span class="px-1.5 py-0.5 rounded bg-white/10">${
+                task.priority || "Normal"
+              }</span>
+              ${
+                task.subject
+                  ? `<span class=\"px-1.5 py-0.5 rounded bg-white/5\">${task.subject}</span>`
+                  : ""
+              }
+              ${
+                task.type
+                  ? `<span class=\"px-1.5 py-0.5 rounded bg-white/5\">${task.type}</span>`
+                  : ""
+              }
+            </div>
+            <div class="flex items-center justify-between text-xs text-lumi-400">
+              <span>${due}</span>
+              <span class="text-[10px] opacity-70">Arraste para mover</span>
+            </div>
+          `;
+          // DnD handlers
+          article.addEventListener("dragstart", (e) => {
+            try {
+              e.dataTransfer.setData(
+                "text/plain",
+                JSON.stringify({ id: task.id, from: columnKey })
+              );
+            } catch {}
+            e.dataTransfer.effectAllowed = "move";
+            article.classList.add("opacity-60");
+          });
+          article.addEventListener("dragend", () => {
+            article.classList.remove("opacity-60");
+          });
+          listEl.appendChild(article);
+        });
+      }
+
+      let currentUser = null;
+      let targetColumnForModal = "a-fazer";
+
+      onAuthStateChanged(auth, (user) => {
+        currentUser = user;
+        if (!user) return; // auth-handler cuidará do redirect
+
+        // Inicializa listeners de cada coluna
+        columns.forEach(({ key }) => {
+          const listEl = document.getElementById(`tasks-${key}`);
+          if (listEl) {
+            listEl.innerHTML = `<div class=\"flex justify-center py-6\" data-spinner>\n  <svg class=\"animate-spin h-6 w-6 text-lumi-400\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\">\n    <circle class=\"opacity-25\" cx=\"12\" cy=\"12\" r=\"10\" stroke=\"currentColor\" stroke-width=\"4\"></circle>\n    <path class=\"opacity-75\" fill=\"currentColor\" d=\"M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z\"></path>\n  </svg>\n</div>`;
+          }
+          getTasks(user.uid, key, (tasks) => {
+            // Atualiza cache e renderiza
+            renderColumn(key, tasks);
+          });
+        });
+      });
+
+      // Modal wiring
+      document.addEventListener("DOMContentLoaded", () => {
+        const addButton = document.getElementById("open-modal-task");
+        const modal = document.getElementById("modal-task");
+        const closeModal = document.getElementById("close-modal");
+        const form = document.getElementById("form-task");
+        const otherAddButtons = document.querySelectorAll(
+          "[data-open-modal-column]"
+        );
+
+        function openModal(columnKey) {
+          targetColumnForModal = columnKey;
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+        }
+        function hideModal() {
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+        }
+
+        addButton?.addEventListener("click", () => openModal("a-fazer"));
+        otherAddButtons.forEach((btn) => {
+          btn.addEventListener("click", () =>
+            openModal(btn.getAttribute("data-open-modal-column"))
+          );
+        });
+        closeModal?.addEventListener("click", hideModal);
+
+        form?.addEventListener("submit", (e) => {
+          e.preventDefault();
+          if (!currentUser) return;
+          const data = Object.fromEntries(new FormData(form));
+          createTask(currentUser.uid, targetColumnForModal, {
+            title: data.title,
+            type: data.type,
+            subject: data.subject,
+            priority: data.priority,
+            dueDate: data.dueDate,
+            status: targetColumnForModal,
+            createdAt: Date.now(),
+          });
+          form.reset();
+          hideModal();
+        });
+
+        // Drag & Drop: configura zonas de drop nas colunas
+        function setupDnD() {
+          columns.forEach(({ key }) => {
+            const zone = document.getElementById(`tasks-${key}`);
+            if (!zone) return;
+            const addHighlight = () =>
+              zone.classList.add("outline", "outline-2", "outline-lumi-400/50");
+            const removeHighlight = () =>
+              zone.classList.remove(
+                "outline",
+                "outline-2",
+                "outline-lumi-400/50"
+              );
+            zone.addEventListener("dragover", (e) => {
+              e.preventDefault();
+              addHighlight();
+              e.dataTransfer.dropEffect = "move";
+            });
+            zone.addEventListener("dragleave", () => {
+              removeHighlight();
+            });
+            zone.addEventListener("drop", (e) => {
+              e.preventDefault();
+              removeHighlight();
+              let payload = null;
+              try {
+                payload = JSON.parse(e.dataTransfer.getData("text/plain"));
+              } catch {}
+              if (!payload) return;
+              const { id, from } = payload;
+              const to = key;
+              if (!id || !from || !currentUser || from === to) return;
+              const task = tasksByColumn[from]?.[id];
+              if (!task) return;
+              moveTask(currentUser.uid, from, to, task);
+            });
+          });
+        }
+        setupDnD();
       });
     </script>
   </body>

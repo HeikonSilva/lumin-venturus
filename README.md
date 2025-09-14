@@ -1,5 +1,3 @@
-# Lumin
-
 ![Lumin Logo](./assets/meta.png)
 
 ## 📚 Informações do Projeto

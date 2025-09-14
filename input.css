@@ -29,94 +29,37 @@
   --radius-base: 18px;
 }
 
-/* Luminous/glass bordered container */
+/* Simple neutral bordered container */
 .lumi-border {
   position: relative;
   border-radius: var(--radius-base);
-  background: linear-gradient(
-    145deg,
-    color-mix(in oklab, var(--color-lumi-800) 96%, black 5%) 0%,
-    var(--color-lumi-900) 100%
-  );
-  border: 1px solid color-mix(in oklab, var(--color-lumi-300) 40%, transparent);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04) inset,
-    0 0 12px -2px rgba(255, 255, 255, 0.08), 0 8px 24px -4px rgba(0, 0, 0, 0.55);
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
   overflow: hidden;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
-.lumi-border:before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  padding: 1px;
-  border-radius: inherit;
-  background: radial-gradient(
-      circle at 20% 15%,
-      rgba(255, 255, 255, 0.18),
-      transparent 60%
-    ),
-    linear-gradient(
-      120deg,
-      rgba(255, 255, 255, 0.25),
-      rgba(255, 255, 255, 0) 60%
-    ),
-    linear-gradient(
-      160deg,
-      rgba(203, 170, 150, 0.35),
-      rgba(203, 170, 150, 0) 70%
-    );
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  mix-blend-mode: plus-lighter;
-}
-.lumi-border[data-variant="light"] {
-  background: linear-gradient(
-    140deg,
-    var(--color-lumi-100),
-    var(--color-lumi-200)
-  );
-  border-color: rgba(0, 0, 0, 0.08);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5) inset,
-    0 8px 16px -6px rgba(120, 80, 50, 0.25);
-}
+
+/* Light theme */
 html:not(.dark) .lumi-border:not([data-variant="dark"]) {
-  background: linear-gradient(
-    145deg,
-    var(--color-lumi-50),
-    var(--color-lumi-100)
-  );
-  border-color: color-mix(in oklab, var(--color-lumi-400) 35%, transparent);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04) inset,
-    0 4px 14px -4px rgba(120, 80, 50, 0.18),
-    0 0 24px -6px rgba(160, 120, 90, 0.25);
+  background-color: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
-html:not(.dark) .lumi-border:not([data-variant="dark"]):before {
-  background: radial-gradient(
-      circle at 25% 20%,
-      rgba(160, 120, 90, 0.35),
-      transparent 60%
-    ),
-    linear-gradient(
-      120deg,
-      rgba(255, 255, 255, 0.65),
-      rgba(255, 255, 255, 0) 60%
-    ),
-    linear-gradient(
-      160deg,
-      rgba(200, 170, 150, 0.55),
-      rgba(200, 170, 150, 0) 70%
-    );
-  mix-blend-mode: normal;
+
+/* Explicit light variant mirrors light theme */
+.lumi-border[data-variant="light"] {
+  background-color: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
+
+/* Subtle hover */
 .lumi-border:hover {
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset,
-    0 0 0 1px rgba(255, 255, 255, 0.05), 0 8px 28px -6px rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.18);
 }
 html:not(.dark) .lumi-border:hover {
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05) inset, 0 0 0 1px rgba(0, 0, 0, 0.03),
-    0 6px 20px -4px rgba(120, 80, 50, 0.25);
+  border-color: rgba(0, 0, 0, 0.16);
 }
 
 /* Buttons */
@@ -282,16 +225,24 @@ html:not(.dark) body:before {
     linear-gradient(180deg, var(--color-lumi-50), var(--color-lumi-100));
 }
 
-/* FullCalendar Dark Theme Customization */
+/* FullCalendar Theme Customization */
+/* Define FC CSS variables so components (incl. header) pick them up */
 .fc {
+  /* base colors (dark) */
+  --fc-page-bg-color: transparent;
+  --fc-neutral-bg-color: rgba(255, 255, 255, 0.05);
+  --fc-neutral-text-color: var(--color-lumi-300);
+  --fc-border-color: rgba(255, 255, 255, 0.1);
+
   background: transparent;
-  color: var(--lumi-100);
+  color: var(--color-lumi-100);
 }
 
 .fc-theme-standard .fc-scrollgrid {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   overflow: hidden;
+  background-color: var(--fc-page-bg-color);
 }
 
 .fc-theme-standard td,
@@ -302,7 +253,7 @@ html:not(.dark) body:before {
 
 .fc-col-header-cell {
   background: rgba(255, 255, 255, 0.05);
-  color: var(--lumi-300);
+  color: var(--color-lumi-300);
   font-weight: 600;
   font-size: 0.875rem;
   padding: 1rem 0.5rem;
@@ -322,13 +273,13 @@ html:not(.dark) body:before {
 }
 
 .fc-daygrid-day-number {
-  color: var(--lumi-200);
+  color: var(--color-lumi-200);
   font-weight: 500;
   padding: 0.5rem;
 }
 
 .fc-day-other .fc-daygrid-day-number {
-  color: var(--lumi-500);
+  color: var(--color-lumi-500);
 }
 
 .fc-toolbar {
@@ -361,16 +312,16 @@ html:not(.dark) body:before {
 }
 
 .fc-toolbar-title {
-  color: var(--lumi-200);
+  color: var(--color-lumi-200);
   font-size: 1.5rem;
   font-weight: 600;
 }
 
 .fc-event {
-  background: var(--lumi-400);
-  border: 1px solid var(--lumi-500);
+  background: var(--color-lumi-400);
+  border: 1px solid var(--color-lumi-500);
   border-radius: 6px;
-  color: var(--lumi-900);
+  color: var(--color-lumi-900);
   font-size: 0.75rem;
   font-weight: 500;
   padding: 2px 6px;
@@ -407,7 +358,7 @@ html:not(.dark) body:before {
 }
 
 .fc-more-link {
-  color: var(--lumi-400);
+  color: var(--color-lumi-400);
   font-size: 0.75rem;
   text-decoration: none;
 }
@@ -419,11 +370,24 @@ html:not(.dark) body:before {
 
 /* Light theme overrides */
 html:not(.dark) .fc {
-  color: var(--lumi-800);
+  /* base colors (light) */
+  --fc-page-bg-color: #ffffff;
+  --fc-neutral-bg-color: rgba(0, 0, 0, 0.02);
+  --fc-neutral-text-color: var(--color-lumi-600);
+  --fc-border-color: rgba(0, 0, 0, 0.1);
+
+  color: var(--color-lumi-800);
 }
 
 html:not(.dark) .fc-theme-standard .fc-scrollgrid {
   border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--fc-page-bg-color);
+}
+
+/* Apply page bg color also to the toolbar area so it matches */
+.fc .fc-toolbar,
+.fc .fc-header-toolbar {
+  background-color: var(--fc-page-bg-color);
 }
 
 html:not(.dark) .fc-theme-standard td,
@@ -433,7 +397,7 @@ html:not(.dark) .fc-theme-standard th {
 
 html:not(.dark) .fc-col-header-cell {
   background: rgba(0, 0, 0, 0.02);
-  color: var(--lumi-600);
+  color: var(--color-lumi-600);
 }
 
 html:not(.dark) .fc-daygrid-day:hover {
@@ -445,17 +409,17 @@ html:not(.dark) .fc-day-today {
 }
 
 html:not(.dark) .fc-daygrid-day-number {
-  color: var(--lumi-700);
+  color: var(--color-lumi-700);
 }
 
 html:not(.dark) .fc-day-other .fc-daygrid-day-number {
-  color: var(--lumi-400);
+  color: var(--color-lumi-400);
 }
 
 html:not(.dark) .fc-button-primary {
   background: rgba(147, 184, 204, 0.15);
   border: 1px solid rgba(147, 184, 204, 0.3);
-  color: var(--lumi-700);
+  color: var(--color-lumi-700);
 }
 
 html:not(.dark) .fc-button-primary:hover {
@@ -465,17 +429,17 @@ html:not(.dark) .fc-button-primary:hover {
 html:not(.dark) .fc-button-primary:disabled {
   background: rgba(0, 0, 0, 0.05);
   border-color: rgba(0, 0, 0, 0.1);
-  color: var(--lumi-400);
+  color: var(--color-lumi-400);
 }
 
 html:not(.dark) .fc-toolbar-title {
-  color: var(--lumi-800);
+  color: var(--color-lumi-800);
 }
 
 html:not(.dark) .fc-more-link {
-  color: var(--lumi-600);
+  color: var(--color-lumi-600);
 }
 
 html:not(.dark) .fc-more-link:hover {
-  color: var(--lumi-700);
+  color: var(--color-lumi-700);
 }
