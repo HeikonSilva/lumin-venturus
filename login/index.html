@@ -119,6 +119,8 @@
                 type="email"
                 class="w-full p-2 rounded-lg border border-lumi-300 dark:border-lumi-600 bg-white/70 dark:bg-lumi-900/30 text-lumi-900 dark:text-lumi-50 outline-none focus:border-lumi-400 placeholder:text-lumi-400 dark:placeholder:text-lumi-500"
                 placeholder="Seu Email"
+                name="email"
+                required
               />
             </div>
             <div>
@@ -132,6 +134,9 @@
                 type="password"
                 class="w-full p-2 rounded-lg border border-lumi-300 dark:border-lumi-600 bg-white dark:bg-lumi-900/30 text-lumi-900 dark:text-lumi-50 outline-none focus:border-lumi-400 placeholder:text-lumi-400 dark:placeholder:text-lumi-500"
                 placeholder="Crie uma senha"
+                name="password"
+                required
+                minlength="6"
               />
               <div class="mt-2 text-right">
                 <a
@@ -141,6 +146,12 @@
                   >Esqueci minha senha</a
                 >
               </div>
+              <p
+                id="loginError"
+                role="alert"
+                aria-live="polite"
+                class="mt-2 text-sm text-red-400 hidden"
+              ></p>
             </div>
             <button type="submit" class="btn-primary w-full">
               <span>Entrar</span>
