@@ -20,7 +20,7 @@ function ensureFloatingButton() {
   // Position bottom-right, above content
   btn.style.position = "fixed";
   btn.style.right = "16px";
-  btn.style.bottom = "16px";
+  btn.style.bottom = "86px";
   btn.style.width = "48px";
   btn.style.height = "48px";
   btn.style.borderRadius = "9999px";

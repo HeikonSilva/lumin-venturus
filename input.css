@@ -297,7 +297,7 @@ html:not(.dark) body:before {
   align-items: center;
 }
 
-.fc-button-primary {
+/* .fc-button-primary {
   background: rgba(147, 184, 204, 0.2);
   border: 1px solid rgba(147, 184, 204, 0.3);
   color: var(--lumi-300);
@@ -316,7 +316,7 @@ html:not(.dark) body:before {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
   color: var(--lumi-500);
-}
+} */
 
 .fc-toolbar-title {
   color: var(--color-lumi-200);
@@ -423,7 +423,7 @@ html:not(.dark) .fc-day-other .fc-daygrid-day-number {
   color: var(--color-lumi-400);
 }
 
-html:not(.dark) .fc-button-primary {
+/* html:not(.dark) .fc-button-primary {
   background: rgba(147, 184, 204, 0.15);
   border: 1px solid rgba(147, 184, 204, 0.3);
   color: var(--color-lumi-700);
@@ -437,7 +437,7 @@ html:not(.dark) .fc-button-primary:disabled {
   background: rgba(0, 0, 0, 0.05);
   border-color: rgba(0, 0, 0, 0.1);
   color: var(--color-lumi-400);
-}
+} */
 
 html:not(.dark) .fc-toolbar-title {
   color: var(--color-lumi-800);

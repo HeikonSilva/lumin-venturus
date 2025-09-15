@@ -72,11 +72,9 @@ export function initCalendar(el) {
       calendar = new FullCalendar.Calendar(el, {
         initialView: "dayGridMonth",
         locale: "pt-br",
-        headerToolbar: {
-          left: "prev,next today",
-          center: "title",
-          right: "dayGridMonth,timeGridWeek,timeGridDay",
-        },
+        headerToolbar: { left: "", center: "title", right: "" },
+        footerToolbar: false,
+        titleFormat: { year: "numeric", month: "long" },
         buttonText: {
           today: "Hoje",
           month: "Mês",
