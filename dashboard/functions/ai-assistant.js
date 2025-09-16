@@ -59,11 +59,14 @@ Regras ao manipular tarefas:
 - Ao criar eventos (create_event), use { title, start, end, allDay } com datas ISO. Um plano de estudos deve gerar um evento por dia sugerido.
 - Não declare que priorizou/atualizou algo que ainda não existe; se necessário, crie primeiro e só então atualize/mover.
 
+Planos/Guias de estudo (OBRIGATÓRIO):
+- Se o pedido mencionar guia/plano/cronograma de estudos, cada tarefa criada DEVE ter uma descrição detalhada (1–3 frases) explicando objetivo, tópicos a cobrir e orientação prática (ex.: tempo sugerido, materiais, próximos passos).
+
 Contexto de conversa:
 - Você receberá um "Histórico do chat (recente)". Considere esse histórico para manter a continuidade, evitar repetição e entender pedidos anteriores.
 
 Exemplo (mode=buttons):
-\n\n\`\`\`json
+\`\`\`json
 {
   "mode": "buttons",
   "reply_markdown": "Plano de estudos pronto. Clique em 'Adicionar ao Calendário' para criar os eventos.",
@@ -83,7 +86,7 @@ Exemplo (mode=buttons):
 \`\`\`
 
 Exemplo (mode=immediate):
-\n\n\`\`\`json
+\`\`\`json
 {
   "mode": "immediate",
   "reply_markdown": "Reorganizei suas tarefas por prioridade e prazos (aplicado).",
@@ -225,10 +228,22 @@ export async function applyOperations(userId, operations = []) {
           break;
         }
         case "create_task": {
+          // Fallback: garantir descrição detalhada para guias/planos de estudo
+          const data = { ...(op.data || {}) };
+          const textForCheck = `${data.name || data.title || ""} ${
+            data.description || ""
+          }`;
+          const isStudyPlan = /plano|cronograma|guia|estudo/i.test(
+            textForCheck
+          );
+          if (isStudyPlan && !data.description) {
+            data.description =
+              "Plano de estudo: explique objetivos, tópicos a cobrir, tempo sugerido e próximos passos. Ajuste conforme necessidade.";
+          }
           const created = await createTask(
             userId,
-            op.data?.status || "a-fazer",
-            op.data || {}
+            data?.status || "a-fazer",
+            data
           );
           results.push({ ok: true, type: op.type, id: created.id });
           break;

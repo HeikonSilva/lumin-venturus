@@ -290,6 +290,80 @@
               </form>
             </div>
           </div>
+
+          <!-- Preview de Tarefa (novo) -->
+          <div
+            id="modal-preview"
+            class="fixed inset-0 z-50 hidden bg-black/40 items-center justify-center p-4"
+          >
+            <div
+              id="preview-dialog"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="preview-title"
+              aria-describedby="preview-desc"
+              class="bg-white dark:bg-lumi-900 rounded-2xl w-full max-w-md shadow-xl border border-lumi-300 relative focus:outline-none"
+              tabindex="-1"
+            >
+              <button
+                id="close-preview"
+                class="absolute top-3 right-3 text-lumi-400 hover:text-lumi-200 text-xl"
+                aria-label="Fechar detalhes"
+              >
+                &times;
+              </button>
+              <div class="p-6 md:p-8">
+                <h2
+                  id="preview-title"
+                  class="text-lg font-semibold text-lumi-400 mb-4"
+                >
+                  Detalhes da tarefa
+                </h2>
+
+                <div class="grid gap-3 text-sm" id="preview-desc">
+                  <div>
+                    <div class="text-xs text-lumi-500">Título</div>
+                    <p id="pv-name" class="text-lumi-100 font-medium"></p>
+                  </div>
+
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      id="pv-type"
+                      class="px-2 py-0.5 rounded bg-white/10 text-xs"
+                    ></span>
+                    <span
+                      id="pv-priority"
+                      class="px-2 py-0.5 rounded bg-white/10 text-xs"
+                    ></span>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-3">
+                    <div>
+                      <div class="text-xs text-lumi-500">Início</div>
+                      <p id="pv-start" class="text-lumi-200"></p>
+                    </div>
+                    <div>
+                      <div class="text-xs text-lumi-500">Entrega</div>
+                      <p id="pv-end" class="text-lumi-200"></p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="text-xs text-lumi-500 mb-1">Descrição</div>
+                    <p
+                      id="pv-description"
+                      class="text-lumi-200 whitespace-pre-wrap"
+                    ></p>
+                  </div>
+                </div>
+
+                <div class="mt-6 flex justify-end">
+                  <button id="pv-close-btn" class="btn-ghost">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="flex items-center justify-between px-1">
             <div class="flex items-center gap-2">
               <span
@@ -569,6 +643,85 @@
         renderColumn(columnKey, tasksArray(columnKey));
       }
 
+      // Preview modal helpers
+      const pvOverlay = document.getElementById("modal-preview");
+      const pvDialog = document.getElementById("preview-dialog");
+      const pvCloseX = document.getElementById("close-preview");
+      const pvCloseBtn = document.getElementById("pv-close-btn");
+      const pvName = document.getElementById("pv-name");
+      const pvType = document.getElementById("pv-type");
+      const pvPriority = document.getElementById("pv-priority");
+      const pvStart = document.getElementById("pv-start");
+      const pvEnd = document.getElementById("pv-end");
+      const pvDesc = document.getElementById("pv-description");
+
+      let lastFocused = null;
+
+      function formatDate(d) {
+        if (!d) return "-";
+        try {
+          return new Date(d).toLocaleDateString("pt-BR");
+        } catch {
+          return "-";
+        }
+      }
+
+      function openPreview(task) {
+        if (!pvOverlay || !pvDialog) return;
+        lastFocused = document.activeElement;
+
+        pvName.textContent = task?.name || task?.title || "Sem título";
+        pvType.textContent = task?.type ? `Tipo: ${task.type}` : "Tipo: -";
+        pvPriority.textContent = `Prioridade: ${task?.priority || "-"}`;
+        pvStart.textContent = formatDate(task?.start_date);
+        pvEnd.textContent = formatDate(task?.end_date);
+        pvDesc.textContent = task?.description || "Sem descrição.";
+
+        pvOverlay.classList.remove("hidden");
+        pvOverlay.classList.add("flex");
+
+        // Focus dialog for accessibility
+        setTimeout(() => pvDialog.focus(), 0);
+      }
+
+      function hidePreview() {
+        pvOverlay?.classList.add("hidden");
+        pvOverlay?.classList.remove("flex");
+        if (lastFocused && typeof lastFocused.focus === "function") {
+          lastFocused.focus();
+        }
+      }
+
+      // Close interactions
+      pvCloseX?.addEventListener("click", hidePreview);
+      pvCloseBtn?.addEventListener("click", hidePreview);
+      pvOverlay?.addEventListener("click", (e) => {
+        if (e.target === pvOverlay) hidePreview();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (!pvOverlay || pvOverlay.classList.contains("hidden")) return;
+        if (e.key === "Escape") {
+          e.preventDefault();
+          hidePreview();
+        }
+        // Simple focus trap
+        if (e.key === "Tab") {
+          const focusables = pvDialog.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          );
+          if (!focusables.length) return;
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
       // Renderização por coluna
       function renderColumn(columnKey, tasks) {
         const listEl = document.getElementById(`tasks-${columnKey}`);
@@ -608,15 +761,17 @@
               }</span>
               ${
                 task.type
-                  ? `<span class=\"px-1.5 py-0.5 rounded bg-white/5\">${task.type}</span>`
+                  ? `<span class="px-1.5 py-0.5 rounded bg-white/5">${task.type}</span>`
                   : ""
               }
             </div>
             <div class="flex items-center justify-between text-xs text-lumi-400">
               <span>${due}</span>
-              <span class="text-[10px] opacity-70">Arraste para mover</span>
+              <span class="text-[10px] opacity-70">Clique para ver</span>
             </div>
           `;
+          // Preview on click
+          article.addEventListener("click", () => openPreview(task));
           // DnD handlers
           article.addEventListener("dragstart", (e) => {
             try {
