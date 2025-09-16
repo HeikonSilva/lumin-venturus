@@ -45,21 +45,27 @@ const slides = [
         <h2 class="text-3xl md:text-4xl font-semibold">Equipe</h2>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
           <article class="flex flex-col items-center gap-4 p-6 rounded-xl border border-slate-800 bg-slate-900/60">
-            <div class="h-28 w-28 rounded-full border-2 border-dashed border-sky-400/40 flex items-center justify-center text-sky-300/70">Foto</div>
+            <div class="h-28 w-28 rounded-full border-2 border-dashed border-sky-400/40 flex items-center justify-center text-sky-300/70">
+              <img src="../assets/heikon.jpg" alt="Heikon Silva Costa" class="h-full w-full rounded-full object-cover" />
+            </div>
             <div class="text-center">
               <h3 class="text-xl font-medium">Heikon Silva</h3>
               <p class="text-slate-400 text-sm">Back-End e Infraestrutura</p>
             </div>
           </article>
           <article class="flex flex-col items-center gap-4 p-6 rounded-xl border border-slate-800 bg-slate-900/60">
-            <div class="h-28 w-28 rounded-full border-2 border-dashed border-sky-400/40 flex items-center justify-center text-sky-300/70">Foto</div>
+            <div class="h-28 w-28 rounded-full border-2 border-dashed border-sky-400/40 flex items-center justify-center text-sky-300/70">
+              <img src="../assets/jhonatan.jpg" alt="Jhonatan Oliveira Aranha" class="h-full w-full rounded-full object-cover" />
+            </div>
             <div class="text-center">
               <h3 class="text-xl font-medium">Jhonatan Oliveira</h3>
               <p class="text-slate-400 text-sm">Front-End e UX</p>
             </div>
           </article>
           <article class="flex flex-col items-center gap-4 p-6 rounded-xl border border-slate-800 bg-slate-900/60">
-            <div class="h-28 w-28 rounded-full border-2 border-dashed border-sky-400/40 flex items-center justify-center text-sky-300/70">Foto</div>
+            <div class="h-28 w-28 rounded-full border-2 border-dashed border-sky-400/40 flex items-center justify-center text-sky-300/70">
+              <img src="../assets/arthur.jpg" alt="Arthur Pereira" class="h-full w-full rounded-full object-cover" />
+            </div>
             <div class="text-center">
               <h3 class="text-xl font-medium">Arthur Pereira</h3>
               <p class="text-slate-400 text-sm">Apresentação e Design UI</p>
