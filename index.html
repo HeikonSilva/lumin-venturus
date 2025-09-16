@@ -42,6 +42,7 @@
 
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./icon-animation.css" />
   </head>
   <body
     class="min-h-screen bg-lumi-100 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 selection:bg-lumi-400/30 selection:text-lumi-50 antialiased"
@@ -126,14 +127,68 @@
 
         <div class="flex justify-center lg:justify-end">
           <div class="relative">
-            <div
-              class="absolute inset-0 bg-gradient-to-br from-lumi-300/20 to-lumi-500/20 rounded-full blur-3xl scale-110"
-            ></div>
-            <img
-              src="./assets/lumi.svg"
+            <!-- Animated Lumin logo -->
+            <svg
+              id="luminLogoHero"
               class="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 drop-shadow-2xl"
-              alt=""
-            />
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 274.56 274.56"
+              role="img"
+              aria-label="Lumin"
+            >
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: #bae2f7;
+                    stroke: #bae2f7;
+                    stroke-width: 2;
+                  }
+                  .cls-2 {
+                    fill: #058099;
+                    stroke: #058099;
+                    stroke-width: 2;
+                  }
+                </style>
+              </defs>
+              <circle
+                class="cls-1 lumi-animation-1"
+                cx="137.28"
+                cy="137.28"
+                r="58.52"
+              ></circle>
+              <path
+                class="cls-2 lumi-animation-2"
+                d="M151.65,56.06h-28.73c-4.06,0-6.95-3.97-5.69-7.83l14.37-44.1c1.79-5.5,9.58-5.5,11.37,0l14.37,44.1c1.26,3.86-1.62,7.83-5.69,7.83Z"
+              ></path>
+              <path
+                class="cls-2 lumi-animation-3"
+                d="M122.91,218.5h28.73c4.06,0,6.95,3.97,5.69,7.83l-14.37,44.1c-1.79,5.5-9.58,5.5-11.37,0l-14.37-44.1c-1.26-3.86,1.62-7.83,5.69-7.83Z"
+              ></path>
+              <path
+                class="cls-2 lumi-animation-4"
+                d="M218.5,151.65v-28.73c0-4.06,3.97-6.95,7.83-5.69l44.1,14.37c5.5,1.79,5.5,9.58,0,11.37l-44.1,14.37c-3.86,1.26-7.83-1.62-7.83-5.69Z"
+              ></path>
+              <path
+                class="cls-2 lumi-animation-5"
+                d="M209.04,84.8l-14.64-14.64c-2.07-2.07-1.52-5.56,1.09-6.89l29.79-15.15c3.72-1.89,7.68,2.08,5.79,5.79l-15.15,29.79c-1.33,2.61-4.82,3.16-6.89,1.09Z"
+              ></path>
+              <path
+                class="cls-2 lumi-animation-6"
+                d="M194.4,203.51l14.64-14.64c2.07-2.07,5.56-1.52,6.89,1.09l15.15,29.79c1.89,3.72-2.08,7.68-5.79,5.79l-29.79-15.15c-2.61-1.33-3.16-4.82-1.09-6.89Z"
+              ></path>
+              <path
+                class="cls-2 lumi-animation-7"
+                d="M56.06,122.91v28.73c0,4.06-3.97,6.95-7.83,5.69l-44.1-14.37c-5.5-1.79-5.5-9.58,0-11.37l44.1-14.37c3.86,1.26,7.83,1.62,7.83,5.69Z"
+              ></path>
+              <path
+                class="cls-2 lumi-animation-8"
+                d="M80.16,71.06l-14.64,14.64c-2.07,2.07-5.56,1.52-6.89-1.09l-15.15-29.79c-1.89-3.72,2.08-7.68,5.79-5.79l29.79,15.15c2.61,1.33,3.16,4.82,1.09,6.89Z"
+              ></path>
+              <path
+                class="cls-2 lumi-animation-9"
+                d="M65.52,188.87l14.64,14.64c2.07,2.07,1.52,5.56-1.09,6.89l-29.79,15.15c-3.72,1.89-7.68-2.08-5.79-5.79l15.15-29.79c1.33-2.61,4.82-3.16,6.89-1.09Z"
+              ></path>
+            </svg>
           </div>
         </div>
       </div>
@@ -225,5 +280,6 @@
 
     <script type="module" src="./js/theme-provider.js"></script>
     <script type="module" src="./js/nav.js"></script>
+    <script type="module" src="./js/hero-logo.js"></script>
   </body>
 </html>
