@@ -69,7 +69,17 @@ O projeto está configurado para deploy no GitHub Pages:
 - **URL de Produção**: `https://heikonsilva.github.io/lumin-venturus/`
 - **Branch de Deploy**: `main`
 
-## 🤝 Contribuição
+## 🧭 Setup e Documentação
+
+Para configurar e rodar o projeto localmente, consulte os guias abaixo:
+
+- Guia de setup local: [docs/setup.md](./docs/setup.md)
+- Configuração do Supabase: [docs/supabase.md](./docs/supabase.md)
+- Autenticação anônima (Convidado): [docs/anonymus-signin.md](./docs/anonymus-signin.md)
+- Configuração do Firebase (Gemini AI): [docs/firebase.md](./docs/firebase.md)
+- Login com Google (OAuth): [docs/google-oauth.md](./docs/google-oauth.md)
+
+## � Contribuição
 
 Para contribuir com o projeto:
 
