@@ -55,6 +55,12 @@ Lumin é uma plataforma web moderna que oferece:
 - **Bibliotecas**: FullCalendar.js, Email.js
 - **Ferramentas**: Git, VS Code, Five Server (desenvolvimento), SVG Artist (Animações SVG)
 
+## 🎥 Vídeo de Apresentação
+
+Assista ao vídeo de apresentação do projeto no YouTube:
+
+https://youtu.be/P1Pe2AT4d30?si=3fG_6lku2y6h-07i
+
 ## 📋 Pré-requisitos
 
 - Navegador web moderno (Chrome, Firefox, Safari, Edge)
