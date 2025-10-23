@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "tailwind:dev": "pnpm dlx @tailwindcss/cli -i ./input.css -o ./style.css -m -w"
+  },
+  "dependencies": {
+    "tailwindcss": "^4.1.16",
+    "@tailwindcss/cli": "^4.1.16"
+  }
+}
