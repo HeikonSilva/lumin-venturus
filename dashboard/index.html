@@ -200,6 +200,11 @@
           <!-- Modal para adicionar tarefa -->
           <div
             id="modal-task"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="preview-title"
+            aria-describedby="preview-desc"
+            tabindex="-1"
             class="fixed inset-0 z-50 hidden bg-black/40 items-center justify-center p-4"
           >
             <div
@@ -302,8 +307,8 @@
               aria-modal="true"
               aria-labelledby="preview-title"
               aria-describedby="preview-desc"
-              class="bg-white dark:bg-lumi-900 rounded-2xl w-full max-w-md shadow-xl border border-lumi-300 relative focus:outline-none"
               tabindex="-1"
+              class="bg-white dark:bg-lumi-900 rounded-2xl w-full max-w-md shadow-xl border border-lumi-300 relative focus:outline-none"
             >
               <button
                 id="close-preview"
