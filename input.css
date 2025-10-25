@@ -1,6 +1,8 @@
 /** biome-ignore-all lint/suspicious/noUnknownAtRules: tailwind */
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 @theme {
   --color-lumi-50: oklch(95.56% 0.029 224.65);
   --color-lumi-100: oklch(91.01% 0.061 223);
