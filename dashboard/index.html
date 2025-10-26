@@ -175,7 +175,7 @@
 
     <!-- Main Board -->
     <main
-      class="pt-8 px-4 md:pl-72 md:pr-16 xl:pr-[22rem] xl:pl-72 pb-28 md:pb-8"
+      class="pt-8 px-4 md:pl-72 md:pr-16 xl:pr-88 xl:pl-72 pb-28 md:pb-8"
     >
       <header class="mb-4 flex items-center gap-3">
         <svg
@@ -384,11 +384,12 @@
             <button
               class="text-lumi-400 hover:text-lumi-200"
               id="open-modal-task"
+              aria-label="Adicionar nova tarefa a fazer"
             >
               +
             </button>
           </div>
-          <div id="tasks-a-fazer" class="space-y-3 min-h-[80px] p-1 rounded-lg">
+          <div id="tasks-a-fazer" class="space-y-3 min-h-20 p-1 rounded-lg">
             <div class="flex justify-center py-6" data-spinner>
               <svg
                 class="animate-spin h-6 w-6 text-lumi-400"
@@ -431,6 +432,7 @@
             <button
               class="text-lumi-400 hover:text-lumi-200"
               data-open-modal-column="em-progresso"
+              aria-label="Adicionar nova tarefa em progresso"
             >
               +
             </button>
@@ -481,6 +483,7 @@
             <button
               class="text-lumi-400 hover:text-lumi-200"
               data-open-modal-column="concluido"
+              aria-label="Adicionar nova tarefa em concluído"
             >
               +
             </button>
