@@ -399,6 +399,9 @@
   .max-h-\[50vh\] {
     max-height: 50vh;
   }
+  .min-h-20 {
+    min-height: calc(var(--spacing) * 20);
+  }
   .min-h-\[80px\] {
     min-height: 80px;
   }
@@ -1383,6 +1386,11 @@
   .xl\:flex {
     @media (width >= 80rem) {
       display: flex;
+    }
+  }
+  .xl\:pr-88 {
+    @media (width >= 80rem) {
+      padding-right: calc(var(--spacing) * 88);
     }
   }
   .xl\:pr-\[22rem\] {

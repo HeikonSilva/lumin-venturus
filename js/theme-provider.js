@@ -23,7 +23,8 @@ function ensureFloatingButton() {
   btn.style.bottom = "86px";
   btn.style.width = "48px";
   btn.style.height = "48px";
-  btn.style.borderRadius = "9999px";
+  btn.style.borderRadius = "100%";
+  btn.ariaLabel = "Trocar tema";
   btn.style.display = "grid";
   btn.style.placeItems = "center";
   btn.style.zIndex = "1000";
