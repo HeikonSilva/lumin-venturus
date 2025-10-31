@@ -34,9 +34,25 @@
 
 ### Checklist de Ajustes
 
+- [ ] Reorganizar as dependências do projeto.
+  - O `@tailwindcss/cli` é uma dependência de desenvolvimento e não será incluída no bundle final.
+- [ ] Adicionar biblioteca para servir os arquivos do site
+  - Remover a dependência externa da extensão Live Server.
+- [ ] Visualização dos outros meses no calendário
+  - Limitação relevante atualmente tratada como bug.
+- [ ] Notificação de "Fora do Prazo" para tarefas
+  - Definir comportamento e canais de alerta.
+- [ ] Atualização da documentação do projeto
+
 ### Evidências e Discussões
 
+- Mentor confirmou que o contraste da paleta está dentro do recomendado; a leitura incorreta vinha da extensão, que apresentou imprecisão na conversão do padrão OKLCH para HEX.
+- É permitido construir uma API própria em Node e integrar um banco de dados. A nota final considera apenas a integração com esses serviços; Docker também é aceito. As diretrizes seguem abertas por conta da abrangência da categoria.
+
 ### Observações Gerais
+
+- Avaliar a migração para Vite (vanilla, MPA) garantindo compatibilidade com a estrutura atual antes da adoção definitiva.
+- Considerar ferramentas adicionais de linting para complementar a formatação hoje feita com Prettier.
 
 ---
 

@@ -1,5 +1,5 @@
 pnpm-lock.yaml
 node_modules
-resumo.*
+resumo*
 style.css
 .DS_Store
