@@ -1,25 +1,6 @@
 // Responsive navbar: handles mobile menu toggle and normalizes hrefs for GitHub Pages subpaths
-(function () {
-  function getBasePrefix() {
-    const parts = window.location.pathname.split("/").filter(Boolean);
-    if (/github\.io$/.test(window.location.host)) {
-      // On GitHub Pages project sites, pathname is /<repo>/... even on root
-      const repo = parts[0] || "";
-      return repo ? `/${repo}` : "";
-    }
-    return "";
-  }
-  const base = getBasePrefix();
-
+(() => {
   document.addEventListener("DOMContentLoaded", () => {
-    // Normalize links that declare a data-route attribute
-    document.querySelectorAll("a[data-route]").forEach((a) => {
-      const route = a.getAttribute("data-route") || "/";
-      try {
-        a.setAttribute("href", `${base}${route}`);
-      } catch {}
-    });
-
     // Mobile menu expand/collapse
     const toggle = document.getElementById("menuToggle");
     const menu = document.getElementById("mobileMenu");

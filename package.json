@@ -1,9 +1,15 @@
 {
   "scripts": {
-    "tailwind:dev": "pnpm dlx @tailwindcss/cli -i ./input.css -o ./style.css -w"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "tailwindcss": "^4.1.16",
-    "@tailwindcss/cli": "^4.1.16"
+    "@tailwindcss/vite": "^4.1.16",
+    "@types/node": "^24.9.2",
+    "tailwindcss": "^4.1.16"
+  },
+  "devDependencies": {
+    "vite": "^7.1.12"
   }
 }
