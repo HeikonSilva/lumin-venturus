@@ -1,10 +1,10 @@
-import "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+import 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2'
 
-const { createClient } = supabase;
+const { createClient } = supabase
 
 const _supabase = createClient(
-  "https://zdppcgenxcjixpqokutc.supabase.co",
-  "sb_publishable_xIqfCY-G4fWKAnLvIUgpcg_xRzqfv9N"
-);
+  'https://atshuwgsazgjeydqvywr.supabase.co',
+  'sb_publishable_vdYguT3-RbWGhZu-pnCpYw_3bETLrsD'
+)
 
-export { _supabase as supabase };
+export { _supabase as supabase }

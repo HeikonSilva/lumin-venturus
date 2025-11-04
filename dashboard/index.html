@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR" class="dark">
   <head>
     <meta charset="UTF-8" />
@@ -34,21 +34,21 @@
     <script type="module" src="../js/auth-handler.js"></script>
   </head>
   <body
-    class="min-h-screen bg-lumi-100 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 selection:bg-lumi-400/30 selection:text-lumi-50 antialiased"
+    class="bg-lumi-100 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 selection:bg-lumi-400/30 selection:text-lumi-50 min-h-screen antialiased"
   >
     <!-- Left Sidebar -->
     <aside
-      class="hidden md:flex fixed left-4 top-4 bottom-4 w-60 flex-col gap-3 z-40"
+      class="fixed top-4 bottom-4 left-4 z-40 hidden w-60 flex-col gap-3 md:flex"
     >
-      <div class="lumi-border glass-nav p-4 flex items-center gap-3 h-14">
-        <img src="../assets/lumi.svg" alt="Lumin" class="w-7 h-7" />
-        <span class="font-semibold text-lumi-400">Lumin</span>
+      <div class="lumi-border glass-nav flex h-14 items-center gap-3 p-4">
+        <img src="../assets/lumi.svg" alt="Lumin" class="h-7 w-7" />
+        <span class="text-lumi-400 font-semibold">Lumin</span>
       </div>
-      <nav class="lumi-border p-3 text-sm flex-1 overflow-auto">
+      <nav class="lumi-border flex-1 overflow-auto p-3 text-sm">
         <ul class="grid gap-1">
           <li>
             <a
-              class="flex items-center gap-3 px-3 py-2 rounded-lg bg-white/5 dark:bg-white/5 hover:bg-white/10"
+              class="flex items-center gap-3 rounded-lg bg-white/5 px-3 py-2 hover:bg-white/10 dark:bg-white/5"
               href="#"
             >
               <svg
@@ -69,7 +69,7 @@
           </li>
           <li>
             <a
-              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10"
+              class="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-white/10"
               href="./calendar/"
             >
               <svg
@@ -90,7 +90,7 @@
           </li>
           <li>
             <a
-              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10"
+              class="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-white/10"
               href="./ai/"
             >
               <svg
@@ -113,10 +113,10 @@
       </nav>
       <div id="userInfo" class="mb-3"></div>
       <div class="grid gap-2">
-        <button id="logoutBtn" class="btn-ghost w-full flex justify-center">
+        <button id="logoutBtn" class="btn-ghost flex w-full justify-center">
           Sair
         </button>
-        <button id="modeToggle" class="btn-ghost w-full flex justify-center">
+        <button id="modeToggle" class="btn-ghost flex w-full justify-center">
           <span id="modeLabel">Dark</span>
         </button>
       </div>
@@ -174,7 +174,7 @@
     </aside> -->
 
     <!-- Main Board -->
-    <main class="pt-8 px-4 md:pl-72 md:pr-16 xl:pr-88 xl:pl-72 pb-28 md:pb-8">
+    <main class="px-4 pt-8 pb-28 md:pr-16 md:pb-8 md:pl-72 xl:pr-88 xl:pl-72">
       <header class="mb-4 flex items-center gap-3">
         <svg
           width="18"
@@ -192,7 +192,7 @@
         <h1 class="text-xl font-semibold">Kanban Board</h1>
       </header>
 
-      <section class="grid gap-6 md:grid-cols-3 items-start">
+      <section class="grid items-start gap-6 md:grid-cols-3">
         <!-- Column: A Fazer -->
         <div class="grid gap-3" id="kanban-a-fazer">
           <!-- Modal para adicionar tarefa -->
@@ -203,46 +203,46 @@
             aria-labelledby="preview-title"
             aria-describedby="preview-desc"
             tabindex="-1"
-            class="fixed inset-0 z-50 hidden bg-black/40 items-center justify-center p-4"
+            class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 p-4"
           >
             <div
-              class="bg-white dark:bg-lumi-900 rounded-2xl p-8 w-full max-w-md shadow-xl border border-lumi-300 relative"
+              class="dark:bg-lumi-900 border-lumi-300 relative w-full max-w-md rounded-2xl border bg-white p-8 shadow-xl"
             >
               <button
                 id="close-modal"
-                class="absolute top-3 right-3 text-lumi-400 hover:text-lumi-200 text-xl"
+                class="text-lumi-400 hover:text-lumi-200 absolute top-3 right-3 text-xl"
               >
                 &times;
               </button>
-              <h2 class="text-lg font-semibold text-lumi-400 mb-4">
+              <h2 class="text-lumi-400 mb-4 text-lg font-semibold">
                 Adicionar Tarefa
               </h2>
               <form id="form-task" class="grid gap-4">
                 <div>
-                  <label class="block text-sm mb-1 text-lumi-300">Título</label>
+                  <label class="text-lumi-300 mb-1 block text-sm">Título</label>
                   <input
                     type="text"
                     name="name"
                     required
-                    class="w-full p-2 rounded-lg border border-lumi-300 bg-white/10 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100"
+                    class="border-lumi-300 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 w-full rounded-lg border bg-white/10 p-2"
                   />
                 </div>
                 <div>
-                  <label class="block text-sm mb-1 text-lumi-300"
-                    >Descrição</label
-                  >
+                  <label class="text-lumi-300 mb-1 block text-sm">
+                    Descrição
+                  </label>
                   <textarea
                     name="description"
                     rows="3"
-                    class="w-full p-2 rounded-lg border border-lumi-300 bg-white/10 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100"
+                    class="border-lumi-300 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 w-full rounded-lg border bg-white/10 p-2"
                   ></textarea>
                 </div>
                 <div>
-                  <label class="block text-sm mb-1 text-lumi-300">Tipo</label>
+                  <label class="text-lumi-300 mb-1 block text-sm">Tipo</label>
                   <select
                     name="type"
                     required
-                    class="w-full p-2 rounded-lg border border-lumi-300 bg-white/10 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100"
+                    class="border-lumi-300 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 w-full rounded-lg border bg-white/10 p-2"
                   >
                     <option value="prova">Prova</option>
                     <option value="trabalho">Trabalho</option>
@@ -252,13 +252,13 @@
                 </div>
 
                 <div>
-                  <label class="block text-sm mb-1 text-lumi-300"
-                    >Prioridade</label
-                  >
+                  <label class="text-lumi-300 mb-1 block text-sm">
+                    Prioridade
+                  </label>
                   <select
                     name="priority"
                     required
-                    class="w-full p-2 rounded-lg border border-lumi-300 bg-white/10 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100"
+                    class="border-lumi-300 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 w-full rounded-lg border bg-white/10 p-2"
                   >
                     <option value="Alta">Alta</option>
                     <option value="Média">Média</option>
@@ -267,23 +267,23 @@
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                   <div>
-                    <label class="block text-sm mb-1 text-lumi-300"
-                      >Início</label
-                    >
+                    <label class="text-lumi-300 mb-1 block text-sm">
+                      Início
+                    </label>
                     <input
                       type="date"
                       name="start_date"
-                      class="w-full p-2 rounded-lg border border-lumi-300 bg-white/10 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100"
+                      class="border-lumi-300 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 w-full rounded-lg border bg-white/10 p-2"
                     />
                   </div>
                   <div>
-                    <label class="block text-sm mb-1 text-lumi-300"
-                      >Entrega</label
-                    >
+                    <label class="text-lumi-300 mb-1 block text-sm">
+                      Entrega
+                    </label>
                     <input
                       type="date"
                       name="end_date"
-                      class="w-full p-2 rounded-lg border border-lumi-300 bg-white/10 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100"
+                      class="border-lumi-300 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 w-full rounded-lg border bg-white/10 p-2"
                     />
                   </div>
                 </div>
@@ -297,7 +297,7 @@
           <!-- Preview de Tarefa (novo) -->
           <div
             id="modal-preview"
-            class="fixed inset-0 z-50 hidden bg-black/40 items-center justify-center p-4"
+            class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 p-4"
           >
             <div
               id="preview-dialog"
@@ -306,11 +306,11 @@
               aria-labelledby="preview-title"
               aria-describedby="preview-desc"
               tabindex="-1"
-              class="bg-white dark:bg-lumi-900 rounded-2xl w-full max-w-md shadow-xl border border-lumi-300 relative focus:outline-none"
+              class="dark:bg-lumi-900 border-lumi-300 relative w-full max-w-md rounded-2xl border bg-white shadow-xl focus:outline-none"
             >
               <button
                 id="close-preview"
-                class="absolute top-3 right-3 text-lumi-400 hover:text-lumi-200 text-xl"
+                class="text-lumi-400 hover:text-lumi-200 absolute top-3 right-3 text-xl"
                 aria-label="Fechar detalhes"
               >
                 &times;
@@ -318,41 +318,41 @@
               <div class="p-6 md:p-8">
                 <h2
                   id="preview-title"
-                  class="text-lg font-semibold text-lumi-400 mb-4"
+                  class="text-lumi-400 mb-4 text-lg font-semibold"
                 >
                   Detalhes da tarefa
                 </h2>
 
                 <div class="grid gap-3 text-sm" id="preview-desc">
                   <div>
-                    <div class="text-xs text-lumi-500">Título</div>
+                    <div class="text-lumi-500 text-xs">Título</div>
                     <p id="pv-name" class="text-lumi-100 font-medium"></p>
                   </div>
 
                   <div class="flex flex-wrap gap-2">
                     <span
                       id="pv-type"
-                      class="px-2 py-0.5 rounded bg-white/10 text-xs"
+                      class="rounded bg-white/10 px-2 py-0.5 text-xs"
                     ></span>
                     <span
                       id="pv-priority"
-                      class="px-2 py-0.5 rounded bg-white/10 text-xs"
+                      class="rounded bg-white/10 px-2 py-0.5 text-xs"
                     ></span>
                   </div>
 
                   <div class="grid grid-cols-2 gap-3">
                     <div>
-                      <div class="text-xs text-lumi-500">Início</div>
+                      <div class="text-lumi-500 text-xs">Início</div>
                       <p id="pv-start" class="text-lumi-200"></p>
                     </div>
                     <div>
-                      <div class="text-xs text-lumi-500">Entrega</div>
+                      <div class="text-lumi-500 text-xs">Entrega</div>
                       <p id="pv-end" class="text-lumi-200"></p>
                     </div>
                   </div>
 
                   <div>
-                    <div class="text-xs text-lumi-500 mb-1">Descrição</div>
+                    <div class="text-lumi-500 mb-1 text-xs">Descrição</div>
                     <p
                       id="pv-description"
                       class="text-lumi-200 whitespace-pre-wrap"
@@ -370,12 +370,12 @@
           <div class="flex items-center justify-between px-1">
             <div class="flex items-center gap-2">
               <span
-                class="inline-block w-2 h-2 rounded-full bg-lumi-400"
+                class="bg-lumi-400 inline-block h-2 w-2 rounded-full"
               ></span>
               <h2 class="text-sm font-semibold">A Fazer</h2>
               <span
                 id="count-a-fazer"
-                class="text-[11px] px-1.5 py-0.5 rounded-full bg-white/10"
+                class="rounded-full bg-white/10 px-1.5 py-0.5 text-[11px]"
                 >0</span
               >
             </div>
@@ -387,10 +387,10 @@
               +
             </button>
           </div>
-          <div id="tasks-a-fazer" class="space-y-3 min-h-20 p-1 rounded-lg">
+          <div id="tasks-a-fazer" class="min-h-20 space-y-3 rounded-lg p-1">
             <div class="flex justify-center py-6" data-spinner>
               <svg
-                class="animate-spin h-6 w-6 text-lumi-400"
+                class="text-lumi-400 h-6 w-6 animate-spin"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -418,12 +418,12 @@
           <div class="flex items-center justify-between px-1">
             <div class="flex items-center gap-2">
               <span
-                class="inline-block w-2 h-2 rounded-full bg-lumi-400"
+                class="bg-lumi-400 inline-block h-2 w-2 rounded-full"
               ></span>
               <h2 class="text-sm font-semibold">Em Progresso</h2>
               <span
                 id="count-em-progresso"
-                class="text-[11px] px-1.5 py-0.5 rounded-full bg-white/10"
+                class="rounded-full bg-white/10 px-1.5 py-0.5 text-[11px]"
                 >0</span
               >
             </div>
@@ -437,11 +437,11 @@
           </div>
           <div
             id="tasks-em-progresso"
-            class="space-y-3 min-h-20 p-1 rounded-lg"
+            class="min-h-20 space-y-3 rounded-lg p-1"
           >
             <div class="flex justify-center py-6" data-spinner>
               <svg
-                class="animate-spin h-6 w-6 text-lumi-400"
+                class="text-lumi-400 h-6 w-6 animate-spin"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -469,12 +469,12 @@
           <div class="flex items-center justify-between px-1">
             <div class="flex items-center gap-2">
               <span
-                class="inline-block w-2 h-2 rounded-full bg-lumi-400"
+                class="bg-lumi-400 inline-block h-2 w-2 rounded-full"
               ></span>
               <h2 class="text-sm font-semibold">Concluído</h2>
               <span
                 id="count-concluido"
-                class="text-[11px] px-1.5 py-0.5 rounded-full bg-white/10"
+                class="rounded-full bg-white/10 px-1.5 py-0.5 text-[11px]"
                 >0</span
               >
             </div>
@@ -486,10 +486,10 @@
               +
             </button>
           </div>
-          <div id="tasks-concluido" class="space-y-3 min-h-20 p-1 rounded-lg">
+          <div id="tasks-concluido" class="min-h-20 space-y-3 rounded-lg p-1">
             <div class="flex justify-center py-6" data-spinner>
               <svg
-                class="animate-spin h-6 w-6 text-lumi-400"
+                class="text-lumi-400 h-6 w-6 animate-spin"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -516,17 +516,17 @@
 
     <!-- Mobile bottom nav -->
     <nav
-      class="md:hidden fixed bottom-4 left-4 right-4 z-50"
+      class="fixed right-4 bottom-4 left-4 z-50 md:hidden"
       role="navigation"
       aria-label="Navegação móvel"
     >
       <div
-        class="lumi-border glass-nav h-14 px-2 rounded-xl flex items-center justify-between gap-1 bg-white/5 dark:bg-white/5"
+        class="lumi-border glass-nav flex h-14 items-center justify-between gap-1 rounded-xl bg-white/5 px-2 dark:bg-white/5"
       >
         <a
           data-route="/dashboard/"
           aria-current="page"
-          class="flex-1 h-12 rounded-lg flex flex-col items-center justify-center gap-0.5 text-xs font-medium bg-white/5 text-lumi-200"
+          class="text-lumi-200 flex h-12 flex-1 flex-col items-center justify-center gap-0.5 rounded-lg bg-white/5 text-xs font-medium"
         >
           <svg
             width="18"
@@ -545,7 +545,7 @@
         </a>
         <a
           data-route="/dashboard/calendar/"
-          class="flex-1 h-12 rounded-lg flex flex-col items-center justify-center gap-0.5 text-xs font-medium hover:bg-white/10 text-lumi-300"
+          class="text-lumi-300 flex h-12 flex-1 flex-col items-center justify-center gap-0.5 rounded-lg text-xs font-medium hover:bg-white/10"
         >
           <svg
             width="18"
@@ -564,7 +564,7 @@
         </a>
         <a
           data-route="/dashboard/ai/"
-          class="flex-1 h-12 rounded-lg flex flex-col items-center justify-center gap-0.5 text-xs font-medium hover:bg-white/10 text-lumi-300"
+          class="text-lumi-300 flex h-12 flex-1 flex-col items-center justify-center gap-0.5 rounded-lg text-xs font-medium hover:bg-white/10"
         >
           <svg
             width="18"
@@ -581,7 +581,7 @@
         <button
           id="logoutBtnMobile"
           type="button"
-          class="flex-1 h-12 rounded-lg flex flex-col items-center justify-center gap-0.5 text-xs font-medium hover:bg-white/10 text-lumi-300"
+          class="text-lumi-300 flex h-12 flex-1 flex-col items-center justify-center gap-0.5 rounded-lg text-xs font-medium hover:bg-white/10"
         >
           <svg
             width="18"
@@ -607,255 +607,257 @@
     <script type="module" src="../js/theme-provider.js"></script>
     <script type="module" src="../js/nav.js"></script>
     <script type="module">
-      import { setupLogout } from "./functions/logout.js";
-      import { mountUserInfo } from "./functions/user-info.js";
-      mountUserInfo("userInfo");
-      setupLogout("logoutBtn");
+      import { setupLogout } from './functions/logout.js'
+      import { mountUserInfo } from './functions/user-info.js'
+
+      mountUserInfo('userInfo')
+      setupLogout('logoutBtn')
       // novo: botão mobile
-      setupLogout("logoutBtnMobile");
+      setupLogout('logoutBtnMobile')
+
+      import { supabase } from '../services/db.js'
       import {
         createTask,
         getTasks,
         moveTask,
-      } from "./functions/kanban-tasks.js";
-      import { supabase } from "../services/db.js";
+      } from './functions/kanban-tasks.js'
 
       const columns = [
-        { key: "a-fazer", title: "A Fazer" },
-        { key: "em-progresso", title: "Em Progresso" },
-        { key: "concluido", title: "Concluído" },
-      ];
+        { key: 'a-fazer', title: 'A Fazer' },
+        { key: 'em-progresso', title: 'Em Progresso' },
+        { key: 'concluido', title: 'Concluído' },
+      ]
 
       // Cache de tarefas por coluna para DnD
       const tasksByColumn = {
-        "a-fazer": {},
-        "em-progresso": {},
+        'a-fazer': {},
+        'em-progresso': {},
         concluido: {},
-      };
+      }
 
       // Helpers para atualizar UI imediatamente (optimistic UI)
       const tasksArray = (columnKey) =>
-        Object.values(tasksByColumn[columnKey] || {});
+        Object.values(tasksByColumn[columnKey] || {})
       function upsertTaskInColumn(columnKey, task) {
-        tasksByColumn[columnKey] ||= {};
-        tasksByColumn[columnKey][task.id] = task;
-        renderColumn(columnKey, tasksArray(columnKey));
+        tasksByColumn[columnKey] ||= {}
+        tasksByColumn[columnKey][task.id] = task
+        renderColumn(columnKey, tasksArray(columnKey))
       }
       function removeTaskFromColumn(columnKey, id) {
-        if (tasksByColumn[columnKey]) delete tasksByColumn[columnKey][id];
-        renderColumn(columnKey, tasksArray(columnKey));
+        if (tasksByColumn[columnKey]) delete tasksByColumn[columnKey][id]
+        renderColumn(columnKey, tasksArray(columnKey))
       }
 
       // Preview modal helpers
-      const pvOverlay = document.getElementById("modal-preview");
-      const pvDialog = document.getElementById("preview-dialog");
-      const pvCloseX = document.getElementById("close-preview");
-      const pvCloseBtn = document.getElementById("pv-close-btn");
-      const pvName = document.getElementById("pv-name");
-      const pvType = document.getElementById("pv-type");
-      const pvPriority = document.getElementById("pv-priority");
-      const pvStart = document.getElementById("pv-start");
-      const pvEnd = document.getElementById("pv-end");
-      const pvDesc = document.getElementById("pv-description");
+      const pvOverlay = document.getElementById('modal-preview')
+      const pvDialog = document.getElementById('preview-dialog')
+      const pvCloseX = document.getElementById('close-preview')
+      const pvCloseBtn = document.getElementById('pv-close-btn')
+      const pvName = document.getElementById('pv-name')
+      const pvType = document.getElementById('pv-type')
+      const pvPriority = document.getElementById('pv-priority')
+      const pvStart = document.getElementById('pv-start')
+      const pvEnd = document.getElementById('pv-end')
+      const pvDesc = document.getElementById('pv-description')
 
-      let lastFocused = null;
+      let lastFocused = null
 
       function formatDate(d) {
-        if (!d) return "-";
+        if (!d) return '-'
         try {
-          return new Date(d).toLocaleDateString("pt-BR");
+          return new Date(d).toLocaleDateString('pt-BR')
         } catch {
-          return "-";
+          return '-'
         }
       }
 
       function openPreview(task) {
-        if (!pvOverlay || !pvDialog) return;
-        lastFocused = document.activeElement;
+        if (!(pvOverlay && pvDialog)) return
+        lastFocused = document.activeElement
 
-        pvName.textContent = task?.name || task?.title || "Sem título";
-        pvType.textContent = task?.type ? `Tipo: ${task.type}` : "Tipo: -";
-        pvPriority.textContent = `Prioridade: ${task?.priority || "-"}`;
-        pvStart.textContent = formatDate(task?.start_date);
-        pvEnd.textContent = formatDate(task?.end_date);
-        pvDesc.textContent = task?.description || "Sem descrição.";
+        pvName.textContent = task?.name || task?.title || 'Sem título'
+        pvType.textContent = task?.type ? `Tipo: ${task.type}` : 'Tipo: -'
+        pvPriority.textContent = `Prioridade: ${task?.priority || '-'}`
+        pvStart.textContent = formatDate(task?.start_date)
+        pvEnd.textContent = formatDate(task?.end_date)
+        pvDesc.textContent = task?.description || 'Sem descrição.'
 
-        pvOverlay.classList.remove("hidden");
-        pvOverlay.classList.add("flex");
+        pvOverlay.classList.remove('hidden')
+        pvOverlay.classList.add('flex')
 
         // Focus dialog for accessibility
-        setTimeout(() => pvDialog.focus(), 0);
+        setTimeout(() => pvDialog.focus(), 0)
       }
 
       function hidePreview() {
-        pvOverlay?.classList.add("hidden");
-        pvOverlay?.classList.remove("flex");
-        if (lastFocused && typeof lastFocused.focus === "function") {
-          lastFocused.focus();
+        pvOverlay?.classList.add('hidden')
+        pvOverlay?.classList.remove('flex')
+        if (lastFocused && typeof lastFocused.focus === 'function') {
+          lastFocused.focus()
         }
       }
 
       // Close interactions
-      pvCloseX?.addEventListener("click", hidePreview);
-      pvCloseBtn?.addEventListener("click", hidePreview);
-      pvOverlay?.addEventListener("click", (e) => {
-        if (e.target === pvOverlay) hidePreview();
-      });
-      document.addEventListener("keydown", (e) => {
-        if (!pvOverlay || pvOverlay.classList.contains("hidden")) return;
-        if (e.key === "Escape") {
-          e.preventDefault();
-          hidePreview();
+      pvCloseX?.addEventListener('click', hidePreview)
+      pvCloseBtn?.addEventListener('click', hidePreview)
+      pvOverlay?.addEventListener('click', (e) => {
+        if (e.target === pvOverlay) hidePreview()
+      })
+      document.addEventListener('keydown', (e) => {
+        if (!pvOverlay || pvOverlay.classList.contains('hidden')) return
+        if (e.key === 'Escape') {
+          e.preventDefault()
+          hidePreview()
         }
         // Simple focus trap
-        if (e.key === "Tab") {
+        if (e.key === 'Tab') {
           const focusables = pvDialog.querySelectorAll(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-          );
-          if (!focusables.length) return;
-          const first = focusables[0];
-          const last = focusables[focusables.length - 1];
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+          )
+          if (!focusables.length) return
+          const first = focusables[0]
+          const last = focusables[focusables.length - 1]
           if (e.shiftKey && document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
+            e.preventDefault()
+            last.focus()
           } else if (!e.shiftKey && document.activeElement === last) {
-            e.preventDefault();
-            first.focus();
+            e.preventDefault()
+            first.focus()
           }
         }
-      });
+      })
 
       // Renderização por coluna
       function renderColumn(columnKey, tasks) {
-        const listEl = document.getElementById(`tasks-${columnKey}`);
-        const countEl = document.getElementById(`count-${columnKey}`);
-        if (!listEl) return;
-        listEl.innerHTML = "";
-        if (countEl) countEl.textContent = tasks.length;
+        const listEl = document.getElementById(`tasks-${columnKey}`)
+        const countEl = document.getElementById(`count-${columnKey}`)
+        if (!listEl) return
+        listEl.innerHTML = ''
+        if (countEl) countEl.textContent = tasks.length
 
         // Atualiza cache
-        const map = {};
-        tasks.forEach((t) => (map[t.id] = t));
-        tasksByColumn[columnKey] = map;
+        const map = {}
+        tasks.forEach((t) => (map[t.id] = t))
+        tasksByColumn[columnKey] = map
 
         if (tasks.length === 0) {
-          const empty = document.createElement("div");
-          empty.className = "text-sm text-lumi-400 px-2 py-4";
-          empty.textContent = "Ainda não foram criadas tarefas.";
-          listEl.appendChild(empty);
-          return;
+          const empty = document.createElement('div')
+          empty.className = 'text-sm text-lumi-400 px-2 py-4'
+          empty.textContent = 'Ainda não foram criadas tarefas.'
+          listEl.appendChild(empty)
+          return
         }
 
         tasks.forEach((task) => {
-          const article = document.createElement("article");
+          const article = document.createElement('article')
           article.className =
-            "lumi-border p-6 bg-white/5 dark:bg-white/5 rounded-xl grid gap-3";
-          article.setAttribute("draggable", "true");
-          article.dataset.id = task.id;
-          article.dataset.from = columnKey;
+            'lumi-border p-6 bg-white/5 dark:bg-white/5 rounded-xl grid gap-3'
+          article.setAttribute('draggable', 'true')
+          article.dataset.id = task.id
+          article.dataset.from = columnKey
           const due = task.end_date
-            ? new Date(task.end_date).toLocaleDateString("pt-BR")
-            : "";
+            ? new Date(task.end_date).toLocaleDateString('pt-BR')
+            : ''
           article.innerHTML = `
             <h3 class="font-medium">${task.name || task.title}</h3>
             <div class="flex flex-wrap gap-1 text-[11px]">
               <span class="px-1.5 py-0.5 rounded bg-white/10">${
-                task.priority || "Normal"
+                task.priority || 'Normal'
               }</span>
               ${
                 task.type
                   ? `<span class="px-1.5 py-0.5 rounded bg-white/5">${task.type}</span>`
-                  : ""
+                  : ''
               }
             </div>
             <div class="flex items-center justify-between text-xs text-lumi-400">
               <span>${due}</span>
               <span class="text-[10px] opacity-70">Clique para ver</span>
             </div>
-          `;
+          `
           // Preview on click
-          article.addEventListener("click", () => openPreview(task));
+          article.addEventListener('click', () => openPreview(task))
           // DnD handlers
-          article.addEventListener("dragstart", (e) => {
+          article.addEventListener('dragstart', (e) => {
             try {
               e.dataTransfer.setData(
-                "text/plain",
-                JSON.stringify({ id: task.id, from: columnKey })
-              );
+                'text/plain',
+                JSON.stringify({ id: task.id, from: columnKey }),
+              )
             } catch {}
-            e.dataTransfer.effectAllowed = "move";
-            article.classList.add("opacity-60");
-          });
-          article.addEventListener("dragend", () => {
-            article.classList.remove("opacity-60");
-          });
-          listEl.appendChild(article);
-        });
+            e.dataTransfer.effectAllowed = 'move'
+            article.classList.add('opacity-60')
+          })
+          article.addEventListener('dragend', () => {
+            article.classList.remove('opacity-60')
+          })
+          listEl.appendChild(article)
+        })
       }
 
-      let currentUser = null;
-      let targetColumnForModal = "a-fazer";
+      let currentUser = null
+      let targetColumnForModal = 'a-fazer'
 
       function initForUser(user) {
-        currentUser = user;
-        if (!user) return; // auth-handler cuidará do redirect
+        currentUser = user
+        if (!user) return // auth-handler cuidará do redirect
 
         // Inicializa listeners de cada coluna
         columns.forEach(({ key }) => {
-          const listEl = document.getElementById(`tasks-${key}`);
+          const listEl = document.getElementById(`tasks-${key}`)
           if (listEl) {
-            listEl.innerHTML = `<div class=\"flex justify-center py-6\" data-spinner>\n  <svg class=\"animate-spin h-6 w-6 text-lumi-400\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\">\n    <circle class=\"opacity-25\" cx=\"12\" cy=\"12\" r=\"10\" stroke=\"currentColor\" stroke-width=\"4\"></circle>\n    <path class=\"opacity-75\" fill=\"currentColor\" d=\"M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z\"></path>\n  </svg>\n</div>`;
+            listEl.innerHTML = `<div class="flex justify-center py-6" data-spinner>\n  <svg class="animate-spin h-6 w-6 text-lumi-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">\n    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>\n    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>\n  </svg>\n</div>`
           }
           getTasks(user.id, key, (tasks) => {
             // Atualiza cache e renderiza
-            renderColumn(key, tasks);
-          });
-        });
+            renderColumn(key, tasks)
+          })
+        })
       }
 
       // Sessão inicial
       supabase.auth.getSession().then(({ data }) => {
-        const user = data.session?.user || null;
-        initForUser(user);
-      });
+        const user = data.session?.user || null
+        initForUser(user)
+      })
       // Mudanças futuras
       supabase.auth.onAuthStateChange((_event, session) => {
-        const user = session?.user || null;
-        initForUser(user);
-      });
+        const user = session?.user || null
+        initForUser(user)
+      })
 
       // Modal wiring
-      document.addEventListener("DOMContentLoaded", () => {
-        const addButton = document.getElementById("open-modal-task");
-        const modal = document.getElementById("modal-task");
-        const closeModal = document.getElementById("close-modal");
-        const form = document.getElementById("form-task");
+      document.addEventListener('DOMContentLoaded', () => {
+        const addButton = document.getElementById('open-modal-task')
+        const modal = document.getElementById('modal-task')
+        const closeModal = document.getElementById('close-modal')
+        const form = document.getElementById('form-task')
         const otherAddButtons = document.querySelectorAll(
-          "[data-open-modal-column]"
-        );
+          '[data-open-modal-column]',
+        )
 
         function openModal(columnKey) {
-          targetColumnForModal = columnKey;
-          modal.classList.remove("hidden");
-          modal.classList.add("flex");
+          targetColumnForModal = columnKey
+          modal.classList.remove('hidden')
+          modal.classList.add('flex')
         }
         function hideModal() {
-          modal.classList.add("hidden");
-          modal.classList.remove("flex");
+          modal.classList.add('hidden')
+          modal.classList.remove('flex')
         }
 
-        addButton?.addEventListener("click", () => openModal("a-fazer"));
+        addButton?.addEventListener('click', () => openModal('a-fazer'))
         otherAddButtons.forEach((btn) => {
-          btn.addEventListener("click", () =>
-            openModal(btn.getAttribute("data-open-modal-column"))
-          );
-        });
-        closeModal?.addEventListener("click", hideModal);
+          btn.addEventListener('click', () =>
+            openModal(btn.getAttribute('data-open-modal-column')),
+          )
+        })
+        closeModal?.addEventListener('click', hideModal)
 
-        form?.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          if (!currentUser) return;
-          const data = Object.fromEntries(new FormData(form));
+        form?.addEventListener('submit', async (e) => {
+          e.preventDefault()
+          if (!currentUser) return
+          const data = Object.fromEntries(new FormData(form))
           const payload = {
             name: data.name,
             description: data.description,
@@ -867,79 +869,79 @@
             end_date: data.end_date
               ? new Date(data.end_date).toISOString()
               : null,
-          };
+          }
           try {
             // Cria no banco e usa o retorno para atualizar a UI imediatamente
             const created = await createTask(
               currentUser.id,
               targetColumnForModal,
-              payload
-            );
-            upsertTaskInColumn(targetColumnForModal, created);
+              payload,
+            )
+            upsertTaskInColumn(targetColumnForModal, created)
           } catch (err) {
-            console.error("Falha ao criar tarefa:", err);
-            alert("Não foi possível criar a tarefa agora.");
+            console.error('Falha ao criar tarefa:', err)
+            alert('Não foi possível criar a tarefa agora.')
           } finally {
-            form.reset();
-            hideModal();
+            form.reset()
+            hideModal()
           }
-        });
+        })
 
         // Drag & Drop: configura zonas de drop nas colunas
         function setupDnD() {
           columns.forEach(({ key }) => {
-            const zone = document.getElementById(`tasks-${key}`);
-            if (!zone) return;
+            const zone = document.getElementById(`tasks-${key}`)
+            if (!zone) return
             const addHighlight = () =>
-              zone.classList.add("outline", "outline-2", "outline-lumi-400/50");
+              zone.classList.add('outline', 'outline-2', 'outline-lumi-400/50')
             const removeHighlight = () =>
               zone.classList.remove(
-                "outline",
-                "outline-2",
-                "outline-lumi-400/50"
-              );
-            zone.addEventListener("dragover", (e) => {
-              e.preventDefault();
-              addHighlight();
-              e.dataTransfer.dropEffect = "move";
-            });
-            zone.addEventListener("dragleave", () => {
-              removeHighlight();
-            });
-            zone.addEventListener("drop", async (e) => {
-              e.preventDefault();
-              removeHighlight();
-              let payload = null;
+                'outline',
+                'outline-2',
+                'outline-lumi-400/50',
+              )
+            zone.addEventListener('dragover', (e) => {
+              e.preventDefault()
+              addHighlight()
+              e.dataTransfer.dropEffect = 'move'
+            })
+            zone.addEventListener('dragleave', () => {
+              removeHighlight()
+            })
+            zone.addEventListener('drop', async (e) => {
+              e.preventDefault()
+              removeHighlight()
+              let payload = null
               try {
-                payload = JSON.parse(e.dataTransfer.getData("text/plain"));
+                payload = JSON.parse(e.dataTransfer.getData('text/plain'))
               } catch {}
-              if (!payload) return;
-              const { id, from } = payload;
-              const to = key;
-              if (!id || !from || !currentUser || from === to) return;
-              const task = tasksByColumn[from]?.[id];
-              if (!task) return;
+              if (!payload) return
+              const { id, from } = payload
+              const to = key
+              if (!(id && from && currentUser) || from === to) return
+              const task = tasksByColumn[from]?.[id]
+              if (!task) return
 
               // Optimistic UI: move imediatamente
-              const originalFrom = from;
-              const originalTask = { ...task };
+              const originalFrom = from
+              const originalTask = { ...task }
               try {
-                removeTaskFromColumn(originalFrom, id);
-                const updated = { ...task, status: to };
-                upsertTaskInColumn(to, updated);
-                await moveTask(currentUser.id, originalFrom, to, task);
+                removeTaskFromColumn(originalFrom, id)
+                const updated = { ...task, status: to }
+                upsertTaskInColumn(to, updated)
+                await moveTask(currentUser.id, originalFrom, to, task)
               } catch (err) {
                 // Rollback visual se falhar
-                console.error("Falha ao mover tarefa:", err);
-                removeTaskFromColumn(to, id);
-                upsertTaskInColumn(originalFrom, originalTask);
-                alert("Não foi possível mover a tarefa.");
+                console.error('Falha ao mover tarefa:', err)
+                removeTaskFromColumn(to, id)
+                upsertTaskInColumn(originalFrom, originalTask)
+                alert('Não foi possível mover a tarefa.')
               }
-            });
-          });
+            })
+          })
         }
-        setupDnD();
-      });
+        setupDnD()
+      })
     </script>
   </body>
 </html>
