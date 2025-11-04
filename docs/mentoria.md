@@ -34,15 +34,17 @@
 
 ### Checklist de Ajustes
 
-- [ ] Reorganizar as dependências do projeto.
-  - O `@tailwindcss/cli` é uma dependência de desenvolvimento e não será incluída no bundle final.
-- [ ] Adicionar biblioteca para servir os arquivos do site
-  - Remover a dependência externa da extensão Live Server.
-- [ ] Visualização dos outros meses no calendário
-  - Limitação relevante atualmente tratada como bug.
+- [x] Reorganizar as dependências do projeto. ([Commit 1de6c85](https://github.com/HeikonSilva/lumin-venturus/commit/1de6c855f904f4f8b243c209d2376db9c94f8bb7))
+  - A unica dependencia que ainda não foi incluida no package.json foi a que disponibiliza os serviços de IA
+- [x] Adicionar biblioteca para servir os arquivos do site ([Commit 714daf9](https://github.com/HeikonSilva/lumin-venturus/commit/714daf91ea7502f5ced9e9036a984fbf403a9ebd) e [Commit 95eaffe](https://github.com/HeikonSilva/lumin-venturus/commit/95eaffeae3df193dab3c1fa913b2c492e2434df0))
+  - Foi feita a migração do projeto para comportar o vite como bundler e também para servir as páginas durante desenvolvimento e preview das builds
+- [x] Visualização dos outros meses no calendário ([Commit 8988f48](https://github.com/HeikonSilva/lumin-venturus/commit/8988f48732e46870af79c0951bf3ece1ff10902a))
+  - Agora é possível trocar de mês.
 - [ ] Notificação de "Fora do Prazo" para tarefas
   - Definir comportamento e canais de alerta.
-- [ ] Atualização da documentação do projeto
+- [x] Atualização da documentação do projeto ([Commit 88b6397](https://github.com/HeikonSilva/lumin-venturus/commit/88b63973fe85b66874b5b73333b8b81290283b83))
+  - Documentação está atualizada de acordo as mudanças.
+- [x] Foi configurado o biome/prettier com ultracite para linting e formatação do código. ([Commit 95eaffe](https://github.com/HeikonSilva/lumin-venturus/commit/95eaffeae3df193dab3c1fa913b2c492e2434df0))
 
 ### Evidências e Discussões
 
