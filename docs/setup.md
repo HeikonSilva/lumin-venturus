@@ -13,17 +13,41 @@ Defina as credenciais do Supabase em `services/supabase.js` e garanta que `servi
 
 ### 3. Execução Local
 
-#### Live Server (VS Code)
+#### Instalação de Dependências
 
-1. Instale a extensão "Live Server" no VS Code
-2. Clique com botão direito em `index.html`
-3. Selecione "Open with Live Server"
+```bash
+pnpm install
+```
+
+#### Modo de Desenvolvimento
+
+```bash
+pnpm dev
+```
+
+O servidor de desenvolvimento será iniciado (geralmente em `http://localhost:5173`).
+
+#### Build e Preview
+
+Para gerar a build de produção:
+
+```bash
+pnpm build
+```
+
+Para servir a build localmente:
+
+```bash
+pnpm preview
+```
+
+A url de acesso padrão será: http://localhost:5173/lumin-venturus/ ou http://localhost:4173/lumin-venturus/
 
 ### 3.1 Aviso importante (Firebase, Supabase e OAuth)
 
 Este projeto utiliza, respectivamente, como serviço de IA e backend: Firebase e Supabase. Em produção, ambos os serviços autorizam apenas a URL hospedada no GitHub Pages do projeto.
 
-- Não abra os arquivos HTML diretamente com file://. Sirva via http/https (ex.: Live Server no VS Code).
+- Não abra os arquivos HTML diretamente com file://. Sirva via http/https (ex.: `pnpm dev` ou `pnpm preview`).
 
 Para configurar os serviços e a autenticação localmente, consulte os guias completos:
 
@@ -31,5 +55,3 @@ Para configurar os serviços e a autenticação localmente, consulte os guias co
 - Autenticação anônima (Convidado): [docs/anonymus-signin.md](./anonymus-signin.md)
 - Configuração do Firebase (Gemini AI): [docs/firebase.md](./firebase.md)
 - Login com Google (OAuth): [docs/google-oauth.md](./google-oauth.md)
-
-Depois de configurar, sirva o frontend (ex.: Live Server) e acesse `http://localhost:5500`.
