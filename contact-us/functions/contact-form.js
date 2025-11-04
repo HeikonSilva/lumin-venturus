@@ -1,4 +1,6 @@
-emailjs.init({ publicKey: "kexJvWlUpu-iTv-6m" });
+import { init, send } from '@emailjs/browser'
+
+init({ publicKey: 'kexJvWlUpu-iTv-6m' })
 
 function sendContactEmail(name, message, email) {
   const templateParams = {
@@ -6,129 +8,134 @@ function sendContactEmail(name, message, email) {
     email,
     message,
     time: new Date().toISOString(),
-  };
-  return emailjs.send("service_useuat9", "template_odh7vlb", templateParams);
+  }
+  return send('service_useuat9', 'template_odh7vlb', templateParams)
 }
 
-const form = document.getElementById("contactForm");
-const submitBtn = document.getElementById("submitBtn");
-const statusBox = document.getElementById("formStatus");
+const form = document.getElementById('contactForm')
+const submitBtn = document.getElementById('submitBtn')
+const statusBox = document.getElementById('formStatus')
 
-function setStatus(message, kind = "info") {
-  if (!statusBox) return;
-  statusBox.classList.remove("hidden");
+function setStatus(message, kind = 'info') {
+  if (!statusBox) {
+    return
+  }
+  statusBox.classList.remove('hidden')
   // Base styles
-  statusBox.className = "mt-2 text-sm p-3 rounded-md border ";
+  statusBox.className = 'mt-2 text-sm p-3 rounded-md border '
   const theme = {
-    info: "border-lumi-300 dark:border-lumi-700 bg-lumi-50/40 dark:bg-lumi-900/30 text-lumi-800 dark:text-lumi-200",
+    info: 'border-lumi-300 dark:border-lumi-700 bg-lumi-50/40 dark:bg-lumi-900/30 text-lumi-800 dark:text-lumi-200',
     success:
-      "border-green-400 bg-green-400/10 text-green-600 dark:text-green-300",
-    error: "border-red-400 bg-red-400/10 text-red-600 dark:text-red-300",
-  };
-  statusBox.className += theme[kind] || theme.info;
-  statusBox.textContent = message;
+      'border-green-400 bg-green-400/10 text-green-600 dark:text-green-300',
+    error: 'border-red-400 bg-red-400/10 text-red-600 dark:text-red-300',
+  }
+  statusBox.className += theme[kind] || theme.info
+  statusBox.textContent = message
 }
 
 function clearStatus() {
-  if (!statusBox) return;
-  statusBox.textContent = "";
-  statusBox.classList.add("hidden");
+  if (!statusBox) {
+    return
+  }
+  statusBox.textContent = ''
+  statusBox.classList.add('hidden')
 }
 
 function setError(input, message) {
-  const p = form?.querySelector(`[data-error-for="${input.id}"]`);
+  const p = form?.querySelector(`[data-error-for="${input.id}"]`)
   if (p) {
-    p.textContent = message || "";
-    p.classList.toggle("hidden", !message);
+    p.textContent = message || ''
+    p.classList.toggle('hidden', !message)
   }
-  input?.classList.toggle("border-red-400", Boolean(message));
+  input?.classList.toggle('border-red-400', Boolean(message))
 }
 
 function validate() {
-  let valid = true;
-  const name = document.getElementById("name");
-  const email = document.getElementById("email");
-  const message = document.getElementById("message");
+  let valid = true
+  const name = document.getElementById('name')
+  const email = document.getElementById('email')
+  const message = document.getElementById('message')
 
   // Name
-  const nameVal = name.value.trim();
+  const nameVal = name.value.trim()
   if (!nameVal) {
-    setError(name, "Informe seu nome.");
-    valid = false;
+    setError(name, 'Informe seu nome.')
+    valid = false
   } else if (nameVal.length < 2) {
-    setError(name, "O nome deve ter pelo menos 2 caracteres.");
-    valid = false;
+    setError(name, 'O nome deve ter pelo menos 2 caracteres.')
+    valid = false
   } else {
-    setError(name, "");
+    setError(name, '')
   }
 
   // Email
-  const emailVal = email.value.trim();
-  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+  const emailVal = email.value.trim()
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i
   if (!emailVal) {
-    setError(email, "Informe seu e-mail.");
-    valid = false;
-  } else if (!emailRe.test(emailVal)) {
-    setError(email, "Forneça um e-mail válido.");
-    valid = false;
+    setError(email, 'Informe seu e-mail.')
+    valid = false
+  } else if (emailRe.test(emailVal)) {
+    setError(email, '')
   } else {
-    setError(email, "");
+    setError(email, 'Forneça um e-mail válido.')
+    valid = false
   }
 
   // Message
-  const msgVal = message.value.trim();
+  const msgVal = message.value.trim()
   if (!msgVal) {
-    setError(message, "Digite sua mensagem.");
-    valid = false;
+    setError(message, 'Digite sua mensagem.')
+    valid = false
   } else if (msgVal.length < 10) {
-    setError(message, "A mensagem deve ter pelo menos 10 caracteres.");
-    valid = false;
+    setError(message, 'A mensagem deve ter pelo menos 10 caracteres.')
+    valid = false
   } else {
-    setError(message, "");
+    setError(message, '')
   }
 
-  return { valid, values: { name: nameVal, email: emailVal, message: msgVal } };
+  return { valid, values: { name: nameVal, email: emailVal, message: msgVal } }
 }
 
 function setLoading(loading) {
-  if (!submitBtn) return;
-  submitBtn.disabled = loading;
-  submitBtn.classList.toggle("opacity-70", loading);
-  submitBtn.classList.toggle("cursor-not-allowed", loading);
-  const span = submitBtn.querySelector("span");
-  if (span) span.textContent = loading ? "Enviando…" : "Enviar";
+  if (!submitBtn) {
+    return
+  }
+  submitBtn.disabled = loading
+  submitBtn.classList.toggle('opacity-70', loading)
+  submitBtn.classList.toggle('cursor-not-allowed', loading)
+  const span = submitBtn.querySelector('span')
+  if (span) {
+    span.textContent = loading ? 'Enviando…' : 'Enviar'
+  }
 }
 
-form?.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  clearStatus();
-  const { valid, values } = validate();
+form?.addEventListener('submit', async (e) => {
+  e.preventDefault()
+  clearStatus()
+  const { valid, values } = validate()
   if (!valid) {
-    setStatus("Por favor, corrija os campos destacados.", "error");
-    return;
+    setStatus('Por favor, corrija os campos destacados.', 'error')
+    return
   }
 
   try {
-    setLoading(true);
-    await sendContactEmail(values.name, values.message, values.email);
-    setStatus(
-      "Mensagem enviada com sucesso. Obrigado pelo contato!",
-      "success"
-    );
-    form.reset();
+    setLoading(true)
+    await sendContactEmail(values.name, values.message, values.email)
+    setStatus('Mensagem enviada com sucesso. Obrigado pelo contato!', 'success')
+    form.reset()
   } catch (err) {
-    console.error(err);
+    console.error(err)
     setStatus(
-      "Não foi possível enviar sua mensagem. Tente novamente em instantes.",
-      "error"
-    );
+      'Não foi possível enviar sua mensagem. Tente novamente em instantes.',
+      'error'
+    )
   } finally {
-    setLoading(false);
+    setLoading(false)
   }
-});
+})
 
 // Live validation on blur
-["name", "email", "message"].forEach((id) => {
-  const el = document.getElementById(id);
-  el?.addEventListener("blur", () => validate());
-});
+for (const id of ['name', 'email', 'message']) {
+  const el = document.getElementById(id)
+  el?.addEventListener('blur', () => validate())
+}
