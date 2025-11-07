@@ -3,7 +3,6 @@ import {
   getAI,
   getGenerativeModel,
 } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-ai.js'
-import { getAnalytics } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js'
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js'
 
 const firebaseConfig = {
@@ -18,7 +17,7 @@ const firebaseConfig = {
 }
 
 const app = initializeApp(firebaseConfig)
-const analytics = getAnalytics(app)
+// const analytics = getAnalytics(app)
 
 // Use the initialized app to get the AI backend
 const ai = getAI(app, { backend: new GoogleAIBackend() })

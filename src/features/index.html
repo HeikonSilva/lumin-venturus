@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR" class="dark">
   <head>
     <meta charset="UTF-8" />
@@ -44,20 +44,20 @@
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body
-    class="min-h-screen bg-lumi-100 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 selection:bg-lumi-400/30 selection:text-lumi-50 antialiased"
+    class="bg-lumi-100 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 selection:bg-lumi-400/30 selection:text-lumi-50 min-h-screen antialiased"
   >
-    <nav class="fixed top-4 left-4 right-4 xl:left-16 xl:right-16 z-50">
+    <nav class="fixed top-4 right-4 left-4 z-50 xl:right-16 xl:left-16">
       <div
-        class="lumi-border glass-nav px-4 md:px-6 h-14 flex items-center justify-between"
+        class="lumi-border glass-nav flex h-14 items-center justify-between px-4 md:px-6"
       >
         <a href="../" class="flex items-center gap-3">
-          <img src="../assets/lumi.svg" alt="Lumin" class="w-9 h-9" />
+          <img src="../assets/lumi.svg" alt="Lumin" class="h-9 w-9" />
           <span
-            class="font-semibold text-lg tracking-wide text-lumi-400 dark:text-lumi-400"
+            class="text-lumi-400 dark:text-lumi-400 text-lg font-semibold tracking-wide"
             >Lumin</span
           >
         </a>
-        <div class="hidden md:flex items-center gap-6 text-sm" id="desktopMenu">
+        <div class="hidden items-center gap-6 text-sm md:flex" id="desktopMenu">
           <a href="../features/" class="hover:text-lumi-300 transition-colors"
             >Produtos</a
           >
@@ -77,11 +77,11 @@
             <span id="modeLabel">Dark</span>
           </button>
         </div>
-        <button id="menuToggle" class="md:hidden btn-ghost">Menu</button>
+        <button id="menuToggle" class="btn-ghost md:hidden">Menu</button>
       </div>
       <div
         id="mobileMenu"
-        class="hidden md:hidden mt-2 lumi-border p-3 backdrop-blur-3xl"
+        class="lumi-border mt-2 hidden p-3 backdrop-blur-3xl md:hidden"
       >
         <div class="grid gap-2 text-sm">
           <a href="../features/" class="hover:text-lumi-300">Produtos</a>
@@ -93,15 +93,15 @@
       </div>
     </nav>
 
-    <header class="relative pt-28 pb-12 px-6 md:px-10 max-w-7xl mx-auto">
+    <header class="relative mx-auto max-w-7xl px-6 pt-28 pb-12 md:px-10">
       <div class="max-w-3xl">
         <h1
-          class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight"
+          class="text-5xl leading-tight font-extrabold tracking-tight md:text-7xl"
         >
           <span class="text-gradient">Produtos e serviços</span>
         </h1>
         <p
-          class="leading-relaxed text-lumi-400 dark:text-lumi-400 text-base md:text-lg text-justify mt-5"
+          class="text-lumi-400 dark:text-lumi-400 mt-5 text-justify text-base leading-relaxed md:text-lg"
         >
           Oferecemos uma plataforma abrangente que integra diversas
           funcionalidades para otimizar a gestão acadêmica e o aprendizado. Tais
@@ -110,26 +110,26 @@
       </div>
     </header>
 
-    <section id="features" class="px-6 md:px-10 max-w-7xl mx-auto pb-28">
+    <section id="features" class="mx-auto max-w-7xl px-6 pb-28 md:px-10">
       <div class="grid gap-6 sm:grid-cols-1 lg:grid-cols-2">
-        <div class="lumi-border p-6 flex flex-col gap-3">
+        <div class="lumi-border flex flex-col gap-3 p-6">
           <h3
-            class="font-semibold text-lg text-start text-lumi-600 dark:text-lumi-300"
+            class="text-lumi-600 dark:text-lumi-300 text-start text-lg font-semibold"
           >
             Planejamento Inteligente
           </h3>
-          <p class="text-lg text-justify text-lumi-400 dark:text-lumi-400">
+          <p class="text-lumi-400 dark:text-lumi-400 text-justify text-lg">
             Receba sugestões automáticas de organização baseadas na sua carga de
             estudos, prazos e prioridades. O sistema analisa seus compromissos e
             propõe cronogramas personalizados, ajudando a distribuir tarefas de
             forma equilibrada e eficiente ao longo da semana.
           </p>
         </div>
-        <div class="lumi-border p-6 flex flex-col gap-3">
-          <h3 class="font-semibold text-lg text-lumi-600 dark:text-lumi-300">
+        <div class="lumi-border flex flex-col gap-3 p-6">
+          <h3 class="text-lumi-600 dark:text-lumi-300 text-lg font-semibold">
             Prioridades Dinâmicas
           </h3>
-          <p class="text-lg text-justify text-lumi-400 dark:text-lumi-400">
+          <p class="text-lumi-400 dark:text-lumi-400 text-justify text-lg">
             As tarefas são automaticamente reordenadas conforme prazos e níveis
             de importância mudam ao longo do tempo. O sistema avalia
             constantemente suas atividades e ajusta a ordem de execução,
@@ -137,11 +137,11 @@
             evitando esquecimentos e atrasos.
           </p>
         </div>
-        <div class="lumi-border p-6 flex flex-col gap-3">
-          <h3 class="font-semibold text-lg text-lumi-600 dark:text-lumi-400">
+        <div class="lumi-border flex flex-col gap-3 p-6">
+          <h3 class="text-lumi-600 dark:text-lumi-400 text-lg font-semibold">
             Assistente com IA
           </h3>
-          <p class="text-lg text-justify text-lumi-400 dark:text-lumi-400">
+          <p class="text-lumi-400 dark:text-lumi-400 text-justify text-lg">
             Conte com um assistente inteligente para criar planos de estudo
             personalizados, gerar resumos automáticos dos conteúdos e enviar
             lembretes adaptados à sua rotina. A IA aprende com seus hábitos e
@@ -149,11 +149,11 @@
             potencializam seus resultados.
           </p>
         </div>
-        <div class="lumi-border p-6 flex flex-col gap-3">
-          <h3 class="font-semibold text-lg text-lumi-600 dark:text-lumi-300">
+        <div class="lumi-border flex flex-col gap-3 p-6">
+          <h3 class="text-lumi-600 dark:text-lumi-300 text-lg font-semibold">
             Sincronização Multi‑Dispositivo
           </h3>
-          <p class="text-lg text-justify text-lumi-400 dark:text-lumi-400">
+          <p class="text-lumi-400 dark:text-lumi-400 text-justify text-lg">
             Acesse sua conta e informações de qualquer lugar, seja no
             computador, tablet ou smartphone. Todas as alterações são
             sincronizadas em tempo real, garantindo consistência, praticidade e

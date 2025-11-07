@@ -1,4 +1,4 @@
-import { supabase } from '../../services/db.js'
+import { supabase } from '../../services/supabase.js'
 
 const loginWithGoogle = document.getElementById('login-google')
 
@@ -18,7 +18,9 @@ if (loginWithGoogle) {
         },
       })
       .then(({ error }) => {
-        if (error) alert(`Erro ao entrar com Google: ${error.message}`)
+        if (error) {
+          alert(`Erro ao entrar com Google: ${error.message}`)
+        }
       })
   })
 }

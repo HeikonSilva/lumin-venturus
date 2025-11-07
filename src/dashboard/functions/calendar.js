@@ -18,7 +18,9 @@ import {
 } from './calendar-events.js'
 
 export function initCalendar(el) {
-  if (!(window.FullCalendar && el)) return
+  if (!(window.FullCalendar && el)) {
+    return
+  }
   let calendar = null
   let currentUser = null
   let unsubscribe = null
@@ -26,7 +28,9 @@ export function initCalendar(el) {
   // Serialize a FC event to our RTDB shape
   function serializeEvent(ev) {
     const toIso = (d, allDay) => {
-      if (!d) return null
+      if (!d) {
+        return null
+      }
       try {
         // For all-day, prefer date-only to avoid tz shifts; timestamptz accepts it
         return allDay
@@ -61,7 +65,9 @@ export function initCalendar(el) {
       unsubscribe = null
     }
 
-    if (!user) return // auth-handler will redirect as needed
+    if (!user) {
+      return // auth-handler will redirect as needed
+    }
 
     // 1) Fetch events once before rendering from Supabase tasks
     const fetchInitial = async () => await getEventsOnce(user.id)
@@ -91,16 +97,19 @@ export function initCalendar(el) {
 
         eventClassNames(arg) {
           const p = arg.event.extendedProps?.priority
-          if (p === 'Alta')
+          if (p === 'Alta') {
             return ['!bg-red-500/10', '!border-red-500/40', '!text-red-300']
-          if (p === 'Média')
+          }
+          if (p === 'Média') {
             return [
               '!bg-orange-500/10',
               '!border-orange-500/40',
               '!text-orange-300',
             ]
-          if (p === 'Baixa')
+          }
+          if (p === 'Baixa') {
             return ['!bg-blue-500/10', '!border-blue-500/40', '!text-blue-300']
+          }
           return []
         },
 
@@ -128,11 +137,15 @@ export function initCalendar(el) {
           }
         },
         async select(info) {
-          if (!currentUser) return calendar.unselect()
+          if (!currentUser) {
+            return calendar.unselect()
+          }
           const title = prompt('Título do evento:')
           if (title) {
             const toIso = (d, allDay) => {
-              if (!d) return null
+              if (!d) {
+                return null
+              }
               try {
                 return allDay
                   ? new Date(d).toISOString().slice(0, 10)
@@ -159,7 +172,9 @@ export function initCalendar(el) {
         },
         eventDrop(info) {
           const ev = info.event
-          if (!currentUser) return
+          if (!currentUser) {
+            return
+          }
           const payload = serializeEvent(ev)
           // Optimistic: já está refletido na UI; só confirma no backend
           updateEvent(currentUser.id, ev.id, payload).catch((err) => {
@@ -176,7 +191,9 @@ export function initCalendar(el) {
         },
         eventResize(info) {
           const ev = info.event
-          if (!currentUser) return
+          if (!currentUser) {
+            return
+          }
           const payload = serializeEvent(ev)
           updateEvent(currentUser.id, ev.id, payload).catch((err) => {
             console.error('Falha ao redimensionar evento:', err)
@@ -195,7 +212,9 @@ export function initCalendar(el) {
 
       // 3) Live updates: subscribe and reconcile (naive clear & add)
       unsubscribe = listenEvents(user.id, (items) => {
-        if (!calendar) return
+        if (!calendar) {
+          return
+        }
         calendar.getEvents().forEach((e) => e.remove())
         for (const it of items) {
           calendar.addEvent(it)

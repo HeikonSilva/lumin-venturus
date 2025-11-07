@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR" class="dark">
   <head>
     <meta charset="UTF-8" />
@@ -36,21 +36,21 @@
     <script type="module" src="../../js/auth-handler.js"></script>
   </head>
   <body
-    class="min-h-screen bg-lumi-100 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 selection:bg-lumi-400/30 selection:text-lumi-50 antialiased"
+    class="bg-lumi-100 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 selection:bg-lumi-400/30 selection:text-lumi-50 min-h-screen antialiased"
   >
     <!-- Left Sidebar -->
     <aside
-      class="hidden md:flex fixed left-4 top-4 bottom-4 w-60 flex-col gap-3 z-40"
+      class="fixed top-4 bottom-4 left-4 z-40 hidden w-60 flex-col gap-3 md:flex"
     >
-      <div class="lumi-border glass-nav p-4 flex items-center gap-3 h-14">
-        <img src="../../assets/lumi.svg" alt="Lumin" class="w-7 h-7" />
-        <span class="font-semibold text-lumi-400">Lumin</span>
+      <div class="lumi-border glass-nav flex h-14 items-center gap-3 p-4">
+        <img src="../../assets/lumi.svg" alt="Lumin" class="h-7 w-7" />
+        <span class="text-lumi-400 font-semibold">Lumin</span>
       </div>
-      <nav class="lumi-border p-3 text-sm flex-1 overflow-auto">
+      <nav class="lumi-border flex-1 overflow-auto p-3 text-sm">
         <ul class="grid gap-1">
           <li>
             <a
-              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10"
+              class="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-white/10"
               href="../"
             >
               <svg
@@ -71,7 +71,7 @@
           </li>
           <li>
             <a
-              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10"
+              class="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-white/10"
               href="../calendar/"
             >
               <svg
@@ -92,7 +92,7 @@
           </li>
           <li>
             <a
-              class="flex items-center gap-3 px-3 py-2 rounded-lg bg-white/5 dark:bg-white/5 hover:bg-white/10"
+              class="flex items-center gap-3 rounded-lg bg-white/5 px-3 py-2 hover:bg-white/10 dark:bg-white/5"
               href="#"
             >
               <svg
@@ -115,10 +115,10 @@
       </nav>
       <div id="userInfo" class="mb-3"></div>
       <div class="grid gap-2">
-        <button id="logoutBtn" class="btn-ghost w-full flex justify-center">
+        <button id="logoutBtn" class="btn-ghost flex w-full justify-center">
           Sair
         </button>
-        <button id="modeToggle" class="btn-ghost w-full flex justify-center">
+        <button id="modeToggle" class="btn-ghost flex w-full justify-center">
           <span id="modeLabel">Dark</span>
         </button>
       </div>
@@ -126,10 +126,10 @@
 
     <!-- Main AI Assistant -->
     <main
-      class="pt-8 px-4 md:pl-72 md:pr-[22rem] xl:pr-[26rem] xl:pl-72 pb-28 md:pb-8"
+      class="px-4 pt-8 pb-28 md:pr-[22rem] md:pb-8 md:pl-72 xl:pr-[26rem] xl:pl-72"
     >
       <header class="mb-6">
-        <div class="flex items-center gap-3 mb-2">
+        <div class="mb-2 flex items-center gap-3">
           <svg
             width="18"
             height="18"
@@ -141,7 +141,7 @@
           </svg>
           <h1 class="text-xl font-semibold">Ações de IA</h1>
         </div>
-        <p class="text-sm text-lumi-400">
+        <p class="text-lumi-400 text-sm">
           Otimize suas tarefas com inteligência artificial
         </p>
       </header>
@@ -151,19 +151,19 @@
         <!-- Main Assistant Card -->
         <div class="lumi-border p-6">
           <div class="mb-4">
-            <h2 class="text-lg font-semibold text-lumi-200 mb-2">
+            <h2 class="text-lumi-200 mb-2 text-lg font-semibold">
               Assistente de IA
             </h2>
             <div class="relative">
               <textarea
                 id="aiInput"
-                class="w-full h-24 p-4 pr-12 rounded-lg bg-white/5 border border-white/10 outline-none text-sm placeholder:text-lumi-500 resize-none"
+                class="placeholder:text-lumi-500 h-24 w-full resize-none rounded-lg border border-white/10 bg-white/5 p-4 pr-12 text-sm outline-none"
                 placeholder="Descreva o que você precisa de ajuda... Ex: 'Organize meu cronograma de estudos para a próxima semana'"
               ></textarea>
               <button
                 id="aiSend"
                 aria-label="Enviar prompt para IA"
-                class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-lumi-400 hover:bg-lumi-500 transition-colors flex items-center justify-center"
+                class="bg-lumi-400 hover:bg-lumi-500 absolute right-3 bottom-3 flex h-8 w-8 items-center justify-center rounded-lg transition-colors"
               >
                 <svg
                   width="16"
@@ -211,7 +211,7 @@
           <div id="aiFeed" class="max-h-[50vh] overflow-auto"></div>
         </div>
 
-        <div id="aiFeed" class="max-h-[50vh] overflow-auto mt-4"></div>
+        <div id="aiFeed" class="mt-4 max-h-[50vh] overflow-auto"></div>
         <!-- AI Suggestions (static demo block kept) -->
         <!-- <div class="lumi-border p-6">
           <div class="flex items-center gap-3 mb-4">
@@ -374,16 +374,16 @@
 
     <!-- Mobile bottom nav -->
     <nav
-      class="md:hidden fixed bottom-4 left-4 right-4 z-50"
+      class="fixed right-4 bottom-4 left-4 z-50 md:hidden"
       role="navigation"
       aria-label="Navegação móvel"
     >
       <div
-        class="lumi-border glass-nav h-14 px-2 rounded-xl flex items-center justify-between gap-1 bg-white/5 dark:bg-white/5"
+        class="lumi-border glass-nav flex h-14 items-center justify-between gap-1 rounded-xl bg-white/5 px-2 dark:bg-white/5"
       >
         <a
           data-route="/dashboard/"
-          class="flex-1 h-12 rounded-lg flex flex-col items-center justify-center gap-0.5 text-xs font-medium hover:bg-white/10 text-lumi-300"
+          class="text-lumi-300 flex h-12 flex-1 flex-col items-center justify-center gap-0.5 rounded-lg text-xs font-medium hover:bg-white/10"
         >
           <svg
             width="18"
@@ -402,7 +402,7 @@
         </a>
         <a
           data-route="/dashboard/calendar/"
-          class="flex-1 h-12 rounded-lg flex flex-col items-center justify-center gap-0.5 text-xs font-medium hover:bg-white/10 text-lumi-300"
+          class="text-lumi-300 flex h-12 flex-1 flex-col items-center justify-center gap-0.5 rounded-lg text-xs font-medium hover:bg-white/10"
         >
           <svg
             width="18"
@@ -422,7 +422,7 @@
         <a
           data-route="/dashboard/ai/"
           aria-current="page"
-          class="flex-1 h-12 rounded-lg flex flex-col items-center justify-center gap-0.5 text-xs font-medium bg-white/5 text-lumi-200"
+          class="text-lumi-200 flex h-12 flex-1 flex-col items-center justify-center gap-0.5 rounded-lg bg-white/5 text-xs font-medium"
         >
           <svg
             width="18"
@@ -439,7 +439,7 @@
         <button
           id="logoutBtnMobile"
           type="button"
-          class="flex-1 h-12 rounded-lg flex flex-col items-center justify-center gap-0.5 text-xs font-medium hover:bg-white/10 text-lumi-300"
+          class="text-lumi-300 flex h-12 flex-1 flex-col items-center justify-center gap-0.5 rounded-lg text-xs font-medium hover:bg-white/10"
         >
           <svg
             width="18"
@@ -466,12 +466,13 @@
     <script type="module" src="../../js/nav.js"></script>
     <script type="module" src="../functions/ai-ui.js"></script>
     <script type="module">
-      import { setupLogout } from "../functions/logout.js";
-      import { mountUserInfo } from "../functions/user-info.js";
-      mountUserInfo("userInfo");
-      setupLogout("logoutBtn");
+      import { setupLogout } from '../functions/logout.js'
+      import { mountUserInfo } from '../functions/user-info.js'
+
+      mountUserInfo('userInfo')
+      setupLogout('logoutBtn')
       // novo: botão mobile
-      setupLogout("logoutBtnMobile");
+      setupLogout('logoutBtnMobile')
     </script>
   </body>
 </html>

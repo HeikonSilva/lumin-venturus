@@ -1,12 +1,7 @@
-import { model } from "../../services/firebase.js";
-import { supabase } from "../../services/db.js";
-import { createTask, moveTask } from "./kanban-tasks.js";
-import {
-  getEventsOnce,
-  createEvent,
-  updateEvent,
-  deleteEvent,
-} from "./calendar-events.js";
+import { model } from '../../services/firebase.js'
+import { supabase } from '../../services/supabase.js'
+import { createEvent, deleteEvent, updateEvent } from './calendar-events.js'
+import { createTask, moveTask } from './kanban-tasks.js'
 
 // Contract: we ask the model to return a fenced JSON with operations and optional buttons
 // Shape:
@@ -96,72 +91,78 @@ Exemplo (mode=immediate):
   ]
 }
 \`\`\`
-`;
+`
 
-function chunk(str, n = 18000) {
-  if (!str) return [];
-  const arr = [];
-  for (let i = 0; i < str.length; i += n) arr.push(str.slice(i, i + n));
-  return arr;
+function chunk(str, n = 18_000) {
+  if (!str) {
+    return []
+  }
+  const arr = []
+  for (let i = 0; i < str.length; i += n) {
+    arr.push(str.slice(i, i + n))
+  }
+  return arr
 }
 
 export async function loadUserContext(userId) {
   // Load tasks
   const { data: tasks, error: tasksErr } = await supabase
-    .from("tasks")
+    .from('tasks')
     .select(
-      "id,name,description,priority,status,type,start_date,end_date,created_at"
+      'id,name,description,priority,status,type,start_date,end_date,created_at'
     )
-    .eq("user_id", userId)
-    .order("created_at", { ascending: true });
-  if (tasksErr) throw tasksErr;
+    .eq('user_id', userId)
+    .order('created_at', { ascending: true })
+  if (tasksErr) {
+    throw tasksErr
+  }
 
   // Optionally, recent chats for context
   const { data: chats } = await supabase
-    .from("ai_chats")
-    .select("id, title, updated_at")
-    .eq("user_id", userId)
-    .order("updated_at", { ascending: false })
-    .limit(5);
+    .from('ai_chats')
+    .select('id, title, updated_at')
+    .eq('user_id', userId)
+    .order('updated_at', { ascending: false })
+    .limit(5)
 
-  return { tasks: tasks || [], recentChats: chats || [] };
+  return { tasks: tasks || [], recentChats: chats || [] }
 }
 
 function formatHistory(messages = [], maxMessages = 12, maxChars = 4000) {
-  const latest = messages.slice(-maxMessages);
+  const latest = messages.slice(-maxMessages)
   const lines = latest.map((m) => {
-    const who = m.role === "user" ? "Usuário" : "Lumin";
-    return `${who}: ${m.content || ""}`;
-  });
-  let text = lines.join("\n");
+    const who = m.role === 'user' ? 'Usuário' : 'Lumin'
+    return `${who}: ${m.content || ''}`
+  })
+  let text = lines.join('\n')
   if (text.length > maxChars) {
-    text = text.slice(text.length - maxChars);
+    text = text.slice(text.length - maxChars)
   }
-  return text;
+  return text
 }
 
 function buildPrompt({ userQuery, userId, tasks, historyText }) {
-  const now = new Date().toISOString();
+  const now = new Date().toISOString()
   const tasksContext = tasks
     .map(
       (t) =>
         `- [${t.id}] ${t.name} | prioridade: ${t.priority} | status: ${
           t.status
-        } | tipo: ${t.type} | início: ${t.start_date || "-"} | fim: ${
-          t.end_date || "-"
+        } | tipo: ${t.type} | início: ${t.start_date || '-'} | fim: ${
+          t.end_date || '-'
         }`
     )
-    .join("\n");
+    .join('\n')
 
   const instruction = `${ASSISTANT_SYSTEM}
 Contexto atual:
 Data/hora: ${now}
 Usuário: ${userId}
 Tarefas:
-${tasksContext || "(sem tarefas)"}
+${tasksContext || '(sem tarefas)'}
 
 Histórico do chat (recente):
-${historyText || "(vazio)"}
+${historyText || '(vazio)'}
 
 Pedido do usuário:
 """
@@ -169,17 +170,17 @@ ${userQuery}
 """
 
 Responda com um bloco Markdown curto (reply_markdown) e, se houver ações, um bloco JSON válido, FENCED com três crases. Exemplo:
-\n\n\`\`\`json\n{"reply_markdown":"...","operations":[...],"buttons":[...]}\n\`\`\`\n`;
-  return instruction;
+\n\n\`\`\`json\n{"reply_markdown":"...","operations":[...],"buttons":[...]}\n\`\`\`\n`
+  return instruction
 }
 
 export async function askAssistant({ userId, query, chatId }) {
-  const ctx = await loadUserContext(userId);
-  let historyText = "";
+  const ctx = await loadUserContext(userId)
+  let historyText = ''
   if (chatId) {
     try {
-      const history = await getChatMessages(chatId);
-      historyText = formatHistory(history);
+      const history = await getChatMessages(chatId)
+      historyText = formatHistory(history)
     } catch {}
   }
   const prompt = buildPrompt({
@@ -187,159 +188,179 @@ export async function askAssistant({ userId, query, chatId }) {
     userId,
     tasks: ctx.tasks,
     historyText,
-  });
+  })
 
   // Send prompt to Gemini and stream or single-shot
-  const { response } = await model.generateContent(prompt);
-  const fullText = response.text();
+  const { response } = await model.generateContent(prompt)
+  const fullText = response.text()
 
-  const parsed = parseFencedJSON(fullText);
-  return { ctx, fullText, parsed };
+  const parsed = parseFencedJSON(fullText)
+  return { ctx, fullText, parsed }
 }
 
 export function parseFencedJSON(text) {
-  if (!text) return null;
-  const fenceRe = /```json\n([\s\S]*?)```/i;
-  const m = text.match(fenceRe);
-  if (!m) return null;
+  if (!text) {
+    return null
+  }
+  const fenceRe = /```json\n([\s\S]*?)```/i
+  const m = text.match(fenceRe)
+  if (!m) return null
   try {
-    return JSON.parse(m[1]);
+    return JSON.parse(m[1])
   } catch (e) {
-    console.warn("Falha ao parsear JSON da IA:", e);
-    return null;
+    console.warn('Falha ao parsear JSON da IA:', e)
+    return null
   }
 }
 
 // Apply operations from assistant
 export async function applyOperations(userId, operations = []) {
-  const results = [];
+  const results = []
   for (const op of operations) {
     try {
       switch (op.type) {
-        case "delete_task": {
-          if (!op.id) throw new Error("delete_task requer id");
+        case 'delete_task': {
+          if (!op.id) {
+            throw new Error('delete_task requer id')
+          }
           const { error } = await supabase
-            .from("tasks")
+            .from('tasks')
             .delete()
-            .eq("id", op.id)
-            .eq("user_id", userId);
-          if (error) throw error;
-          results.push({ ok: true, type: op.type, id: op.id });
-          break;
+            .eq('id', op.id)
+            .eq('user_id', userId)
+          if (error) {
+            throw error
+          }
+          results.push({ ok: true, type: op.type, id: op.id })
+          break
         }
-        case "create_task": {
+        case 'create_task': {
           // Fallback: garantir descrição detalhada para guias/planos de estudo
-          const data = { ...(op.data || {}) };
-          const textForCheck = `${data.name || data.title || ""} ${
-            data.description || ""
-          }`;
-          const isStudyPlan = /plano|cronograma|guia|estudo/i.test(
-            textForCheck
-          );
+          const data = { ...(op.data || {}) }
+          const textForCheck = `${data.name || data.title || ''} ${
+            data.description || ''
+          }`
+          const isStudyPlan = /plano|cronograma|guia|estudo/i.test(textForCheck)
           if (isStudyPlan && !data.description) {
             data.description =
-              "Plano de estudo: explique objetivos, tópicos a cobrir, tempo sugerido e próximos passos. Ajuste conforme necessidade.";
+              'Plano de estudo: explique objetivos, tópicos a cobrir, tempo sugerido e próximos passos. Ajuste conforme necessidade.'
           }
           const created = await createTask(
             userId,
-            data?.status || "a-fazer",
+            data?.status || 'a-fazer',
             data
-          );
-          results.push({ ok: true, type: op.type, id: created.id });
-          break;
+          )
+          results.push({ ok: true, type: op.type, id: created.id })
+          break
         }
-        case "update_task": {
-          if (!op.id) throw new Error("update_task requer id");
+        case 'update_task': {
+          if (!op.id) {
+            throw new Error('update_task requer id')
+          }
           const { error } = await supabase
-            .from("tasks")
+            .from('tasks')
             .update(op.data || {})
-            .eq("id", op.id)
-            .eq("user_id", userId);
-          if (error) throw error;
-          results.push({ ok: true, type: op.type, id: op.id });
-          break;
+            .eq('id', op.id)
+            .eq('user_id', userId)
+          if (error) {
+            throw error
+          }
+          results.push({ ok: true, type: op.type, id: op.id })
+          break
         }
-        case "move_task": {
-          if (!op.id || !op.to) throw new Error("move_task requer id e to");
-          await moveTask(userId, null, op.to, { id: op.id });
-          results.push({ ok: true, type: op.type, id: op.id });
-          break;
+        case 'move_task': {
+          if (!(op.id && op.to)) {
+            throw new Error('move_task requer id e to')
+          }
+          await moveTask(userId, null, op.to, { id: op.id })
+          results.push({ ok: true, type: op.type, id: op.id })
+          break
         }
-        case "create_event": {
-          const key = await createEvent(userId, op.data || {});
-          results.push({ ok: true, type: op.type, id: key });
-          break;
+        case 'create_event': {
+          const key = await createEvent(userId, op.data || {})
+          results.push({ ok: true, type: op.type, id: key })
+          break
         }
-        case "update_event": {
-          if (!op.id) throw new Error("update_event requer id");
-          await updateEvent(userId, op.id, op.data || {});
-          results.push({ ok: true, type: op.type, id: op.id });
-          break;
+        case 'update_event': {
+          if (!op.id) throw new Error('update_event requer id')
+          await updateEvent(userId, op.id, op.data || {})
+          results.push({ ok: true, type: op.type, id: op.id })
+          break
         }
-        case "delete_event": {
-          if (!op.id) throw new Error("delete_event requer id");
-          await deleteEvent(userId, op.id);
-          results.push({ ok: true, type: op.type, id: op.id });
-          break;
+        case 'delete_event': {
+          if (!op.id) {
+            throw new Error('delete_event requer id')
+          }
+          await deleteEvent(userId, op.id)
+          results.push({ ok: true, type: op.type, id: op.id })
+          break
         }
         default:
           results.push({
             ok: false,
             type: op.type,
-            error: "Tipo não suportado",
-          });
+            error: 'Tipo não suportado',
+          })
       }
     } catch (e) {
-      results.push({ ok: false, type: op.type, error: e.message });
+      results.push({ ok: false, type: op.type, error: e.message })
     }
   }
-  return results;
+  return results
 }
 
 // Chat persistence
-export async function ensureChat(userId, title = "Nova conversa") {
+export async function ensureChat(userId, title = 'Nova conversa') {
   // Create a chat row
   const { data, error } = await supabase
-    .from("ai_chats")
+    .from('ai_chats')
     .insert({ user_id: userId, title })
-    .select("id")
-    .single();
-  if (error) throw error;
-  return data.id;
+    .select('id')
+    .single()
+  if (error) {
+    throw error
+  }
+  return data.id
 }
 
 export async function listChats(userId, limit = 20) {
   const { data, error } = await supabase
-    .from("ai_chats")
-    .select("id, title, updated_at")
-    .eq("user_id", userId)
-    .order("updated_at", { ascending: false })
-    .limit(limit);
-  if (error) throw error;
-  return data || [];
+    .from('ai_chats')
+    .select('id, title, updated_at')
+    .eq('user_id', userId)
+    .order('updated_at', { ascending: false })
+    .limit(limit)
+  if (error) {
+    throw error
+  }
+  return data || []
 }
 
 export async function saveMessage({ chatId, role, content, parsed }) {
-  const { error } = await supabase.from("ai_messages").insert({
+  const { error } = await supabase.from('ai_messages').insert({
     chat_id: chatId,
     role,
     content,
     parsed_json: parsed ? parsed : null,
-  });
-  if (error) throw error;
+  })
+  if (error) {
+    throw error
+  }
   // bump chat updated_at
   await supabase
-    .from("ai_chats")
+    .from('ai_chats')
     .update({ updated_at: new Date().toISOString() })
-    .eq("id", chatId);
+    .eq('id', chatId)
 }
 
 export async function getChatMessages(chatId) {
   const { data, error } = await supabase
-    .from("ai_messages")
-    .select("id, role, content, parsed_json, created_at")
-    .eq("chat_id", chatId)
-    .order("created_at", { ascending: true });
-  if (error) throw error;
-  return data || [];
+    .from('ai_messages')
+    .select('id, role, content, parsed_json, created_at')
+    .eq('chat_id', chatId)
+    .order('created_at', { ascending: true })
+  if (error) {
+    throw error
+  }
+  return data || []
 }

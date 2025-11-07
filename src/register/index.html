@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR" class="dark">
   <head>
     <meta charset="UTF-8" />
@@ -31,21 +31,21 @@
     <script type="module" src="./functions/register.js"></script>
   </head>
   <body
-    class="min-h-screen bg-lumi-100 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 selection:bg-lumi-400/30 selection:text-lumi-50 antialiased"
+    class="bg-lumi-100 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 selection:bg-lumi-400/30 selection:text-lumi-50 min-h-screen antialiased"
   >
     <main
-      class="min-h-screen px-4 sm:px-6 py-16 flex items-center justify-center"
+      class="flex min-h-screen items-center justify-center px-4 py-16 sm:px-6"
     >
-      <section class="w-full max-w-xl flex flex-col items-center">
-        <a href="../" class="flex items-center gap-3 mb-6 text-lumi-400">
-          <img src="../assets/lumi.svg" alt="Lumin" class="w-12 h-12" />
+      <section class="flex w-full max-w-xl flex-col items-center">
+        <a href="../" class="text-lumi-400 mb-6 flex items-center gap-3">
+          <img src="../assets/lumi.svg" alt="Lumin" class="h-12 w-12" />
           <span class="text-2xl font-semibold">Lumin</span>
         </a>
-        <div class="w-full lumi-border p-6 sm:p-8 md:p-10">
+        <div class="lumi-border w-full p-6 sm:p-8 md:p-10">
           <!-- Painel de Cadastro (visível inicialmente) -->
           <div id="signup-panel" class="space-y-6">
             <header class="space-y-3 text-left">
-              <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold">
+              <h1 class="text-2xl font-bold sm:text-3xl md:text-4xl">
                 Crie sua conta
               </h1>
               <p class="text-lumi-700 dark:text-lumi-400">
@@ -61,28 +61,28 @@
             >
               <div>
                 <label
-                  class="block text-sm mb-1 text-lumi-700 dark:text-lumi-300"
+                  class="text-lumi-700 dark:text-lumi-300 mb-1 block text-sm"
                   for="email"
                   >E-mail</label
                 >
                 <input
                   id="email"
                   type="email"
-                  class="w-full p-2 rounded-lg border border-lumi-300 dark:border-lumi-600 bg-white/70 dark:bg-lumi-900/30 text-lumi-900 dark:text-lumi-50 outline-none focus:border-lumi-400 placeholder:text-lumi-400 dark:placeholder:text-lumi-500"
+                  class="border-lumi-300 dark:border-lumi-600 dark:bg-lumi-900/30 text-lumi-900 dark:text-lumi-50 focus:border-lumi-400 placeholder:text-lumi-400 dark:placeholder:text-lumi-500 w-full rounded-lg border bg-white/70 p-2 outline-none"
                   placeholder="seuemail@exemplo.com"
                   required
                 />
               </div>
               <div>
                 <label
-                  class="block text-sm mb-1 text-lumi-700 dark:text-lumi-300"
+                  class="text-lumi-700 dark:text-lumi-300 mb-1 block text-sm"
                   for="password"
                   >Senha</label
                 >
                 <input
                   id="password"
                   type="password"
-                  class="w-full p-2 rounded-lg border border-lumi-300 dark:border-lumi-600 bg-white dark:bg-lumi-900/30 text-lumi-900 dark:text-lumi-50 outline-none focus:border-lumi-400 placeholder:text-lumi-400 dark:placeholder:text-lumi-500"
+                  class="border-lumi-300 dark:border-lumi-600 dark:bg-lumi-900/30 text-lumi-900 dark:text-lumi-50 focus:border-lumi-400 placeholder:text-lumi-400 dark:placeholder:text-lumi-500 w-full rounded-lg border bg-white p-2 outline-none"
                   placeholder="Crie uma senha"
                   required
                   minlength="6"
@@ -93,25 +93,25 @@
               </button>
             </form>
 
-            <p class="text-sm text-center text-lumi-700 dark:text-lumi-400">
+            <p class="text-lumi-700 dark:text-lumi-400 text-center text-sm">
               Já tem conta?
-              <a class="underline hover:text-lumi-300" href="../login/"
+              <a class="hover:text-lumi-300 underline" href="../login/"
                 >Entrar</a
               >
             </p>
           </div>
 
           <!-- Painel de Verificação de E-mail (oculto inicialmente) -->
-          <div id="verify-panel" class="hidden mt-8">
-            <div class="text-center py-8 px-4">
+          <div id="verify-panel" class="mt-8 hidden">
+            <div class="px-4 py-8 text-center">
               <div
-                class="mx-auto w-14 h-14 rounded-full bg-lumi-400/20 flex items-center justify-center mb-4 border border-lumi-300 dark:border-lumi-700"
+                class="bg-lumi-400/20 border-lumi-300 dark:border-lumi-700 mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  class="w-7 h-7 text-lumi-400"
+                  class="text-lumi-400 h-7 w-7"
                 >
                   <path
                     fill-rule="evenodd"
@@ -121,14 +121,14 @@
                 </svg>
               </div>
               <h2 class="text-2xl font-semibold">Verifique seu e-mail</h2>
-              <p class="mt-2 text-lumi-700 dark:text-lumi-400">
+              <p class="text-lumi-700 dark:text-lumi-400 mt-2">
                 Enviamos um link de confirmação para
                 <strong id="verify-email" class="text-lumi-400"></strong>. Abra
                 seu e-mail e clique no link para ativar sua conta.
               </p>
-              <p class="mt-4 text-sm text-lumi-600 dark:text-lumi-500">
+              <p class="text-lumi-600 dark:text-lumi-500 mt-4 text-sm">
                 Não recebeu?
-                <button id="resend-email" class="underline hover:text-lumi-300">
+                <button id="resend-email" class="hover:text-lumi-300 underline">
                   Reenviar
                 </button>
               </p>

@@ -1,62 +1,60 @@
-import { supabase } from "../../services/db.js";
+import { supabase } from '../../services/supabase.js'
 
-const form = document.loginForm;
-const errorLabel = document.getElementById("loginError");
+const form = document.loginForm
+const errorLabel = document.getElementById('loginError')
 
 // Supabase auth state listener
-const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
-  if (event === "SIGNED_IN") {
+const { data: sub } = supabase.auth.onAuthStateChange((event, _session) => {
+  if (event === 'SIGNED_IN' && errorLabel) {
     // clear any previous error message when user signs in
-    if (errorLabel) {
-      errorLabel.textContent = "";
-      errorLabel.classList.add("hidden");
-    }
+    errorLabel.textContent = ''
+    errorLabel.classList.add('hidden')
   }
-});
+})
 
 // Clean up listener on page unload
-window.addEventListener("beforeunload", () => {
+window.addEventListener('beforeunload', () => {
   try {
-    sub?.subscription?.unsubscribe?.();
+    sub?.subscription?.unsubscribe?.()
   } catch {}
-});
+})
 
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
+form.addEventListener('submit', async (event) => {
+  event.preventDefault()
 
-  const email = form.email.value;
-  const password = form.password.value;
+  const email = form.email.value
+  const password = form.password.value
 
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
-  });
+  })
 
   if (error) {
     if (errorLabel) {
       errorLabel.textContent =
-        error.message === "Invalid login credentials"
-          ? "E-mail ou senha incorretos."
-          : `Falha no login: ${error.message}`;
-      errorLabel.classList.remove("hidden");
+        error.message === 'Invalid login credentials'
+          ? 'E-mail ou senha incorretos.'
+          : `Falha no login: ${error.message}`
+      errorLabel.classList.remove('hidden')
     } else {
-      alert(`Falha no login: ${error.message}`);
+      alert(`Falha no login: ${error.message}`)
     }
-    return;
+    return
   }
 
   if (data?.session) {
     // auth-handler cuidará do redirect
   }
-});
+})
 
 // Hide error message as user types again
-["email", "password"].forEach((name) => {
-  const input = form?.[name];
-  input?.addEventListener("input", () => {
-    if (errorLabel && !errorLabel.classList.contains("hidden")) {
-      errorLabel.textContent = "";
-      errorLabel.classList.add("hidden");
+for (const name of ['email', 'password']) {
+  const input = form?.[name]
+  input?.addEventListener('input', () => {
+    if (errorLabel && !errorLabel.classList.contains('hidden')) {
+      errorLabel.textContent = ''
+      errorLabel.classList.add('hidden')
     }
-  });
-});
+  })
+}
