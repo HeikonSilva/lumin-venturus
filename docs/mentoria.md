@@ -64,10 +64,11 @@
 
 - [ ] Ajustar estrutura CSS
   - Reorganizar arquivos de estilo para melhor manutenibilidade.
-- [ ] Uso do Vite Rolldown
+- [x] Uso do Vite Rolldown
   - Correção de erro na etapa de post-install.
-- [ ] Remoção do suporte ao TypeScript
+- [x] Remoção do suporte ao TypeScript
   - TypeScript não é permitido no projeto; migrar código para JavaScript puro.
+- [x] Separação do codigo fonte da aplicação para src folder.
 - [ ] Migração do Firebase para AI Studio
   - Transição dos serviços de IA para AI Studio.
 
