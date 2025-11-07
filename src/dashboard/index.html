@@ -30,7 +30,7 @@
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="../style.css" />
 
-    <script type="module" src="../services/db.js"></script>
+    <script type="module" src="../services/supabase.js"></script>
     <script type="module" src="../js/auth-handler.js"></script>
   </head>
   <body
@@ -615,7 +615,7 @@
       // novo: botão mobile
       setupLogout('logoutBtnMobile')
 
-      import { supabase } from '../services/db.js'
+      import { supabase } from '../services/supabase.js'
       import {
         createTask,
         getTasks,

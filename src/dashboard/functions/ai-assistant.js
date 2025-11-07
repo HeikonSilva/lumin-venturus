@@ -1,4 +1,4 @@
-import { model } from '../../services/firebase.js'
+import { model } from '../../services/google-ai-studio.js'
 import { supabase } from '../../services/supabase.js'
 import { createEvent, deleteEvent, updateEvent } from './calendar-events.js'
 import { createTask, moveTask } from './kanban-tasks.js'

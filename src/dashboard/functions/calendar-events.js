@@ -2,7 +2,9 @@ import { supabase } from '../../services/supabase.js'
 
 // Converte qualquer valor para "YYYY-MM-DD" (sem horário/UTC)
 function dateOnly(v) {
-  if (!v) return null
+  if (!v) {
+    return null
+  }
   const s = typeof v === 'string' ? v : new Date(v).toISOString()
   return s.slice(0, 10)
 }

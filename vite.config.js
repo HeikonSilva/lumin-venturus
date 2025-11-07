@@ -10,6 +10,7 @@ export default defineConfig({
   base: '/lumin-venturus/',
   plugins: [tailwindcss()],
   root: 'src',
+  appType: 'mpa',
   build: {
     outDir: '../dist',
     rollupOptions: {

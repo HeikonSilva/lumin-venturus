@@ -40,7 +40,9 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: none;
   overflow: hidden;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 /* Light theme */
@@ -197,14 +199,17 @@ html:not(.dark) .section-title {
 
 /* Global background glow */
 body {
-  font-feature-settings: "rlig" 1, "calt" 1;
+  font-feature-settings:
+    "rlig" 1,
+    "calt" 1;
 }
 body:before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       circle at 35% 25%,
       var(--color-lumi-300) 10%,
       transparent 55%
@@ -213,8 +218,7 @@ body:before {
       circle at 75% 70%,
       var(--color-lumi-500) 8%,
       transparent 55%
-    ),
-    linear-gradient(180deg, var(--color-lumi-950), var(--color-lumi-900));
+    ), linear-gradient(180deg, var(--color-lumi-950), var(--color-lumi-900));
   opacity: 0.12;
   pointer-events: none;
 }
@@ -224,7 +228,8 @@ html:not(.dark) body {
 }
 html:not(.dark) body:before {
   opacity: 0.25;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       circle at 30% 25%,
       var(--color-lumi-200) 10%,
       transparent 55%
@@ -233,8 +238,7 @@ html:not(.dark) body:before {
       circle at 80% 65%,
       var(--color-lumi-300) 8%,
       transparent 55%
-    ),
-    linear-gradient(180deg, var(--color-lumi-50), var(--color-lumi-100));
+    ), linear-gradient(180deg, var(--color-lumi-50), var(--color-lumi-100));
 }
 
 /* FullCalendar Theme Customization */
@@ -479,7 +483,9 @@ select {
   background: rgba(255, 255, 255, 0.04);
   color: var(--color-lumi-100);
   outline: none;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
 }
 textarea {
   resize: vertical;
@@ -523,7 +529,9 @@ select:focus {
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.04);
   color: var(--color-lumi-100);
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 .btn-social:hover {
   background: rgba(255, 255, 255, 0.08);

@@ -1,6 +1,6 @@
 import { init, send } from '@emailjs/browser'
 
-init({ publicKey: 'kexJvWlUpu-iTv-6m' })
+init({ publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY })
 
 function sendContactEmail(name, message, email) {
   const templateParams = {
