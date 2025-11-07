@@ -6,9 +6,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "biome lint",
-    "format": "biome format",
-    "tailwind:dev": "tailwindcss -i ./style.css -w",
-    "serve": "browser-sync start --server --port 5500 --files '**/*.html, **/*.css, **/*.js' --no-notify"
+    "format": "biome format"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -23,8 +21,6 @@
     "prettier-plugin-tailwindcss": "^0.7.1",
     "ultracite": "6.1.0",
     "vite": "^7.1.12",
-    "@tailwindcss/cli": "^4.1.16",
-    "browser-sync": "^3.0.3"
-
+    "@tailwindcss/cli": "^4.1.16"
   }
 }
