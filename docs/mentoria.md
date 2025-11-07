@@ -62,9 +62,20 @@
 
 ### Checklist de Ajustes
 
+- [ ] Ajustar estrutura css
+- [ ] Uso do vite rolldown
+  - Correção de erro na etapa de post-install
+- [ ] Remoção do suporte ao TypeScript
+
 ### Evidências e Discussões
 
+- A articuladora Fernanda irá disponibilizar dicas em relação à apresentação.
+- Explicar parte tecnica de maneira leve.
+- Incluir/vender as decisões tecnicas do projeto.
+
 ### Observações Gerais
+
+- Typescript não é permitido.
 
 ---
 
