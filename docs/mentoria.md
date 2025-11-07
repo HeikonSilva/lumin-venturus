@@ -62,20 +62,25 @@
 
 ### Checklist de Ajustes
 
-- [ ] Ajustar estrutura css
-- [ ] Uso do vite rolldown
-  - Correção de erro na etapa de post-install
+- [ ] Ajustar estrutura CSS
+  - Reorganizar arquivos de estilo para melhor manutenibilidade.
+- [ ] Uso do Vite Rolldown
+  - Correção de erro na etapa de post-install.
 - [ ] Remoção do suporte ao TypeScript
+  - TypeScript não é permitido no projeto; migrar código para JavaScript puro.
+- [ ] Migração do Firebase para AI Studio
+  - Transição dos serviços de IA para AI Studio.
 
 ### Evidências e Discussões
 
-- A articuladora Fernanda irá disponibilizar dicas em relação à apresentação.
-- Explicar parte tecnica de maneira leve.
-- Incluir/vender as decisões tecnicas do projeto.
+- A articuladora Fernanda disponibilizará dicas em relação à apresentação final.
+- Orientação para explicar a parte técnica de maneira leve e acessível.
+- Recomendação de destacar e justificar as decisões técnicas do projeto durante a apresentação.
 
 ### Observações Gerais
 
-- Typescript não é permitido.
+- TypeScript não é permitido conforme diretrizes do projeto.
+- Foco na preparação da apresentação final com abordagem técnica didática.
 
 ---
 
