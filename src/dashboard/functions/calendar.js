@@ -97,6 +97,15 @@ export function initCalendar(el) {
 
         eventClassNames(arg) {
           const p = arg.event.extendedProps?.priority
+          const currentDate = new Date()
+          const eDate = arg.event.end
+
+          // console.log(currentDate > eDate)
+          // console.log(eDate)
+
+          if (currentDate > eDate) {
+            return ['!bg-gray-500/10', '!border-gray-500/40', '!text-red-300']
+          }
           if (p === 'Alta') {
             return ['!bg-red-500/10', '!border-red-500/40', '!text-red-300']
           }
