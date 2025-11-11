@@ -1,23 +1,255 @@
-/** biome-ignore-all lint/suspicious/noUnknownAtRules: tailwind */
+/** biome-ignore-all lint/style/noDescendingSpecificity: theme overwrite on calendar */
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
-
-@theme {
-  --color-lumi-50: oklch(95.56% 0.029 224.65);
-  --color-lumi-100: oklch(91.01% 0.061 223);
-  --color-lumi-200: oklch(80.62% 0.145 218.39);
-  --color-lumi-300: oklch(72.23% 0.13 217.94);
-  --color-lumi-400: oklch(63.64% 0.114 218.03);
-  --color-lumi-500: oklch(55.36% 0.099 217.86);
-  --color-lumi-600: oklch(46.76% 0.084 217.61);
-  --color-lumi-700: oklch(39.11% 0.07 217.6);
-  --color-lumi-800: oklch(30.72% 0.055 217.9);
-  --color-lumi-900: oklch(22.09% 0.04 218.05);
-  --color-lumi-950: oklch(17.25% 0.031 218.52);
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
+  --background: var(--color-lumi-50);
+  --foreground: var(--color-lumi-950);
+  --border: rgba(0, 0, 0, 0.1);
+  --border-hover: rgba(0, 0, 0, 0.16);
+  --ring: var(--color-lumi-400);
+  --card: #ffffff;
+  --radius: 0.625rem;
+
+  /* FullCalendar Custom Styles */
+  .fc {
+    --fc-page-bg-color: #ffffff;
+    --fc-neutral-bg-color: rgba(0, 0, 0, 0.02);
+    --fc-neutral-text-color: var(--color-lumi-600);
+    --fc-border-color: rgba(0, 0, 0, 0.1);
+
+    color: var(--color-lumi-800);
+  }
+
+  .fc-theme-standard .fc-scrollgrid {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: var(--fc-page-bg-color);
+  }
+
+  .fc .fc-toolbar,
+  .fc .fc-header-toolbar {
+    background-color: var(--fc-page-bg-color);
+  }
+
+  .fc-theme-standard td,
+  .fc-theme-standard th {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .fc-col-header-cell {
+    background: rgba(0, 0, 0, 0.02);
+    color: var(--color-lumi-600);
+  }
+
+  .fc-daygrid-day:hover {
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  .fc-day-today {
+    background: rgba(147, 184, 204, 0.15) !important;
+  }
+
+  .fc-daygrid-day-number {
+    color: var(--color-lumi-700);
+  }
+
+  .fc-day-other .fc-daygrid-day-number {
+    color: var(--color-lumi-400);
+  }
+
+  .fc-button-primary {
+    background: rgba(147, 184, 204, 0.15);
+    border: 1px solid rgba(147, 184, 204, 0.3);
+    color: var(--color-lumi-700);
+  }
+
+  .fc-button-primary:hover {
+    background: rgba(147, 184, 204, 0.25);
+  }
+
+  .fc-button-primary:disabled {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: var(--color-lumi-400);
+  }
+
+  .fc-toolbar-title {
+    color: var(--color-lumi-800);
+  }
+
+  .fc-more-link {
+    color: var(--color-lumi-600);
+  }
+
+  .fc-more-link:hover {
+    color: var(--color-lumi-700);
+  }
+
+  .fc .fc-event,
+  .fc .fc-event .fc-event-main,
+  .fc .fc-event .fc-event-title,
+  .fc .fc-event .fc-event-time {
+    color: var(--color-lumi-800) !important;
+  }
+}
+
+.dark {
+  --background: var(--color-lumi-950);
+  --foreground: var(--color-lumi-50);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.18);
+  --card: rgba(255, 255, 255, 0.04);
+
+  /* FullCalendar Custom Styles */
+
+  .fc {
+    --fc-page-bg-color: transparent;
+    --fc-neutral-bg-color: rgba(255, 255, 255, 0.05);
+    --fc-neutral-text-color: var(--color-lumi-300);
+    --fc-border-color: rgba(255, 255, 255, 0.1);
+
+    background: transparent;
+    color: var(--color-lumi-100);
+  }
+
+  .fc-theme-standard .fc-scrollgrid {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--fc-page-bg-color);
+  }
+
+  .fc-theme-standard td,
+  .fc-theme-standard th {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: transparent;
+  }
+
+  .fc-col-header-cell {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-lumi-300);
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 1rem 0.5rem;
+  }
+
+  .fc-daygrid-day {
+    background: transparent;
+    min-height: 120px;
+  }
+
+  .fc-daygrid-day:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .fc-day-today {
+    background: rgba(147, 184, 204, 0.1) !important;
+  }
+
+  .fc-daygrid-day-number {
+    color: var(--color-lumi-200);
+    font-weight: 500;
+    padding: 0.5rem;
+  }
+
+  .fc-day-other .fc-daygrid-day-number {
+    color: var(--color-lumi-500);
+  }
+
+  .fc-toolbar {
+    margin-bottom: 1.5rem;
+  }
+
+  .fc-toolbar-chunk {
+    align-items: center;
+  }
+
+  .fc-button-primary {
+    background: rgba(147, 184, 204, 0.2);
+    border: 1px solid rgba(147, 184, 204, 0.3);
+    color: var(--lumi-300);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+  }
+
+  .fc-button-primary:hover {
+    background: rgba(147, 184, 204, 0.3);
+    border-color: rgba(147, 184, 204, 0.5);
+  }
+
+  .fc-button-primary:disabled {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--lumi-500);
+  }
+
+  .fc-toolbar-title {
+    color: var(--color-lumi-200);
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .fc-event {
+    background: var(--color-lumi-400);
+    border: 1px solid var(--color-lumi-500);
+    border-radius: 6px;
+    color: var(--color-lumi-900);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 2px 6px;
+    margin: 1px 0;
+  }
+
+  .fc-event.high-priority {
+    background: #ef4444;
+    border-color: #dc2626;
+    color: white;
+  }
+
+  .fc-event.medium-priority {
+    background: #f59e0b;
+    border-color: #d97706;
+    color: white;
+  }
+
+  .fc-event.completed {
+    background: #10b981;
+    border-color: #059669;
+    color: white;
+    opacity: 0.8;
+  }
+
+  .fc-event:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  .fc-event-title {
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .fc-more-link {
+    color: var(--color-lumi-400);
+    font-size: 0.75rem;
+    text-decoration: none;
+  }
+
+  .fc-more-link:hover {
+    color: var(--lumi-300);
+    text-decoration: underline;
+  }
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
   --color-lumi-50: oklch(95.56% 0.029 224.65);
   --color-lumi-100: oklch(91.01% 0.061 223);
   --color-lumi-200: oklch(80.62% 0.145 218.39);
@@ -29,519 +261,68 @@
   --color-lumi-800: oklch(30.72% 0.055 217.9);
   --color-lumi-900: oklch(22.09% 0.04 218.05);
   --color-lumi-950: oklch(17.25% 0.031 218.52);
-  --radius-base: 18px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
 }
 
-/* Simple neutral bordered container */
-.lumi-border {
-  position: relative;
-  border-radius: var(--radius-base);
-  background-color: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: none;
-  overflow: hidden;
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease;
+@layer base {
+  * {
+    @apply border-border outline-ring/50 selection:bg-lumi-400/30 selection:text-lumi-50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  body:before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.25;
+    background:
+      radial-gradient(
+        circle at 35% 25%,
+        var(--color-lumi-300) 10%,
+        transparent 55%
+      ),
+      radial-gradient(
+        circle at 75% 70%,
+        var(--color-lumi-500) 8%,
+        transparent 55%
+      ), linear-gradient(180deg, var(--color-lumi-950), var(--color-lumi-900));
+  }
 }
 
-/* Light theme */
-html:not(.dark) .lumi-border:not([data-variant="dark"]) {
-  background-color: #ffffff;
-  border-color: rgba(0, 0, 0, 0.1);
-  box-shadow: none;
-}
-
-/* Explicit light variant mirrors light theme */
-.lumi-border[data-variant="light"] {
-  background-color: #ffffff;
-  border-color: rgba(0, 0, 0, 0.1);
-  box-shadow: none;
-}
-
-/* Subtle hover */
-.lumi-border:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-}
-html:not(.dark) .lumi-border:hover {
-  border-color: rgba(0, 0, 0, 0.16);
-}
-
-/* Buttons */
-.btn-primary {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  border-radius: var(--radius-base);
-  overflow: hidden;
-  color: var(--color-lumi-50);
-  font-size: 0.95rem;
-}
-.btn-primary:before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    var(--color-lumi-500),
-    var(--color-lumi-600)
-  );
-  opacity: 0.9;
-}
-.btn-primary:after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at 30% 20%,
-    rgba(255, 255, 255, 0.35),
-    transparent 60%
-  );
-  mix-blend-mode: overlay;
-}
-.btn-primary span {
-  position: relative;
-  z-index: 10;
-}
-.btn-primary:hover:before {
-  filter: brightness(1.05);
-}
-.btn-primary:active:before {
-  filter: brightness(0.9);
-}
-
-.btn-ghost {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.9rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  border-radius: var(--radius-base);
-  color: var(--color-lumi-200);
-  font-size: 0.85rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
-}
-.btn-ghost:hover {
-  border-color: rgba(255, 255, 255, 0.3);
-  color: var(--color-lumi-50);
-}
-html:not(.dark) .btn-ghost {
-  color: var(--color-lumi-700);
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(0, 0, 0, 0.07);
-}
-html:not(.dark) .btn-ghost:hover {
-  background: rgba(255, 255, 255, 0.85);
-}
-
-/* Utilities */
 @layer utilities {
   .glass-nav {
     @apply backdrop-blur-lg backdrop-saturate-160;
   }
+
+  .lumi-border {
+    @apply rounded-2xl border hover:border-border-hover transition-colors bg-card;
+  }
+
   .text-gradient {
-    background: linear-gradient(
-      90deg,
-      var(--color-lumi-400),
-      var(--color-lumi-200),
-      var(--color-lumi-400)
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    @apply bg-linear-to-l dark:from-lumi-400 dark:via-lumi-200 dark:to-lumi-400 from-lumi-300 via-lumi-200 to-lumi-300 text-transparent bg-clip-text;
   }
-}
 
-html:not(.dark) .text-gradient {
-  background: linear-gradient(
-    90deg,
-    var(--color-lumi-300),
-    var(--color-lumi-200),
-    var(--color-lumi-300)
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Ensure the mobile menu button hides on >= md regardless of .btn-ghost display */
-@media (width >= 48rem) {
-  #menuToggle {
-    display: none;
-  }
-}
-
-.section-title {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-  font-weight: 600;
-  color: var(--color-lumi-100);
-}
-@media (min-width: 768px) {
   .section-title {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
+    @apply text-3xl font-semibold;
   }
 }
-html:not(.dark) .section-title {
-  color: var(--color-lumi-600);
-}
 
-/* Global background glow */
-body {
-  font-feature-settings:
-    "rlig" 1,
-    "calt" 1;
-}
-body:before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background:
-    radial-gradient(
-      circle at 35% 25%,
-      var(--color-lumi-300) 10%,
-      transparent 55%
-    ),
-    radial-gradient(
-      circle at 75% 70%,
-      var(--color-lumi-500) 8%,
-      transparent 55%
-    ), linear-gradient(180deg, var(--color-lumi-950), var(--color-lumi-900));
-  opacity: 0.12;
-  pointer-events: none;
-}
-html:not(.dark) body {
-  background: var(--color-lumi-50);
-  color: var(--color-lumi-800);
-}
-html:not(.dark) body:before {
-  opacity: 0.25;
-  background:
-    radial-gradient(
-      circle at 30% 25%,
-      var(--color-lumi-200) 10%,
-      transparent 55%
-    ),
-    radial-gradient(
-      circle at 80% 65%,
-      var(--color-lumi-300) 8%,
-      transparent 55%
-    ), linear-gradient(180deg, var(--color-lumi-50), var(--color-lumi-100));
-}
-
-/* FullCalendar Theme Customization */
-/* Define FC CSS variables so components (incl. header) pick them up */
-.fc {
-  /* base colors (dark) */
-  --fc-page-bg-color: transparent;
-  --fc-neutral-bg-color: rgba(255, 255, 255, 0.05);
-  --fc-neutral-text-color: var(--color-lumi-300);
-  --fc-border-color: rgba(255, 255, 255, 0.1);
-
-  background: transparent;
-  color: var(--color-lumi-100);
-}
-
-.fc-theme-standard .fc-scrollgrid {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  overflow: hidden;
-  background-color: var(--fc-page-bg-color);
-}
-
-.fc-theme-standard td,
-.fc-theme-standard th {
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  background: transparent;
-}
-
-.fc-col-header-cell {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--color-lumi-300);
-  font-weight: 600;
-  font-size: 0.875rem;
-  padding: 1rem 0.5rem;
-}
-
-.fc-daygrid-day {
-  background: transparent;
-  min-height: 120px;
-}
-
-.fc-daygrid-day:hover {
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.fc-day-today {
-  background: rgba(147, 184, 204, 0.1) !important;
-}
-
-.fc-daygrid-day-number {
-  color: var(--color-lumi-200);
-  font-weight: 500;
-  padding: 0.5rem;
-}
-
-.fc-day-other .fc-daygrid-day-number {
-  color: var(--color-lumi-500);
-}
-
-.fc-toolbar {
-  margin-bottom: 1.5rem;
-}
-
-.fc-toolbar-chunk {
-  align-items: center;
-}
-
-/* .fc-button-primary {
-  background: rgba(147, 184, 204, 0.2);
-  border: 1px solid rgba(147, 184, 204, 0.3);
-  color: var(--lumi-300);
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  transition: all 0.2s ease;
-}
-
-.fc-button-primary:hover {
-  background: rgba(147, 184, 204, 0.3);
-  border-color: rgba(147, 184, 204, 0.5);
-}
-
-.fc-button-primary:disabled {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.1);
-  color: var(--lumi-500);
-} */
-
-.fc-toolbar-title {
-  color: var(--color-lumi-200);
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-.fc-event {
-  background: var(--color-lumi-400);
-  border: 1px solid var(--color-lumi-500);
-  border-radius: 6px;
-  color: var(--color-lumi-900);
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 2px 6px;
-  margin: 1px 0;
-}
-
-.fc-event.high-priority {
-  background: #ef4444;
-  border-color: #dc2626;
-  color: white;
-}
-
-.fc-event.medium-priority {
-  background: #f59e0b;
-  border-color: #d97706;
-  color: white;
-}
-
-.fc-event.completed {
-  background: #10b981;
-  border-color: #059669;
-  color: white;
-  opacity: 0.8;
-}
-
-.fc-event:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-.fc-event-title {
-  font-size: 0.75rem;
-  line-height: 1.2;
-}
-
-.fc-more-link {
-  color: var(--color-lumi-400);
-  font-size: 0.75rem;
-  text-decoration: none;
-}
-
-.fc-more-link:hover {
-  color: var(--lumi-300);
-  text-decoration: underline;
-}
-
-/* Light theme overrides */
-html:not(.dark) .fc {
-  /* base colors (light) */
-  --fc-page-bg-color: #ffffff;
-  --fc-neutral-bg-color: rgba(0, 0, 0, 0.02);
-  --fc-neutral-text-color: var(--color-lumi-600);
-  --fc-border-color: rgba(0, 0, 0, 0.1);
-
-  color: var(--color-lumi-800);
-}
-
-html:not(.dark) .fc-theme-standard .fc-scrollgrid {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: var(--fc-page-bg-color);
-}
-
-/* Apply page bg color also to the toolbar area so it matches */
-.fc .fc-toolbar,
-.fc .fc-header-toolbar {
-  background-color: var(--fc-page-bg-color);
-}
-
-html:not(.dark) .fc-theme-standard td,
-html:not(.dark) .fc-theme-standard th {
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-html:not(.dark) .fc-col-header-cell {
-  background: rgba(0, 0, 0, 0.02);
-  color: var(--color-lumi-600);
-}
-
-html:not(.dark) .fc-daygrid-day:hover {
-  background: rgba(0, 0, 0, 0.02);
-}
-
-html:not(.dark) .fc-day-today {
-  background: rgba(147, 184, 204, 0.15) !important;
-}
-
-html:not(.dark) .fc-daygrid-day-number {
-  color: var(--color-lumi-700);
-}
-
-html:not(.dark) .fc-day-other .fc-daygrid-day-number {
-  color: var(--color-lumi-400);
-}
-
-/* html:not(.dark) .fc-button-primary {
-  background: rgba(147, 184, 204, 0.15);
-  border: 1px solid rgba(147, 184, 204, 0.3);
-  color: var(--color-lumi-700);
-}
-
-html:not(.dark) .fc-button-primary:hover {
-  background: rgba(147, 184, 204, 0.25);
-}
-
-html:not(.dark) .fc-button-primary:disabled {
-  background: rgba(0, 0, 0, 0.05);
-  border-color: rgba(0, 0, 0, 0.1);
-  color: var(--color-lumi-400);
-} */
-
-html:not(.dark) .fc-toolbar-title {
-  color: var(--color-lumi-800);
-}
-
-html:not(.dark) .fc-more-link {
-  color: var(--color-lumi-600);
-}
-
-html:not(.dark) .fc-more-link:hover {
-  color: var(--color-lumi-700);
-}
-
-/* Ensure event text is readable in light theme */
-html:not(.dark) .fc .fc-event,
-html:not(.dark) .fc .fc-event .fc-event-main,
-html:not(.dark) .fc .fc-event .fc-event-title,
-html:not(.dark) .fc .fc-event .fc-event-time {
-  color: var(--color-lumi-800) !important;
-}
-
-/* ---------- Forms: unified inputs/buttons across themes ---------- */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="date"],
-input[type="number"],
-textarea,
-select {
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--color-lumi-100);
-  outline: none;
-  transition:
-    border-color 0.2s ease,
-    background-color 0.2s ease;
-}
-textarea {
-  resize: vertical;
-}
-input::placeholder,
-textarea::placeholder {
-  color: var(--color-lumi-600);
-}
-/* Light theme variants */
-html:not(.dark) input[type="text"],
-html:not(.dark) input[type="email"],
-html:not(.dark) input[type="password"],
-html:not(.dark) input[type="date"],
-html:not(.dark) input[type="number"],
-html:not(.dark) textarea,
-html:not(.dark) select {
-  border-color: rgba(0, 0, 0, 0.1);
-  background: #ffffff;
-  color: var(--color-lumi-800);
-}
-html:not(.dark) input::placeholder,
-html:not(.dark) textarea::placeholder {
-  color: var(--color-lumi-500);
-}
-/* Focus ring */
-input:focus,
-textarea:focus,
-select:focus {
-  border-color: rgba(147, 184, 204, 0.6);
-}
-
-/* Social/secondary auth button */
-.btn-social {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  height: 2.75rem;
-  padding: 0 0.9rem;
-  border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--color-lumi-100);
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease;
-}
-.btn-social:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-html:not(.dark) .btn-social {
-  border-color: rgba(0, 0, 0, 0.1);
-  background: #ffffff;
-  color: var(--color-lumi-800);
-}
-html:not(.dark) .btn-social:hover {
-  background: #f8fafc;
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center py-3 px-6 gap-2 font-semibold rounded-lg bg-linear-to-l from-lumi-500 to-lumi-600;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center py-3 px-6 gap-2 font-semibold rounded-lg bg-border backdrop-blur-md backdrop-saturate-150 border hover:border-border-hover transition-colors;
+  }
+  .btn-social {
+    @apply inline-flex items-center justify-center rounded-full gap-2 px-3.5 border hover:border-border-hover transition-colors bg-card;
+  }
 }

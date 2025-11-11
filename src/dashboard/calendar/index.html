@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,9 +33,7 @@
     <script type="module" src="../../services/supabase.js"></script>
     <script type="module" src="../../js/auth-handler.js"></script>
   </head>
-  <body
-    class="bg-lumi-100 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 selection:bg-lumi-400/30 selection:text-lumi-50 min-h-screen antialiased"
-  >
+  <body>
     <!-- Left Sidebar -->
     <aside
       class="fixed top-4 bottom-4 left-4 z-40 hidden w-60 flex-col gap-3 md:flex"
@@ -112,14 +110,6 @@
         </ul>
       </nav>
       <div id="userInfo" class="mb-3"></div>
-      <div class="grid gap-2">
-        <button id="logoutBtn" class="btn-ghost flex w-full justify-center">
-          Sair
-        </button>
-        <button id="modeToggle" class="btn-ghost flex w-full justify-center">
-          <span id="modeLabel">Dark</span>
-        </button>
-      </div>
     </aside>
 
     <!-- Right Panel -->
@@ -191,9 +181,7 @@
     </aside> -->
 
     <!-- Main Calendar -->
-    <main
-      class="px-4 pt-8 pb-28 md:pr-72 md:pb-8 md:pl-72 xl:pr-[22rem] xl:pl-72"
-    >
+    <main class="px-4 pt-8 pb-28 md:pr-72 md:pb-8 md:pl-72 xl:pr-88 xl:pl-72">
       <header class="mb-6 flex items-center gap-3">
         <svg
           width="18"
@@ -226,7 +214,7 @@
         class="lumi-border glass-nav flex h-14 items-center justify-between gap-1 rounded-xl bg-white/5 px-2 dark:bg-white/5"
       >
         <a
-          data-route="/dashboard/"
+          href="../"
           class="text-lumi-300 flex h-12 flex-1 flex-col items-center justify-center gap-0.5 rounded-lg text-xs font-medium hover:bg-white/10"
         >
           <svg
@@ -245,7 +233,7 @@
           <span>Kanban</span>
         </a>
         <a
-          data-route="/dashboard/calendar/"
+          href="#"
           aria-current="page"
           class="text-lumi-200 flex h-12 flex-1 flex-col items-center justify-center gap-0.5 rounded-lg bg-white/5 text-xs font-medium"
         >
@@ -265,7 +253,7 @@
           <span>Calendário</span>
         </a>
         <a
-          data-route="/dashboard/ai/"
+          href="../ai/"
           class="text-lumi-300 flex h-12 flex-1 flex-col items-center justify-center gap-0.5 rounded-lg text-xs font-medium hover:bg-white/10"
         >
           <svg
@@ -305,10 +293,6 @@
         </button>
       </div>
     </nav>
-
-    <!-- FullCalendar JS -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js"></script>
-
     <script type="module" src="../../js/theme-provider.js"></script>
     <script type="module" src="../../js/nav.js"></script>
     <script type="module">
@@ -324,7 +308,9 @@
 
       document.addEventListener('DOMContentLoaded', () => {
         const el = document.getElementById('calendar')
-        if (el) initCalendar(el)
+        if (el) {
+          initCalendar(el)
+        }
       })
     </script>
   </body>

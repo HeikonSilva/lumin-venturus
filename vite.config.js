@@ -9,10 +9,10 @@ const __dirname = path.dirname(__filename)
 export default defineConfig({
   base: '/lumin-venturus/',
   plugins: [tailwindcss()],
-  root: 'src',
-  appType: 'mpa',
+  root: './src',
   build: {
     outDir: '../dist',
+    emptyOutDir: true,
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'src/index.html'),
@@ -27,4 +27,6 @@ export default defineConfig({
       },
     },
   },
+  publicDir: '../public',
+  envDir: '../',
 })

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,39 +43,21 @@
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="../style.css" />
   </head>
-  <body
-    class="bg-lumi-100 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 selection:bg-lumi-400/30 selection:text-lumi-50 min-h-screen antialiased"
-  >
+  <body>
     <nav class="fixed top-4 right-4 left-4 z-50 xl:right-16 xl:left-16">
       <div
         class="lumi-border glass-nav flex h-14 items-center justify-between px-4 md:px-6"
       >
         <a href="../" class="flex items-center gap-3">
           <img src="../assets/lumi.svg" alt="Lumin" class="h-9 w-9" />
-          <span
-            class="text-lumi-400 dark:text-lumi-400 text-lg font-semibold tracking-wide"
-            >Lumin</span
-          >
+          <span class="text-lg font-semibold tracking-wide">Lumin</span>
         </a>
         <div class="hidden items-center gap-6 text-sm md:flex" id="desktopMenu">
-          <a href="../features/" class="hover:text-lumi-300 transition-colors"
-            >Produtos</a
-          >
-          <a href="../about-us/" class="hover:text-lumi-300 transition-colors"
-            >Sobre</a
-          >
-          <a href="../contact-us/" class="hover:text-lumi-300 transition-colors"
-            >Contato</a
-          >
+          <a href="../features/" class="transition-colors">Produtos</a>
+          <a href="../about-us/" class="transition-colors">Sobre</a>
+          <a href="../contact-us/" class="transition-colors">Contato</a>
           <a href="../login/" class="btn-ghost">Entrar</a>
           <a href="../register/" class="btn-ghost">Cadastrar</a>
-          <button
-            id="modeToggle"
-            aria-label="Alternar tema"
-            class="btn-ghost text-xs"
-          >
-            <span id="modeLabel">Dark</span>
-          </button>
         </div>
         <button id="menuToggle" class="btn-ghost md:hidden">Menu</button>
       </div>
@@ -84,9 +66,9 @@
         class="lumi-border mt-2 hidden p-3 backdrop-blur-3xl md:hidden"
       >
         <div class="grid gap-2 text-sm">
-          <a href="../features/" class="hover:text-lumi-300">Produtos</a>
-          <a href="../about-us/" class="hover:text-lumi-300">Sobre</a>
-          <a href="../contact-us/" class="hover:text-lumi-300">Contato</a>
+          <a href="../features/" class="">Produtos</a>
+          <a href="../about-us/" class="">Sobre</a>
+          <a href="../contact-us/" class="">Contato</a>
           <a href="../login/" class="btn-ghost">Entrar</a>
           <a href="../register/" class="btn-ghost">Cadastrar</a>
         </div>
@@ -100,9 +82,7 @@
         >
           <span class="text-gradient">Produtos e serviços</span>
         </h1>
-        <p
-          class="text-lumi-400 dark:text-lumi-400 mt-5 text-justify text-base leading-relaxed md:text-lg"
-        >
+        <p class="mt-5 text-justify text-base leading-relaxed md:text-lg">
           Oferecemos uma plataforma abrangente que integra diversas
           funcionalidades para otimizar a gestão acadêmica e o aprendizado. Tais
           quais são:
@@ -114,11 +94,11 @@
       <div class="grid gap-6 sm:grid-cols-1 lg:grid-cols-2">
         <div class="lumi-border flex flex-col gap-3 p-6">
           <h3
-            class="text-lumi-600 dark:text-lumi-300 text-start text-lg font-semibold"
+            class="dark:text-lumi-200 text-lumi-400 text-start text-lg font-semibold"
           >
             Planejamento Inteligente
           </h3>
-          <p class="text-lumi-400 dark:text-lumi-400 text-justify text-lg">
+          <p class="text-justify text-lg">
             Receba sugestões automáticas de organização baseadas na sua carga de
             estudos, prazos e prioridades. O sistema analisa seus compromissos e
             propõe cronogramas personalizados, ajudando a distribuir tarefas de
@@ -126,10 +106,10 @@
           </p>
         </div>
         <div class="lumi-border flex flex-col gap-3 p-6">
-          <h3 class="text-lumi-600 dark:text-lumi-300 text-lg font-semibold">
+          <h3 class="dark:text-lumi-200 text-lumi-400 text-lg font-semibold">
             Prioridades Dinâmicas
           </h3>
-          <p class="text-lumi-400 dark:text-lumi-400 text-justify text-lg">
+          <p class="text-justify text-lg">
             As tarefas são automaticamente reordenadas conforme prazos e níveis
             de importância mudam ao longo do tempo. O sistema avalia
             constantemente suas atividades e ajusta a ordem de execução,
@@ -138,10 +118,10 @@
           </p>
         </div>
         <div class="lumi-border flex flex-col gap-3 p-6">
-          <h3 class="text-lumi-600 dark:text-lumi-400 text-lg font-semibold">
+          <h3 class="dark:text-lumi-200 text-lumi-400 text-lg font-semibold">
             Assistente com IA
           </h3>
-          <p class="text-lumi-400 dark:text-lumi-400 text-justify text-lg">
+          <p class="text-justify text-lg">
             Conte com um assistente inteligente para criar planos de estudo
             personalizados, gerar resumos automáticos dos conteúdos e enviar
             lembretes adaptados à sua rotina. A IA aprende com seus hábitos e
@@ -150,10 +130,10 @@
           </p>
         </div>
         <div class="lumi-border flex flex-col gap-3 p-6">
-          <h3 class="text-lumi-600 dark:text-lumi-300 text-lg font-semibold">
+          <h3 class="dark:text-lumi-200 text-lumi-400 text-lg font-semibold">
             Sincronização Multi‑Dispositivo
           </h3>
-          <p class="text-lumi-400 dark:text-lumi-400 text-justify text-lg">
+          <p class="text-justify text-lg">
             Acesse sua conta e informações de qualquer lugar, seja no
             computador, tablet ou smartphone. Todas as alterações são
             sincronizadas em tempo real, garantindo consistência, praticidade e

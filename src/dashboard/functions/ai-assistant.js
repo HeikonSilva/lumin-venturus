@@ -1,4 +1,4 @@
-import { model } from '../../services/google-ai-studio.js'
+import { ai } from '../../services/google-ai-studio.js'
 import { supabase } from '../../services/supabase.js'
 import { createEvent, deleteEvent, updateEvent } from './calendar-events.js'
 import { createTask, moveTask } from './kanban-tasks.js'
@@ -191,8 +191,25 @@ export async function askAssistant({ userId, query, chatId }) {
   })
 
   // Send prompt to Gemini and stream or single-shot
-  const { response } = await model.generateContent(prompt)
-  const fullText = response.text()
+  const response = await ai.models.generateContent({
+    model: 'gemini-2.5-flash',
+    contents: prompt,
+  })
+
+  // Extract text from response structure
+  let fullText = ''
+  try {
+    // Try the .text() method first
+    if (typeof response.text === 'function') {
+      fullText = response.text()
+    } else {
+      // Fallback: extract from response structure
+      fullText = response?.candidates?.[0]?.content?.parts?.[0]?.text || ''
+    }
+  } catch {
+    // If all else fails, try direct access
+    fullText = response?.candidates?.[0]?.content?.parts?.[0]?.text || ''
+  }
 
   const parsed = parseFencedJSON(fullText)
   return { ctx, fullText, parsed }

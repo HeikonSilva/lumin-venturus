@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,39 +43,21 @@
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="../style.css" />
   </head>
-  <body
-    class="bg-lumi-100 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 selection:bg-lumi-400/30 selection:text-lumi-50 min-h-screen antialiased"
-  >
+  <body>
     <nav class="fixed top-4 right-4 left-4 z-50 xl:right-16 xl:left-16">
       <div
         class="lumi-border glass-nav flex h-14 items-center justify-between px-4 md:px-6"
       >
         <a href="../" class="flex items-center gap-3">
           <img src="../assets/lumi.svg" alt="Lumin" class="h-9 w-9" />
-          <span
-            class="text-lumi-400 dark:text-lumi-400 text-lg font-semibold tracking-wide"
-            >Lumin</span
-          >
+          <span class="text-lg font-semibold tracking-wide">Lumin</span>
         </a>
         <div class="hidden items-center gap-6 text-sm md:flex" id="desktopMenu">
-          <a href="../features/" class="hover:text-lumi-300 transition-colors"
-            >Produtos</a
-          >
-          <a href="../about-us/" class="hover:text-lumi-300 transition-colors"
-            >Sobre</a
-          >
-          <a href="../contact-us/" class="hover:text-lumi-300 transition-colors"
-            >Contato</a
-          >
+          <a href="../features/" class="transition-colors">Produtos</a>
+          <a href="../about-us/" class="transition-colors">Sobre</a>
+          <a href="../contact-us/" class="transition-colors">Contato</a>
           <a href="../login/" class="btn-ghost">Entrar</a>
           <a href="../register/" class="btn-ghost">Cadastrar</a>
-          <button
-            id="modeToggle"
-            aria-label="Alternar tema"
-            class="btn-ghost text-xs"
-          >
-            <span id="modeLabel">Dark</span>
-          </button>
         </div>
         <button id="menuToggle" class="btn-ghost md:hidden">Menu</button>
       </div>
@@ -84,9 +66,9 @@
         class="lumi-border mt-2 hidden p-3 backdrop-blur-3xl md:hidden"
       >
         <div class="grid gap-2 text-sm">
-          <a href="../features/" class="hover:text-lumi-300">Produtos</a>
-          <a href="../about-us/" class="hover:text-lumi-300">Sobre</a>
-          <a href="../contact-us/" class="hover:text-lumi-300">Contato</a>
+          <a href="../features/" class="">Produtos</a>
+          <a href="../about-us/" class="">Sobre</a>
+          <a href="../contact-us/" class="">Contato</a>
           <a href="../login/" class="btn-ghost">Entrar</a>
           <a href="../register/" class="btn-ghost">Cadastrar</a>
         </div>
@@ -101,9 +83,7 @@
           >
             <span class="text-gradient">Quem somos?</span>
           </h1>
-          <p
-            class="text-lumi-600 dark:text-lumi-100 mt-5 text-justify text-base leading-relaxed md:text-lg"
-          >
+          <p class="mt-5 text-justify text-base leading-relaxed md:text-lg">
             Somos uma startup jovem e inovadora, formada por estudantes
             dedicados a transformar a maneira como você organiza seus estudos.
             Sabemos como é difícil manter o foco e a motivação, por isso criamos
@@ -128,13 +108,9 @@
           >
             <span class="text-gradient">Nossa história</span>
           </h2>
-          <p
-            class="text-lumi-600 dark:text-lumi-100 mt-5 text-justify text-base leading-relaxed md:text-lg"
-          >
+          <p class="mt-5 text-justify text-base leading-relaxed md:text-lg">
             A ideia da startup
-            <strong class="not:dark:text-lumi-500 dark:text-lumi-200"
-              >Lumin</strong
-            >
+            <strong class="text-lumi-700 dark:text-lumi-200">Lumin</strong>
             surgiu por volta do início desse ano (2025), onde Heikon pensou em
             fazer algo para uma atividade escolar, onde o objetivo era criar
             apenas a ideia e o conceito de um produto para o mercado, o nome
@@ -145,9 +121,7 @@
             ideia em prática, tendo o desafio de desenvolve-lá para a
             competição, assim fomos lapidando a ideia e ajustando o conceito,
             até chegar no que é hoje a
-            <strong class="not:dark:text-lumi-900 dark:text-lumi-200"
-              >Lumin</strong
-            >.
+            <strong class="text-lumi-700 dark:text-lumi-200">Lumin</strong>.
           </p>
         </div>
       </div>
@@ -156,10 +130,8 @@
 
       <section id="equipe" class="mx-auto mt-10 max-w-7xl px-6 pb-12 md:px-0">
         <div class="lumi-border p-10 md:p-14">
-          <h2 class="section-title mb-8">Nossa Equipe</h2>
-          <p
-            class="text-lumi-400 dark:text-lumi-100 mb-10 max-w-3xl leading-relaxed"
-          >
+          <h2 class="section-title dark: text-lumi-200 mb-8">Nossa Equipe</h2>
+          <p class="mb-10 max-w-3xl leading-relaxed">
             Somos estudantes da ETEC Lauro Gomes (1º ano de EDS) motivados por
             construir soluções úteis enquanto aprendemos tecnologias modernas.
             Este projeto é laboratório, vitrine e motivação para irmos além.
@@ -167,33 +139,54 @@
           <ul class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <li class="group">
               <div
-                class="lumi-border bg-lumi-200/5 mb-3 flex aspect-square items-center justify-center"
+                class="lumi-border bg-lumi-200/5 mb-3 aspect-square w-full overflow-hidden"
               >
-                <img src="../assets/heikon.jpg" alt="Heikon Silva Costa" />
+                <img
+                  src="../assets/heikon.jpg"
+                  alt="Heikon Silva Costa"
+                  class="block h-full w-full object-cover"
+                  width="176"
+                  height="176"
+                />
               </div>
               <p class="font-medium">Heikon Silva Costa</p>
-              <p class="text-lumi-400 text-xs">Backend & Infra</p>
+              <p class="text-lumi-700 dark:text-lumi-100 text-xs">
+                Serviço & Infraestrutura
+              </p>
             </li>
             <li class="group">
               <div
-                class="lumi-border bg-lumi-200/5 mb-3 flex aspect-square items-center justify-center"
+                class="lumi-border bg-lumi-200/5 mb-3 aspect-square w-full overflow-hidden"
               >
                 <img
                   src="../assets/jhonatan.jpg"
                   alt="Jhonatan Oliveira Aranha"
+                  class="block h-full w-full object-cover"
+                  width="176"
+                  height="176"
                 />
               </div>
               <p class="font-medium">Jhonatan Oliveira Aranha</p>
-              <p class="text-lumi-400 text-xs">Frontend & UX</p>
+              <p class="text-lumi-700 dark:text-lumi-100 text-xs">
+                Frontend & UX
+              </p>
             </li>
             <li class="group">
               <div
-                class="lumi-border bg-lumi-200/5 mb-3 flex aspect-square items-center justify-center"
+                class="lumi-border bg-lumi-200/5 mb-3 aspect-square w-full overflow-hidden"
               >
-                <img src="../assets/arthur.jpg" alt="Arthur Pereira Faria" />
+                <img
+                  src="../assets/arthur.jpg"
+                  alt="Arthur Pereira Faria"
+                  class="block h-full w-full object-cover"
+                  width="176"
+                  height="176"
+                />
               </div>
               <p class="font-medium">Arthur Pereira Faria</p>
-              <p class="text-lumi-400 text-xs">Apresentação & Design UI</p>
+              <p class="text-lumi-700 dark:text-lumi-100 text-xs">
+                Apresentação & Design UI
+              </p>
             </li>
             <!-- <li class="group">
               <div

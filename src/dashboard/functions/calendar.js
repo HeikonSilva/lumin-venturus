@@ -8,6 +8,8 @@
  * - Enables selection and editing
  * @param {HTMLElement} el
  */
+import { Calendar } from '@fullcalendar/core'
+import dayGridPlugin from '@fullcalendar/daygrid'
 import { supabase } from '../../services/supabase.js'
 import {
   createEvent,
@@ -18,7 +20,7 @@ import {
 } from './calendar-events.js'
 
 export function initCalendar(el) {
-  if (!(window.FullCalendar && el)) {
+  if (!el) {
     return
   }
   let calendar = null
@@ -75,7 +77,8 @@ export function initCalendar(el) {
     // Because we’re inside a non-async callback, use a helper
     fetchInitial().then((initialItems) => {
       // 2) Create calendar with initial events
-      calendar = new FullCalendar.Calendar(el, {
+      calendar = new Calendar(el, {
+        plugins: [dayGridPlugin],
         initialView: 'dayGridMonth',
         locale: 'pt-br',
         headerToolbar: { left: 'prev', center: 'title', right: 'next' },
