@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lumin | Produtos e Serviços</title>
+    <meta name="description" content="Organize, Aprenda & Evolua" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://heikonsilva.github.io/lumin-venturus/"
+    />
+    <meta property="og:title" content="Lumin" />
+    <meta property="og:description" content="Organize, Aprenda & Evolua" />
+    <meta property="og:image" content="./assets/meta.png" />
+    <!-- X (Twitter) -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://heikonsilva.github.io/lumin-venturus/"
+    />
+    <meta property="twitter:title" content="Lumin" />
+    <meta property="twitter:description" content="Organize, Aprenda & Evolua" />
+    <meta property="twitter:image" content="./assets/meta.png" />
+    <!-- Favicons -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="./assets/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="Lumin" />
+    <link rel="manifest" href="./assets/favicon/site.webmanifest" />
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <nav class="fixed top-4 right-4 left-4 z-50 xl:right-16 xl:left-16">
+      <div
+        class="lumi-border glass-nav flex h-14 items-center justify-between px-4 md:px-6"
+      >
+        <a href="../" class="flex items-center gap-3">
+          <img src="../assets/lumi.svg" alt="Lumin" class="h-9 w-9" />
+          <span class="text-lg font-semibold tracking-wide">Lumin</span>
+        </a>
+        <div class="hidden items-center gap-6 text-sm md:flex" id="desktopMenu">
+          <a href="../features/" class="hover:text-lumi-300 transition-colors"
+            >Produtos</a
+          >
+          <a href="../about-us/" class="hover:text-lumi-300 transition-colors"
+            >Sobre</a
+          >
+          <a href="../contact-us/" class="hover:text-lumi-300 transition-colors"
+            >Contato</a
+          >
+          <a href="../login/" class="btn-ghost">Entrar</a>
+          <a href="../register/" class="btn-ghost">Cadastrar</a>
+        </div>
+        <button id="menuToggle" class="btn-ghost md:hidden">Menu</button>
+      </div>
+      <div
+        id="mobileMenu"
+        class="lumi-border mt-2 hidden p-3 backdrop-blur-3xl md:hidden"
+      >
+        <div class="grid gap-2 text-sm">
+          <a href="../features/" class="hover:text-lumi-300">Produtos</a>
+          <a href="../about-us/" class="hover:text-lumi-300">Sobre</a>
+          <a href="../contact-us/" class="hover:text-lumi-300">Contato</a>
+          <a href="../login/" class="btn-ghost">Entrar</a>
+          <a href="../register/" class="btn-ghost">Cadastrar</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="relative mx-auto max-w-7xl px-6 pt-28 pb-12 md:px-10">
+      <div class="max-w-3xl">
+        <h1
+          class="text-5xl leading-tight font-extrabold tracking-tight md:text-7xl"
+        >
+          <span class="text-gradient">Produtos e serviços</span>
+        </h1>
+        <p class="mt-5 text-justify text-base leading-relaxed md:text-lg">
+          Oferecemos uma plataforma abrangente que integra diversas
+          funcionalidades para otimizar a gestão acadêmica e o aprendizado. Tais
+          quais são:
+        </p>
+      </div>
+    </header>
+
+    <section id="features" class="mx-auto max-w-7xl px-6 pb-28 md:px-10">
+      <div class="grid gap-6 sm:grid-cols-1 lg:grid-cols-2">
+        <div class="lumi-border flex flex-col gap-3 p-6">
+          <h3
+            class="dark:text-lumi-200 text-lumi-400 text-start text-lg font-semibold"
+          >
+            Planejamento Inteligente
+          </h3>
+          <p class="text-justify text-lg">
+            Receba sugestões automáticas de organização baseadas na sua carga de
+            estudos, prazos e prioridades. O sistema analisa seus compromissos e
+            propõe cronogramas personalizados, ajudando a distribuir tarefas de
+            forma equilibrada e eficiente ao longo da semana.
+          </p>
+        </div>
+        <div class="lumi-border flex flex-col gap-3 p-6">
+          <h3 class="dark:text-lumi-200 text-lumi-400 text-lg font-semibold">
+            Prioridades Dinâmicas
+          </h3>
+          <p class="text-justify text-lg">
+            As tarefas são automaticamente reordenadas conforme prazos e níveis
+            de importância mudam ao longo do tempo. O sistema avalia
+            constantemente suas atividades e ajusta a ordem de execução,
+            garantindo que você sempre foque no que é mais urgente e relevante,
+            evitando esquecimentos e atrasos.
+          </p>
+        </div>
+        <div class="lumi-border flex flex-col gap-3 p-6">
+          <h3 class="dark:text-lumi-200 text-lumi-400 text-lg font-semibold">
+            Assistente com IA
+          </h3>
+          <p class="text-justify text-lg">
+            Conte com um assistente inteligente para criar planos de estudo
+            personalizados, gerar resumos automáticos dos conteúdos e enviar
+            lembretes adaptados à sua rotina. A IA aprende com seus hábitos e
+            preferências, oferecendo sugestões que facilitam a organização e
+            potencializam seus resultados.
+          </p>
+        </div>
+        <div class="lumi-border flex flex-col gap-3 p-6">
+          <h3 class="dark:text-lumi-200 text-lumi-400 text-lg font-semibold">
+            Sincronização Multi‑Dispositivo
+          </h3>
+          <p class="text-justify text-lg">
+            Acesse sua conta e informações de qualquer lugar, seja no
+            computador, tablet ou smartphone. Todas as alterações são
+            sincronizadas em tempo real, garantindo consistência, praticidade e
+            segurança dos seus dados em todos os dispositivos conectados.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- <footer
+      class="px-6 md:px-10 max-w-7xl mx-auto pb-4 text-xs text-lumi-400 flex flex-col md:flex-row justify-between gap-4"
+    >
+      <p>&copy; <span id="year"></span> Lumin. Todos os direitos reservados.</p>
+      <p>Feito com foco em aprendizado e impacto real.</p>
+    </footer> -->
+
+    <!-- <script>
+      const y = document.getElementById("year");
+      if (y) y.textContent = new Date().getFullYear();
+    </script> -->
+    <script type="module" src="../js/theme-provider.js"></script>
+    <script type="module" src="../js/nav.js"></script>
+  </body>
+</html>

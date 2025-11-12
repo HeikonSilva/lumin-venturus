@@ -1,1 +1,7 @@
-tailwindcli.exe
+node_modules
+dist
+pnpm-lock.yaml
+resumo*
+
+.env.local
+.env.*.local

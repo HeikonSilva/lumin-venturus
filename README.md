@@ -1,4 +1,4 @@
-![Lumin Logo](./assets/meta.png)
+![Lumin Logo](./src/assets/meta.png)
 
 ## 📚 Informações do Projeto
 
@@ -7,6 +7,10 @@
 **ETEC:** ETEC Lauro Gomes
 
 **Turma:** 1ª Série | Turma E | Desenvolvimento de sistemas
+
+**Monitor:** Elmo Ficagna
+
+**Articuladore Iochpe**: Fernanda Santos
 
 **Integrantes da Equipe:**
 
@@ -18,7 +22,7 @@
 
 ### Problema Identificado
 
-Estudantes enfrentam dificuldades para organizar suas atividades acadêmicas, gerenciar prazos e manter um cronograma de estudos eficiente. A falta de uma ferramenta centralizada que combine organização de tarefas, calendário e recursos de IA resulta em baixa produtividade e estresse acadêmico.
+As pessoas enfrentam dificuldades para organizar suas atividades acadêmicas, gerenciar prazos e manter um cronograma de estudos eficiente. A falta de uma ferramenta centralizada que combine organização de tarefas, calendário e recursos de IA resulta em baixa produtividade e estresse.
 
 ### Solução Proposta
 
@@ -29,8 +33,6 @@ Lumin é uma plataforma web moderna que oferece:
 - **🤖 Assistente IA**: Sugestões inteligentes para otimização dos estudos
 - **👤 Sistema de Autenticação**: Dados seguros e personalizados por usuário
 - **📊 Acompanhamento de Progresso**: Métricas de evolução nos estudos
-
-## 🚀 Funcionalidades
 
 <!-- ### ✅ Implementadas
 
@@ -50,10 +52,14 @@ Lumin é uma plataforma web moderna que oferece:
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Frontend**: HTML5, CSS3 (Tailwind CSS), JavaScript (ES6+)
-- **Backend**: Supabase (Auth, Postgres, Realtime), Firebase (IA)
-- **Bibliotecas**: FullCalendar.js, Email.js
-- **Ferramentas**: Git, VS Code, Five Server (desenvolvimento), SVG Artist (Animações SVG)
+O projeto foi desenvolvido com base em tecnologias modernas e amplamente utilizadas no mercado, garantindo eficiência, escalabilidade e manutenibilidade.
+
+- **Frontend**: [HTML](developer.mozilla.org/pt-BR/docs/Web/HTML), [CSS (Tailwind CSS)](https://tailwindcss.com/), [JavaScript (ES6+)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+- **Serviços**: [Supabase (Auth, Postgres, Realtime)](https://supabase.com/), [Google AI Studio](https://aistudio.google.com/)
+- **Bibliotecas**: [FullCalendar.js](https://fullcalendar.io/), [Email.js](https://www.emailjs.com/)
+- **Ferramentas**: [Git](https://git-scm.com/), [VS Code (desenvolvimento)](https://code.visualstudio.com/), [SVG Artista (Animações SVG)](https://svgartista.net/), [Vite](https://vite.dev/)
+
+> O uso de ferramentas amplamente adotadas por empresas como Netflix, Reddit, GoDaddy e Google reforça a robustez técnica da solução.
 
 ## 🎥 Vídeo de Apresentação
 
@@ -61,11 +67,11 @@ Assista ao vídeo de apresentação do projeto no YouTube:
 
 https://youtu.be/P1Pe2AT4d30?si=3fG_6lku2y6h-07i
 
-## 📋 Pré-requisitos
+## 📋 Pré-requisitos para setup local
 
 - Navegador web moderno (Chrome, Firefox, Safari, Edge)
-- Conexão com internet (para bibliotecas CDN)
-- Editor de código (recomendado: VS Code)
+- Rapida conexão com internet
+- Editor de código
 - Git instalado
 
 ## 🌐 Deploy

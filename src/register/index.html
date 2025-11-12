@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lumin | Cadastro</title>
+    <meta name="description" content="Crie sua conta no Lumin" />
+    <!-- Favicons -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="../assets/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="../assets/favicon/favicon.svg"
+    />
+    <link rel="shortcut icon" href="../assets/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../assets/favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="Lumin" />
+    <link rel="manifest" href="../assets/favicon/site.webmanifest" />
+    <link rel="stylesheet" href="../style.css" />
+    <script type="module" src="../services/supabase.js"></script>
+    <script type="module" src="../js/auth-handler.js"></script>
+    <script type="module" src="./functions/register.js"></script>
+  </head>
+  <body>
+    <main
+      class="flex min-h-screen items-center justify-center px-4 py-16 sm:px-6"
+    >
+      <section class="flex w-full max-w-xl flex-col items-center">
+        <a href="../" class="mb-6 flex items-center gap-3">
+          <img src="../assets/lumi.svg" alt="Lumin" class="h-12 w-12" />
+          <span class="text-lumi-400 text-2xl font-semibold">Lumin</span>
+        </a>
+        <div class="lumi-border w-full p-6 sm:p-8 md:p-10">
+          <!-- Painel de Cadastro (visível inicialmente) -->
+          <div id="signup-panel" class="space-y-6">
+            <header class="space-y-3 text-left">
+              <h1
+                class="text-lumi-200 text-2xl font-bold sm:text-3xl md:text-4xl"
+              >
+                Crie sua conta
+              </h1>
+              <p class="">Comece a usar o Lumin para organizar seus estudos.</p>
+            </header>
+
+            <form
+              name="registerForm"
+              class="space-y-4 text-left"
+              onsubmit="return false;"
+              autocomplete="on"
+            >
+              <div>
+                <label class="mb-1 block text-sm" for="email">E-mail</label>
+                <input
+                  id="email"
+                  type="email"
+                  class="border-lumi-300 dark:border-lumi-600 dark:bg-lumi-900/30 focus:border-lumi-400 placeholder:text-lumi-400 dark:placeholder:text-lumi-500 w-full rounded-lg border bg-white/70 p-2 outline-none"
+                  placeholder="seuemail@exemplo.com"
+                  required
+                />
+              </div>
+              <div>
+                <label class="mb-1 block text-sm" for="password">Senha</label>
+                <input
+                  id="password"
+                  type="password"
+                  class="border-lumi-300 dark:border-lumi-600 dark:bg-lumi-900/30 focus:border-lumi-400 placeholder:text-lumi-400 dark:placeholder:text-lumi-500 w-full rounded-lg border bg-white p-2 outline-none"
+                  placeholder="Crie uma senha"
+                  required
+                  minlength="6"
+                />
+              </div>
+              <button type="submit" class="btn-primary w-full">
+                <span>Cadastrar</span>
+              </button>
+            </form>
+
+            <p class="text-center text-sm">
+              Já tem conta?
+              <a class="underline" href="../login/">Entrar</a>
+            </p>
+          </div>
+
+          <!-- Painel de Verificação de E-mail (oculto inicialmente) -->
+          <div id="verify-panel" class="mt-8 hidden">
+            <div class="px-4 py-8 text-center">
+              <div
+                class="bg-lumi-400/20 border-lumi-300 dark:border-lumi-700 mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="text-lumi-400 h-7 w-7"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M2.25 6.75A2.25 2.25 0 0 1 4.5 4.5h15a2.25 2.25 0 0 1 2.25 2.25v10.5A2.25 2.25 0 0 1 19.5 19.5h-15a2.25 2.25 0 0 1-2.25-2.25V6.75Zm3.03-.75a.75.75 0 0 0-.53.22L3.44 7.98l8.06 5.37 8.06-5.37-1.31-1.76a.75.75 0 0 0-.53-.22h-12.4Zm16.22 3.17-6.81 4.54 6.81 4.54V9.17ZM12 14.52 4.97 9.99v8.03H19.5V9.99L12 14.52Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <h2 class="text-2xl font-semibold">Verifique seu e-mail</h2>
+              <p class="mt-2">
+                Enviamos um link de confirmação para
+                <strong id="verify-email" class="text-lumi-400"></strong>. Abra
+                seu e-mail e clique no link para ativar sua conta.
+              </p>
+              <p class="mt-4 text-sm">
+                Não recebeu?
+                <button id="resend-email" class="underline">Reenviar</button>
+              </p>
+              <a href="../login/" class="btn-ghost mt-6 inline-flex"
+                >Ir para o login</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="../js/theme-provider.js"></script>
+  </body>
+</html>

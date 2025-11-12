@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lumin | Dashboard</title>
+    <meta name="description" content="Kanban de estudos" />
+
+    <!-- Favicons -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="../assets/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="../assets/favicon/favicon.svg"
+    />
+    <link rel="shortcut icon" href="../assets/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../assets/favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="Lumin" />
+    <link rel="manifest" href="../assets/favicon/site.webmanifest" />
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="../style.css" />
+
+    <script type="module" src="../services/supabase.js"></script>
+    <script type="module" src="../js/auth-handler.js"></script>
+  </head>
+  <body>
+    <!-- Left Sidebar -->
+    <aside
+      class="fixed top-4 bottom-4 left-4 z-40 hidden w-60 flex-col gap-3 md:flex"
+    >
+      <div class="lumi-border glass-nav flex h-14 items-center gap-3 p-4">
+        <img src="../assets/lumi.svg" alt="Lumin" class="h-7 w-7" />
+        <span class="text-lumi-400 font-semibold">Lumin</span>
+      </div>
+      <nav class="lumi-border flex-1 overflow-auto p-3 text-sm">
+        <ul class="grid gap-1">
+          <li>
+            <a
+              class="flex items-center gap-3 rounded-lg bg-white/5 px-3 py-2 hover:bg-white/10 dark:bg-white/5"
+              href="#"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                class="text-lumi-300"
+              >
+                <path
+                  d="M4 7h5v5H4V7Zm0 7h5v5H4v-5Zm7-7h9v5h-9V7Zm0 7h9v5h-9v-5Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+              </svg>
+              <span>Kanban</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-white/10"
+              href="./calendar/"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                class="text-lumi-300"
+              >
+                <path
+                  d="M7 3v2m10-2v2M4 8h16M5 20h14a1 1 0 001-1V8H4v11a1 1 0 001 1Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+              </svg>
+              <span>Calendário</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-white/10"
+              href="./ai/"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                class="text-lumi-300"
+              >
+                <path
+                  d="M12 3v18m9-9H3"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+              </svg>
+              <span>Ações de IA</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div id="userInfo" class="mb-3"></div>
+    </aside>
+
+    <!-- Right Panel -->
+    <!-- <aside
+      class="hidden xl:flex fixed right-4 top-4 bottom-4 w-72 flex-col gap-3 z-30"
+    >
+      <div
+        class="lumi-border glass-nav h-14 px-4 flex items-center justify-between"
+      >
+        <span class="text-sm text-lumi-300">Assistente IA</span>
+        <div
+          class="w-6 h-6 rounded-full bg-white/10 border border-white/10"
+        ></div>
+      </div>
+      <div
+        class="lumi-border p-4 bg-white/5 dark:bg-white/5 rounded-xl overflow-auto"
+      >
+        <h3 class="text-sm font-semibold text-lumi-200 mb-3">
+          Sugestões Rápidas
+        </h3>
+        <ul class="grid gap-2 text-xs">
+          <li>
+            <button
+              class="w-full text-left p-3 rounded-lg bg-white/5 hover:bg-white/10"
+            >
+              Priorizar tarefas por prazo
+            </button>
+          </li>
+          <li>
+            <button
+              class="w-full text-left p-3 rounded-lg bg-white/5 hover:bg-white/10"
+            >
+              Estimar tempo de estudo
+            </button>
+          </li>
+          <li>
+            <button
+              class="w-full text-left p-3 rounded-lg bg-white/5 hover:bg-white/10"
+            >
+              Quebrar em subtarefas
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div class="lumi-border p-4 bg-white/5 dark:bg-white/5 rounded-xl">
+        <h3 class="text-sm font-semibold text-lumi-200 mb-3">Dica do Dia</h3>
+        <p class="text-xs text-lumi-400 leading-relaxed">
+          Considere dividir a tarefa "Estudar Matemática - Funções" em tópicos
+          menores para melhorar a organização.
+        </p>
+      </div>
+    </aside> -->
+
+    <!-- Main Board -->
+    <main class="px-4 pt-8 pb-28 md:pr-16 md:pb-8 md:pl-72 xl:pr-88 xl:pl-72">
+      <header class="mb-4 flex items-center gap-3">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          class="text-lumi-300"
+        >
+          <path
+            d="M4 7h5v5H4V7Zm0 7h5v5H4v-5Zm7-7h9v5h-9V7Zm0 7h9v5h-9v-5Z"
+            stroke="currentColor"
+            stroke-width="1.5"
+          />
+        </svg>
+        <h1 class="text-xl font-semibold">Kanban Board</h1>
+      </header>
+
+      <section class="grid items-start gap-6 md:grid-cols-3">
+        <!-- Column: A Fazer -->
+        <div class="grid gap-3" id="kanban-a-fazer">
+          <!-- Modal para adicionar tarefa -->
+          <div
+            id="modal-task"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="preview-title"
+            aria-describedby="preview-desc"
+            tabindex="-1"
+            class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 p-4"
+          >
+            <div
+              class="dark:bg-lumi-900 border-lumi-300 relative w-full max-w-md rounded-2xl border bg-white p-8 shadow-xl"
+            >
+              <button
+                id="close-modal"
+                class="text-lumi-400 hover:text-lumi-200 absolute top-3 right-3 text-xl"
+              >
+                &times;
+              </button>
+              <h2 class="text-lumi-400 mb-4 text-lg font-semibold">
+                Adicionar Tarefa
+              </h2>
+              <form id="form-task" class="grid gap-4">
+                <div>
+                  <label class="text-lumi-300 mb-1 block text-sm">Título</label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    class="border-lumi-300 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 w-full rounded-lg border bg-white/10 p-2"
+                  />
+                </div>
+                <div>
+                  <label class="text-lumi-300 mb-1 block text-sm">
+                    Descrição
+                  </label>
+                  <textarea
+                    name="description"
+                    rows="3"
+                    class="border-lumi-300 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 w-full rounded-lg border bg-white/10 p-2"
+                  ></textarea>
+                </div>
+                <div>
+                  <label class="text-lumi-300 mb-1 block text-sm">Tipo</label>
+                  <select
+                    name="type"
+                    required
+                    class="border-lumi-300 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 w-full rounded-lg border bg-white/10 p-2"
+                  >
+                    <option value="prova">Prova</option>
+                    <option value="trabalho">Trabalho</option>
+                    <option value="licao">Lição de casa</option>
+                    <option value="outro">Outro</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="text-lumi-300 mb-1 block text-sm">
+                    Prioridade
+                  </label>
+                  <select
+                    name="priority"
+                    required
+                    class="border-lumi-300 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 w-full rounded-lg border bg-white/10 p-2"
+                  >
+                    <option value="Alta">Alta</option>
+                    <option value="Média">Média</option>
+                    <option value="Baixa">Baixa</option>
+                  </select>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label class="text-lumi-300 mb-1 block text-sm">
+                      Início
+                    </label>
+                    <input
+                      type="date"
+                      name="start_date"
+                      class="border-lumi-300 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 w-full rounded-lg border bg-white/10 p-2"
+                    />
+                  </div>
+                  <div>
+                    <label class="text-lumi-300 mb-1 block text-sm">
+                      Entrega
+                    </label>
+                    <input
+                      type="date"
+                      name="end_date"
+                      class="border-lumi-300 dark:bg-lumi-950 text-lumi-800 dark:text-lumi-100 w-full rounded-lg border bg-white/10 p-2"
+                    />
+                  </div>
+                </div>
+                <button type="submit" class="btn-primary mt-2">
+                  <span>Adicionar</span>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Preview de Tarefa (novo) -->
+          <div
+            id="modal-preview"
+            class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 p-4"
+          >
+            <div
+              id="preview-dialog"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="preview-title"
+              aria-describedby="preview-desc"
+              tabindex="-1"
+              class="dark:bg-lumi-900 border-lumi-300 relative w-full max-w-md rounded-2xl border bg-white shadow-xl focus:outline-none"
+            >
+              <button
+                id="close-preview"
+                class="text-lumi-400 hover:text-lumi-200 absolute top-3 right-3 text-xl"
+                aria-label="Fechar detalhes"
+              >
+                &times;
+              </button>
+              <div class="p-6 md:p-8">
+                <h2
+                  id="preview-title"
+                  class="text-lumi-400 mb-4 text-lg font-semibold"
+                >
+                  Detalhes da tarefa
+                </h2>
+
+                <div class="grid gap-3 text-sm" id="preview-desc">
+                  <div>
+                    <div class="text-lumi-500 text-xs">Título</div>
+                    <p id="pv-name" class="text-lumi-100 font-medium"></p>
+                  </div>
+
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      id="pv-type"
+                      class="rounded bg-white/10 px-2 py-0.5 text-xs"
+                    ></span>
+                    <span
+                      id="pv-priority"
+                      class="rounded bg-white/10 px-2 py-0.5 text-xs"
+                    ></span>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-3">
+                    <div>
+                      <div class="text-lumi-500 text-xs">Início</div>
+                      <p id="pv-start" class="text-lumi-200"></p>
+                    </div>
+                    <div>
+                      <div class="text-lumi-500 text-xs">Entrega</div>
+                      <p id="pv-end" class="text-lumi-200"></p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="text-lumi-500 mb-1 text-xs">Descrição</div>
+                    <p
+                      id="pv-description"
+                      class="text-lumi-200 whitespace-pre-wrap"
+                    ></p>
+                  </div>
+                </div>
+
+                <div class="mt-6 flex justify-end">
+                  <button id="pv-close-btn" class="btn-ghost">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between px-1">
+            <div class="flex items-center gap-2">
+              <span
+                class="bg-lumi-400 inline-block h-2 w-2 rounded-full"
+              ></span>
+              <h2 class="text-sm font-semibold">A Fazer</h2>
+              <span
+                id="count-a-fazer"
+                class="rounded-full bg-white/10 px-1.5 py-0.5 text-[11px]"
+                >0</span
+              >
+            </div>
+            <button
+              class="text-lumi-400 hover:text-lumi-200"
+              id="open-modal-task"
+              aria-label="Adicionar nova tarefa a fazer"
+            >
+              +
+            </button>
+          </div>
+          <div id="tasks-a-fazer" class="min-h-20 space-y-3 rounded-lg p-1">
+            <div class="flex justify-center py-6" data-spinner>
+              <svg
+                class="text-lumi-400 h-6 w-6 animate-spin"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column: Em Progresso -->
+        <div class="grid gap-3" id="kanban-em-progresso">
+          <div class="flex items-center justify-between px-1">
+            <div class="flex items-center gap-2">
+              <span
+                class="bg-lumi-400 inline-block h-2 w-2 rounded-full"
+              ></span>
+              <h2 class="text-sm font-semibold">Em Progresso</h2>
+              <span
+                id="count-em-progresso"
+                class="rounded-full bg-white/10 px-1.5 py-0.5 text-[11px]"
+                >0</span
+              >
+            </div>
+            <button
+              class="text-lumi-400 hover:text-lumi-200"
+              data-open-modal-column="em-progresso"
+              aria-label="Adicionar nova tarefa em progresso"
+            >
+              +
+            </button>
+          </div>
+          <div
+            id="tasks-em-progresso"
+            class="min-h-20 space-y-3 rounded-lg p-1"
+          >
+            <div class="flex justify-center py-6" data-spinner>
+              <svg
+                class="text-lumi-400 h-6 w-6 animate-spin"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column: Concluído -->
+        <div class="grid gap-3" id="kanban-concluido">
+          <div class="flex items-center justify-between px-1">
+            <div class="flex items-center gap-2">
+              <span
+                class="bg-lumi-400 inline-block h-2 w-2 rounded-full"
+              ></span>
+              <h2 class="text-sm font-semibold">Concluído</h2>
+              <span
+                id="count-concluido"
+                class="rounded-full bg-white/10 px-1.5 py-0.5 text-[11px]"
+                >0</span
+              >
+            </div>
+            <button
+              class="text-lumi-400 hover:text-lumi-200"
+              data-open-modal-column="concluido"
+              aria-label="Adicionar nova tarefa em concluído"
+            >
+              +
+            </button>
+          </div>
+          <div id="tasks-concluido" class="min-h-20 space-y-3 rounded-lg p-1">
+            <div class="flex justify-center py-6" data-spinner>
+              <svg
+                class="text-lumi-400 h-6 w-6 animate-spin"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Mobile bottom nav -->
+    <nav
+      class="fixed right-4 bottom-4 left-4 z-50 md:hidden"
+      role="navigation"
+      aria-label="Navegação móvel"
+    >
+      <div
+        class="lumi-border glass-nav flex h-14 items-center justify-between gap-1 rounded-xl bg-white/5 px-2 dark:bg-white/5"
+      >
+        <a
+          href="#"
+          aria-current="page"
+          class="text-lumi-200 flex h-12 flex-1 flex-col items-center justify-center gap-0.5 rounded-lg bg-white/5 text-xs font-medium"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            class="text-lumi-300"
+          >
+            <path
+              d="M4 7h5v5H4V7Zm0 7h5v5H4v-5Zm7-7h9v5h-9V7Zm0 7h9v5h-9v-5Z"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+          </svg>
+          <span>Kanban</span>
+        </a>
+        <a
+          href="calendar/"
+          class="text-lumi-300 flex h-12 flex-1 flex-col items-center justify-center gap-0.5 rounded-lg text-xs font-medium hover:bg-white/10"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            class="text-lumi-300"
+          >
+            <path
+              d="M7 3v2m10-2v2M4 8h16M5 20h14a1 1 0 001-1V8H4v11a1 1 0 001 1Z"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+          </svg>
+          <span>Calendário</span>
+        </a>
+        <a
+          href="ai/"
+          class="text-lumi-300 flex h-12 flex-1 flex-col items-center justify-center gap-0.5 rounded-lg text-xs font-medium hover:bg-white/10"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            class="text-lumi-300"
+          >
+            <path d="M12 3v18m9-9H3" stroke="currentColor" stroke-width="1.5" />
+          </svg>
+          <span>Ações de IA</span>
+        </a>
+        <!-- Botão Sair -->
+        <button
+          id="logoutBtnMobile"
+          type="button"
+          class="text-lumi-300 flex h-12 flex-1 flex-col items-center justify-center gap-0.5 rounded-lg text-xs font-medium hover:bg-white/10"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            class="text-lumi-300"
+            aria-hidden="true"
+          >
+            <path
+              d="M14.5 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <path d="M10 16l4-4-4-4" stroke="currentColor" stroke-width="1.5" />
+            <path d="M14 12H3" stroke="currentColor" stroke-width="1.5" />
+          </svg>
+          <span>Sair</span>
+        </button>
+      </div>
+    </nav>
+
+    <script type="module" src="../js/theme-provider.js"></script>
+    <script type="module" src="../js/nav.js"></script>
+    <script type="module">
+      import { setupLogout } from './functions/logout.js'
+      import { mountUserInfo } from './functions/user-info.js'
+
+      mountUserInfo('userInfo')
+      // novo: botão mobile
+      setupLogout('logoutBtnMobile')
+
+      import { supabase } from '../services/supabase.js'
+      import {
+        createTask,
+        getTasks,
+        moveTask,
+      } from './functions/kanban-tasks.js'
+
+      const columns = [
+        { key: 'a-fazer', title: 'A Fazer' },
+        { key: 'em-progresso', title: 'Em Progresso' },
+        { key: 'concluido', title: 'Concluído' },
+      ]
+
+      // Cache de tarefas por coluna para DnD
+      const tasksByColumn = {
+        'a-fazer': {},
+        'em-progresso': {},
+        concluido: {},
+      }
+
+      // Helpers para atualizar UI imediatamente (optimistic UI)
+      const tasksArray = (columnKey) =>
+        Object.values(tasksByColumn[columnKey] || {})
+      function upsertTaskInColumn(columnKey, task) {
+        tasksByColumn[columnKey] ||= {}
+        tasksByColumn[columnKey][task.id] = task
+        renderColumn(columnKey, tasksArray(columnKey))
+      }
+      function removeTaskFromColumn(columnKey, id) {
+        if (tasksByColumn[columnKey]) delete tasksByColumn[columnKey][id]
+        renderColumn(columnKey, tasksArray(columnKey))
+      }
+
+      // Preview modal helpers
+      const pvOverlay = document.getElementById('modal-preview')
+      const pvDialog = document.getElementById('preview-dialog')
+      const pvCloseX = document.getElementById('close-preview')
+      const pvCloseBtn = document.getElementById('pv-close-btn')
+      const pvName = document.getElementById('pv-name')
+      const pvType = document.getElementById('pv-type')
+      const pvPriority = document.getElementById('pv-priority')
+      const pvStart = document.getElementById('pv-start')
+      const pvEnd = document.getElementById('pv-end')
+      const pvDesc = document.getElementById('pv-description')
+
+      let lastFocused = null
+
+      function formatDate(d) {
+        if (!d) return '-'
+        try {
+          return new Date(d).toLocaleDateString('pt-BR')
+        } catch {
+          return '-'
+        }
+      }
+
+      function openPreview(task) {
+        if (!(pvOverlay && pvDialog)) return
+        lastFocused = document.activeElement
+
+        pvName.textContent = task?.name || task?.title || 'Sem título'
+        pvType.textContent = task?.type ? `Tipo: ${task.type}` : 'Tipo: -'
+        pvPriority.textContent = `Prioridade: ${task?.priority || '-'}`
+        pvStart.textContent = formatDate(task?.start_date)
+        pvEnd.textContent = formatDate(task?.end_date)
+        pvDesc.textContent = task?.description || 'Sem descrição.'
+
+        pvOverlay.classList.remove('hidden')
+        pvOverlay.classList.add('flex')
+
+        // Focus dialog for accessibility
+        setTimeout(() => pvDialog.focus(), 0)
+      }
+
+      function hidePreview() {
+        pvOverlay?.classList.add('hidden')
+        pvOverlay?.classList.remove('flex')
+        if (lastFocused && typeof lastFocused.focus === 'function') {
+          lastFocused.focus()
+        }
+      }
+
+      // Close interactions
+      pvCloseX?.addEventListener('click', hidePreview)
+      pvCloseBtn?.addEventListener('click', hidePreview)
+      pvOverlay?.addEventListener('click', (e) => {
+        if (e.target === pvOverlay) hidePreview()
+      })
+      document.addEventListener('keydown', (e) => {
+        if (!pvOverlay || pvOverlay.classList.contains('hidden')) return
+        if (e.key === 'Escape') {
+          e.preventDefault()
+          hidePreview()
+        }
+        // Simple focus trap
+        if (e.key === 'Tab') {
+          const focusables = pvDialog.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+          )
+          if (!focusables.length) return
+          const first = focusables[0]
+          const last = focusables[focusables.length - 1]
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault()
+            last.focus()
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault()
+            first.focus()
+          }
+        }
+      })
+
+      // Renderização por coluna
+      function renderColumn(columnKey, tasks) {
+        const listEl = document.getElementById(`tasks-${columnKey}`)
+        const countEl = document.getElementById(`count-${columnKey}`)
+        if (!listEl) return
+        listEl.innerHTML = ''
+        if (countEl) countEl.textContent = tasks.length
+
+        // Atualiza cache
+        const map = {}
+        tasks.forEach((t) => (map[t.id] = t))
+        tasksByColumn[columnKey] = map
+
+        if (tasks.length === 0) {
+          const empty = document.createElement('div')
+          empty.className = 'text-sm text-lumi-400 px-2 py-4'
+          empty.textContent = 'Ainda não foram criadas tarefas.'
+          listEl.appendChild(empty)
+          return
+        }
+
+        const alertIcon = `
+          <span class='size-6 ml-auto' aria-label='Tarefa Expirada'>
+            <svg viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10.8809 16.15C10.8809 16.0021 10.9101 15.8556 10.967 15.7191C11.024 15.5825 11.1073 15.4586 11.2124 15.3545C11.3175 15.2504 11.4422 15.1681 11.5792 15.1124C11.7163 15.0567 11.8629 15.0287 12.0109 15.03C12.2291 15.034 12.4413 15.1021 12.621 15.226C12.8006 15.3499 12.9399 15.5241 13.0211 15.7266C13.1024 15.9292 13.122 16.1512 13.0778 16.3649C13.0335 16.5786 12.9272 16.7745 12.7722 16.9282C12.6172 17.0818 12.4204 17.1863 12.2063 17.2287C11.9922 17.2711 11.7703 17.2494 11.5685 17.1663C11.3666 17.0833 11.1938 16.9426 11.0715 16.7618C10.9492 16.5811 10.8829 16.3683 10.8809 16.15ZM11.2408 13.42L11.1008 8.20001C11.0875 8.07453 11.1008 7.94766 11.1398 7.82764C11.1787 7.70761 11.2424 7.5971 11.3268 7.5033C11.4112 7.40949 11.5144 7.33449 11.6296 7.28314C11.7449 7.2318 11.8697 7.20526 11.9958 7.20526C12.122 7.20526 12.2468 7.2318 12.3621 7.28314C12.4773 7.33449 12.5805 7.40949 12.6649 7.5033C12.7493 7.5971 12.813 7.70761 12.8519 7.82764C12.8909 7.94766 12.9042 8.07453 12.8909 8.20001L12.7609 13.42C12.7609 13.6215 12.6809 13.8149 12.5383 13.9574C12.3958 14.0999 12.2024 14.18 12.0009 14.18C11.7993 14.18 11.606 14.0999 11.4635 13.9574C11.321 13.8149 11.2408 13.6215 11.2408 13.42Z" fill="#d5a80d"></path> <path d="M12 21.5C17.1086 21.5 21.25 17.3586 21.25 12.25C21.25 7.14137 17.1086 3 12 3C6.89137 3 2.75 7.14137 2.75 12.25C2.75 17.3586 6.89137 21.5 12 21.5Z" stroke="#d5a80d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></span>
+        `
+
+        tasks.forEach((task) => {
+          const article = document.createElement('article')
+          const expired = new Date() > new Date(task.end_date)
+
+          article.className =
+            'lumi-border p-6 bg-white/5 dark:bg-white/5 rounded-xl grid gap-3'
+          article.setAttribute('draggable', 'true')
+          article.dataset.id = task.id
+          article.dataset.from = columnKey
+          const due = task.end_date
+            ? new Date(task.end_date).toLocaleDateString('pt-BR')
+            : ''
+          article.innerHTML = `
+            <div class='flex'>
+              <h3 class="font-medium">${task.name || task.title}</h3>
+              ${expired ? alertIcon : ''}
+            </div>
+            <div class="flex flex-wrap gap-1 text-[11px]">
+              <span class="px-1.5 py-0.5 rounded bg-white/10">${
+                task.priority || 'Normal'
+              }</span>
+              ${
+                task.type
+                  ? `<span class="px-1.5 py-0.5 rounded bg-white/5">${task.type}</span>`
+                  : ''
+              }
+            </div>
+            <div class="flex items-center justify-between text-xs text-lumi-400">
+              <span>${due}</span>
+              <span class="text-[10px] opacity-70">Clique para ver</span>
+            </div>
+          `
+          // Preview on click
+          article.addEventListener('click', () => openPreview(task))
+          // DnD handlers
+          article.addEventListener('dragstart', (e) => {
+            try {
+              e.dataTransfer.setData(
+                'text/plain',
+                JSON.stringify({ id: task.id, from: columnKey }),
+              )
+            } catch {}
+            e.dataTransfer.effectAllowed = 'move'
+            article.classList.add('opacity-60')
+          })
+          article.addEventListener('dragend', () => {
+            article.classList.remove('opacity-60')
+          })
+          listEl.appendChild(article)
+        })
+      }
+
+      let currentUser = null
+      let targetColumnForModal = 'a-fazer'
+
+      function initForUser(user) {
+        currentUser = user
+        if (!user) return // auth-handler cuidará do redirect
+
+        // Inicializa listeners de cada coluna
+        columns.forEach(({ key }) => {
+          const listEl = document.getElementById(`tasks-${key}`)
+          if (listEl) {
+            listEl.innerHTML = `<div class="flex justify-center py-6" data-spinner>\n  <svg class="animate-spin h-6 w-6 text-lumi-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">\n    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>\n    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>\n  </svg>\n</div>`
+          }
+          getTasks(user.id, key, (tasks) => {
+            // Atualiza cache e renderiza
+            renderColumn(key, tasks)
+          })
+        })
+      }
+
+      // Sessão inicial
+      supabase.auth.getSession().then(({ data }) => {
+        const user = data.session?.user || null
+        initForUser(user)
+      })
+      // Mudanças futuras
+      supabase.auth.onAuthStateChange((_event, session) => {
+        const user = session?.user || null
+        initForUser(user)
+      })
+
+      // Modal wiring
+      document.addEventListener('DOMContentLoaded', () => {
+        const addButton = document.getElementById('open-modal-task')
+        const modal = document.getElementById('modal-task')
+        const closeModal = document.getElementById('close-modal')
+        const form = document.getElementById('form-task')
+        const otherAddButtons = document.querySelectorAll(
+          '[data-open-modal-column]',
+        )
+
+        function openModal(columnKey) {
+          targetColumnForModal = columnKey
+          modal.classList.remove('hidden')
+          modal.classList.add('flex')
+        }
+        function hideModal() {
+          modal.classList.add('hidden')
+          modal.classList.remove('flex')
+        }
+
+        addButton?.addEventListener('click', () => openModal('a-fazer'))
+        otherAddButtons.forEach((btn) => {
+          btn.addEventListener('click', () =>
+            openModal(btn.getAttribute('data-open-modal-column')),
+          )
+        })
+        closeModal?.addEventListener('click', hideModal)
+
+        form?.addEventListener('submit', async (e) => {
+          e.preventDefault()
+          if (!currentUser) return
+          const data = Object.fromEntries(new FormData(form))
+          const payload = {
+            name: data.name,
+            description: data.description,
+            type: data.type,
+            priority: data.priority,
+            start_date: data.start_date
+              ? new Date(data.start_date).toISOString()
+              : null,
+            end_date: data.end_date
+              ? new Date(data.end_date).toISOString()
+              : null,
+          }
+          try {
+            // Cria no banco e usa o retorno para atualizar a UI imediatamente
+            const created = await createTask(
+              currentUser.id,
+              targetColumnForModal,
+              payload,
+            )
+            upsertTaskInColumn(targetColumnForModal, created)
+          } catch (err) {
+            console.error('Falha ao criar tarefa:', err)
+            alert('Não foi possível criar a tarefa agora.')
+          } finally {
+            form.reset()
+            hideModal()
+          }
+        })
+
+        // Drag & Drop: configura zonas de drop nas colunas
+        function setupDnD() {
+          columns.forEach(({ key }) => {
+            const zone = document.getElementById(`tasks-${key}`)
+            if (!zone) return
+            const addHighlight = () =>
+              zone.classList.add('outline', 'outline-2', 'outline-lumi-400/50')
+            const removeHighlight = () =>
+              zone.classList.remove(
+                'outline',
+                'outline-2',
+                'outline-lumi-400/50',
+              )
+            zone.addEventListener('dragover', (e) => {
+              e.preventDefault()
+              addHighlight()
+              e.dataTransfer.dropEffect = 'move'
+            })
+            zone.addEventListener('dragleave', () => {
+              removeHighlight()
+            })
+            zone.addEventListener('drop', async (e) => {
+              e.preventDefault()
+              removeHighlight()
+              let payload = null
+              try {
+                payload = JSON.parse(e.dataTransfer.getData('text/plain'))
+              } catch {}
+              if (!payload) return
+              const { id, from } = payload
+              const to = key
+              if (!(id && from && currentUser) || from === to) return
+              const task = tasksByColumn[from]?.[id]
+              if (!task) return
+
+              // Optimistic UI: move imediatamente
+              const originalFrom = from
+              const originalTask = { ...task }
+              try {
+                removeTaskFromColumn(originalFrom, id)
+                const updated = { ...task, status: to }
+                upsertTaskInColumn(to, updated)
+                await moveTask(currentUser.id, originalFrom, to, task)
+              } catch (err) {
+                // Rollback visual se falhar
+                console.error('Falha ao mover tarefa:', err)
+                removeTaskFromColumn(to, id)
+                upsertTaskInColumn(originalFrom, originalTask)
+                alert('Não foi possível mover a tarefa.')
+              }
+            })
+          })
+        }
+        setupDnD()
+      })
+    </script>
+  </body>
+</html>

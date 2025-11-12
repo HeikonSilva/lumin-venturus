@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: 
+Sitemap: https://heikonsilva.github.io/lumin-venturus/sitemap.xml

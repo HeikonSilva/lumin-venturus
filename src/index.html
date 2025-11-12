@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lumin</title>
+    <meta name="description" content="Organize, Aprenda & Evolua" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://heikonsilva.github.io/lumin-venturus/"
+    />
+    <meta property="og:title" content="Lumin" />
+    <meta property="og:description" content="Organize, Aprenda & Evolua" />
+    <meta property="og:image" content="./assets/meta.png" />
+    <!-- X (Twitter) -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://heikonsilva.github.io/lumin-venturus/"
+    />
+    <meta property="twitter:title" content="Lumin" />
+    <meta property="twitter:description" content="Organize, Aprenda & Evolua" />
+    <meta property="twitter:image" content="./assets/meta.png" />
+    <!-- Favicons -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="./assets/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="Lumin" />
+    <link rel="manifest" href="./assets/favicon/site.webmanifest" />
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./icon-animation.css" />
+  </head>
+  <body>
+    <nav class="fixed top-4 right-4 left-4 z-50 xl:right-16 xl:left-16">
+      <div
+        class="lumi-border glass-nav flex h-14 items-center justify-between px-4 md:px-6"
+      >
+        <a href="./" class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center">
+            <img src="./assets/lumi.svg" alt="Lumin" class="h-9 w-9" />
+          </div>
+          <span
+            class="hover:text-lumi-300 text-lg font-semibold tracking-wide transition-colors"
+            >Lumin</span
+          >
+        </a>
+        <div class="hidden items-center gap-6 text-sm md:flex" id="desktopMenu">
+          <a href="./features/" class="hover:text-lumi-300 transition-colors"
+            >Produtos</a
+          >
+          <a href="./about-us/" class="hover:text-lumi-300 transition-colors"
+            >Sobre</a
+          >
+          <a href="./contact-us/" class="hover:text-lumi-300 transition-colors"
+            >Contato</a
+          >
+          <a href="./login/" class="btn-ghost">Entrar</a>
+          <a href="./register/" class="btn-ghost">Cadastrar</a>
+        </div>
+        <button id="menuToggle" class="btn-ghost md:hidden">Menu</button>
+      </div>
+      <div
+        id="mobileMenu"
+        class="lumi-border mt-2 hidden p-3 backdrop-blur-3xl md:hidden"
+      >
+        <div class="grid gap-2 text-sm">
+          <a href="./features/" class="hover:text-lumi-300">Produtos</a>
+          <a href="./about-us/" class="hover:text-lumi-300">Sobre</a>
+          <a href="./contact-us/" class="hover:text-lumi-300">Contato</a>
+          <a href="./login/" class="btn-ghost">Entrar</a>
+          <a href="./register/" class="btn-ghost">Cadastrar</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="relative mx-auto max-w-7xl px-6 pt-28 pb-28 md:px-10">
+      <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div class="max-w-3xl">
+          <h1
+            class="text-5xl leading-tight font-extrabold tracking-tight md:text-7xl"
+          >
+            <span class="text-gradient">Organize, Aprenda & Evolua</span>
+          </h1>
+          <p class="mt-6 max-w-2xl text-lg md:text-xl">
+            A <strong>Lumin</strong> é sua agenda acadêmica inteligente:
+            centralize tarefas, provas e atividades e receba apoio de IA para
+            estudar melhor.
+          </p>
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a href="./login/" class="btn-primary not-dark:text-background"
+              ><span>Testar agora</span></a
+            >
+            <a href="#features" class="btn-ghost text-sm">Ver Recursos</a>
+          </div>
+        </div>
+
+        <div class="flex justify-center lg:justify-end">
+          <div class="relative">
+            <!-- Animated Lumin logo -->
+            <svg
+              id="luminLogoHero"
+              class="relative h-64 w-64 drop-shadow-2xl md:h-80 md:w-80 lg:h-96 lg:w-96"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 274.56 274.56"
+              role="img"
+              aria-label="Lumin"
+            >
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: #bae2f7;
+                    stroke: #bae2f7;
+                    stroke-width: 2;
+                  }
+                  .cls-2 {
+                    fill: #058099;
+                    stroke: #058099;
+                    stroke-width: 2;
+                  }
+                </style>
+              </defs>
+              <circle
+                class="cls-1 lumi-animation-1"
+                cx="137.28"
+                cy="137.28"
+                r="58.52"
+              ></circle>
+              <path
+                class="cls-2 lumi-animation-2"
+                d="M151.65,56.06h-28.73c-4.06,0-6.95-3.97-5.69-7.83l14.37-44.1c1.79-5.5,9.58-5.5,11.37,0l14.37,44.1c1.26,3.86-1.62,7.83-5.69,7.83Z"
+              ></path>
+              <path
+                class="cls-2 lumi-animation-3"
+                d="M122.91,218.5h28.73c4.06,0,6.95,3.97,5.69,7.83l-14.37,44.1c-1.79,5.5-9.58,5.5-11.37,0l-14.37-44.1c-1.26-3.86,1.62-7.83,5.69-7.83Z"
+              ></path>
+              <path
+                class="cls-2 lumi-animation-4"
+                d="M218.5,151.65v-28.73c0-4.06,3.97-6.95,7.83-5.69l44.1,14.37c5.5,1.79,5.5,9.58,0,11.37l-44.1,14.37c-3.86,1.26-7.83-1.62-7.83-5.69Z"
+              ></path>
+              <path
+                class="cls-2 lumi-animation-5"
+                d="M209.04,84.8l-14.64-14.64c-2.07-2.07-1.52-5.56,1.09-6.89l29.79-15.15c3.72-1.89,7.68,2.08,5.79,5.79l-15.15,29.79c-1.33,2.61-4.82,3.16-6.89,1.09Z"
+              ></path>
+              <path
+                class="cls-2 lumi-animation-6"
+                d="M194.4,203.51l14.64-14.64c2.07-2.07,5.56-1.52,6.89,1.09l15.15,29.79c1.89,3.72-2.08,7.68-5.79,5.79l-29.79-15.15c-2.61-1.33-3.16-4.82-1.09-6.89Z"
+              ></path>
+              <path
+                class="cls-2 lumi-animation-7"
+                d="M56.06,122.91v28.73c0,4.06-3.97,6.95-7.83,5.69l-44.1-14.37c-5.5-1.79-5.5-9.58,0-11.37l44.1-14.37c3.86,1.26,7.83,1.62,7.83,5.69Z"
+              ></path>
+              <path
+                class="cls-2 lumi-animation-8"
+                d="M80.16,71.06l-14.64,14.64c-2.07,2.07-5.56,1.52-6.89-1.09l-15.15-29.79c-1.89-3.72,2.08-7.68,5.79-5.79l29.79,15.15c2.61,1.33,3.16,4.82,1.09,6.89Z"
+              ></path>
+              <path
+                class="cls-2 lumi-animation-9"
+                d="M65.52,188.87l14.64,14.64c2.07,2.07,1.52,5.56-1.09,6.89l-29.79,15.15c-3.72,1.89-7.68-2.08-5.79-5.79l15.15-29.79c1.33-2.61,4.82-3.16,6.89-1.09Z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="features" class="mx-auto max-w-7xl px-6 pb-28 md:px-10">
+      <h2 class="section-title dark:text-lumi-200 text-lumi-400 mb-10">
+        Recursos em Destaque
+      </h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
+        <div class="lumi-border flex flex-col gap-3 p-6">
+          <h3 class="dark:text-lumi-200 text-lumi-400 text-lg font-semibold">
+            Planejamento Inteligente
+          </h3>
+          <p class="text-sm">
+            Sugestões automáticas de organização baseadas na sua carga de
+            estudos.
+          </p>
+        </div>
+        <div class="lumi-border flex flex-col gap-3 p-6">
+          <h3 class="dark:text-lumi-200 text-lumi-400 text-lg font-semibold">
+            Prioridades Dinâmicas
+          </h3>
+          <p class="text-sm">
+            Tarefas reordenadas conforme prazos e importância mudam.
+          </p>
+        </div>
+        <div class="lumi-border flex flex-col gap-3 p-6">
+          <h3 class="dark:text-lumi-200 text-lumi-400 text-lg font-semibold">
+            Assistente com IA
+          </h3>
+          <p class="text-sm">
+            Crie planos de estudo, resumos e lembretes personalizados.
+          </p>
+        </div>
+        <div class="lumi-border flex flex-col gap-3 p-6">
+          <h3 class="dark:text-lumi-200 text-lumi-400 text-lg font-semibold">
+            Sincronização Multi‑Dispositivo
+          </h3>
+          <p class="text-sm">
+            Acesse em qualquer lugar com consistência e segurança.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" class="mx-auto max-w-7xl px-6 pb-28 md:px-10">
+      <div
+        class="lumi-border grid items-start gap-10 p-10 md:grid-cols-2 md:p-14"
+      >
+        <div>
+          <h2 class="section-title dark:text-lumi-200 text-lumi-400 mb-4">
+            Sobre o Projeto
+          </h2>
+          <p class="text-base leading-relaxed md:text-lg">
+            A
+            <strong class="dark:text-lumi-200 text-lumi-200">Lumin</strong>
+            nasceu para resolver o caos acadêmico: atividades dispersas, prazos
+            esquecidos e falta de visibilidade do progresso. Unimos organização
+            estruturada com inteligência artificial para sugerir priorizações,
+            ajustar planejamentos e oferecer suporte contextual ao estudo.
+            <br /><br />
+            O foco é entregar uma experiência clara, acolhedora e eficiente, com
+            mais aprendizado. Interface minimalista, feedback rápido e recursos
+            que realmente ajudam no dia a dia escolar.
+          </p>
+        </div>
+        <div
+          class="lumi-border relative aspect-video w-full overflow-hidden rounded-xl"
+        >
+          <div
+            class="from-lumi-400/20 to-lumi-700/40 absolute inset-0 bg-linear-to-br"
+          ></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <img src="./assets/app.png" class="h-full" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <footer
+      class="px-6 md:px-10 max-w-7xl mx-auto pb-4 text-xs text-lumi-400 flex flex-col md:flex-row justify-between gap-4"
+    >
+      <p>&copy; <span id="year"></span> Lumin. Todos os direitos reservados.</p>
+      <p>Feito com foco em aprendizado e impacto real.</p>
+    </footer> -->
+
+    <!-- <script>
+      const y = document.getElementById("year");
+      if (y) y.textContent = new Date().getFullYear();
+    </script> -->
+
+    <script type="module" src="./js/theme-provider.js"></script>
+    <script type="module" src="./js/nav.js"></script>
+    <script type="module" src="./js/hero-logo.js"></script>
+  </body>
+</html>

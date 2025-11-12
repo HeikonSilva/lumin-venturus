@@ -1,0 +1,328 @@
+/** biome-ignore-all lint/style/noDescendingSpecificity: theme overwrite on calendar */
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: var(--color-lumi-50);
+  --foreground: var(--color-lumi-950);
+  --border: rgba(0, 0, 0, 0.1);
+  --border-hover: rgba(0, 0, 0, 0.16);
+  --ring: var(--color-lumi-400);
+  --card: #ffffff;
+  --radius: 0.625rem;
+
+  /* FullCalendar Custom Styles */
+  .fc {
+    --fc-page-bg-color: #ffffff;
+    --fc-neutral-bg-color: rgba(0, 0, 0, 0.02);
+    --fc-neutral-text-color: var(--color-lumi-600);
+    --fc-border-color: rgba(0, 0, 0, 0.1);
+
+    color: var(--color-lumi-800);
+  }
+
+  .fc-theme-standard .fc-scrollgrid {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: var(--fc-page-bg-color);
+  }
+
+  .fc .fc-toolbar,
+  .fc .fc-header-toolbar {
+    background-color: var(--fc-page-bg-color);
+  }
+
+  .fc-theme-standard td,
+  .fc-theme-standard th {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .fc-col-header-cell {
+    background: rgba(0, 0, 0, 0.02);
+    color: var(--color-lumi-600);
+  }
+
+  .fc-daygrid-day:hover {
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  .fc-day-today {
+    background: rgba(147, 184, 204, 0.15) !important;
+  }
+
+  .fc-daygrid-day-number {
+    color: var(--color-lumi-700);
+  }
+
+  .fc-day-other .fc-daygrid-day-number {
+    color: var(--color-lumi-400);
+  }
+
+  .fc-button-primary {
+    background: rgba(147, 184, 204, 0.15);
+    border: 1px solid rgba(147, 184, 204, 0.3);
+    color: var(--color-lumi-700);
+  }
+
+  .fc-button-primary:hover {
+    background: rgba(147, 184, 204, 0.25);
+  }
+
+  .fc-button-primary:disabled {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: var(--color-lumi-400);
+  }
+
+  .fc-toolbar-title {
+    color: var(--color-lumi-800);
+  }
+
+  .fc-more-link {
+    color: var(--color-lumi-600);
+  }
+
+  .fc-more-link:hover {
+    color: var(--color-lumi-700);
+  }
+
+  .fc .fc-event,
+  .fc .fc-event .fc-event-main,
+  .fc .fc-event .fc-event-title,
+  .fc .fc-event .fc-event-time {
+    color: var(--color-lumi-800) !important;
+  }
+}
+
+.dark {
+  --background: var(--color-lumi-950);
+  --foreground: var(--color-lumi-50);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.18);
+  --card: rgba(255, 255, 255, 0.04);
+
+  /* FullCalendar Custom Styles */
+
+  .fc {
+    --fc-page-bg-color: transparent;
+    --fc-neutral-bg-color: rgba(255, 255, 255, 0.05);
+    --fc-neutral-text-color: var(--color-lumi-300);
+    --fc-border-color: rgba(255, 255, 255, 0.1);
+
+    background: transparent;
+    color: var(--color-lumi-100);
+  }
+
+  .fc-theme-standard .fc-scrollgrid {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--fc-page-bg-color);
+  }
+
+  .fc-theme-standard td,
+  .fc-theme-standard th {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: transparent;
+  }
+
+  .fc-col-header-cell {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-lumi-300);
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 1rem 0.5rem;
+  }
+
+  .fc-daygrid-day {
+    background: transparent;
+    min-height: 120px;
+  }
+
+  .fc-daygrid-day:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .fc-day-today {
+    background: rgba(147, 184, 204, 0.1) !important;
+  }
+
+  .fc-daygrid-day-number {
+    color: var(--color-lumi-200);
+    font-weight: 500;
+    padding: 0.5rem;
+  }
+
+  .fc-day-other .fc-daygrid-day-number {
+    color: var(--color-lumi-500);
+  }
+
+  .fc-toolbar {
+    margin-bottom: 1.5rem;
+  }
+
+  .fc-toolbar-chunk {
+    align-items: center;
+  }
+
+  .fc-button-primary {
+    background: rgba(147, 184, 204, 0.2);
+    border: 1px solid rgba(147, 184, 204, 0.3);
+    color: var(--lumi-300);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+  }
+
+  .fc-button-primary:hover {
+    background: rgba(147, 184, 204, 0.3);
+    border-color: rgba(147, 184, 204, 0.5);
+  }
+
+  .fc-button-primary:disabled {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--lumi-500);
+  }
+
+  .fc-toolbar-title {
+    color: var(--color-lumi-200);
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .fc-event {
+    background: var(--color-lumi-400);
+    border: 1px solid var(--color-lumi-500);
+    border-radius: 6px;
+    color: var(--color-lumi-900);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 2px 6px;
+    margin: 1px 0;
+  }
+
+  .fc-event.high-priority {
+    background: #ef4444;
+    border-color: #dc2626;
+    color: white;
+  }
+
+  .fc-event.medium-priority {
+    background: #f59e0b;
+    border-color: #d97706;
+    color: white;
+  }
+
+  .fc-event.completed {
+    background: #10b981;
+    border-color: #059669;
+    color: white;
+    opacity: 0.8;
+  }
+
+  .fc-event:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  .fc-event-title {
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .fc-more-link {
+    color: var(--color-lumi-400);
+    font-size: 0.75rem;
+    text-decoration: none;
+  }
+
+  .fc-more-link:hover {
+    color: var(--lumi-300);
+    text-decoration: underline;
+  }
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-lumi-50: oklch(95.56% 0.029 224.65);
+  --color-lumi-100: oklch(91.01% 0.061 223);
+  --color-lumi-200: oklch(80.62% 0.145 218.39);
+  --color-lumi-300: oklch(72.23% 0.13 217.94);
+  --color-lumi-400: oklch(63.64% 0.114 218.03);
+  --color-lumi-500: oklch(55.36% 0.099 217.86);
+  --color-lumi-600: oklch(46.76% 0.084 217.61);
+  --color-lumi-700: oklch(39.11% 0.07 217.6);
+  --color-lumi-800: oklch(30.72% 0.055 217.9);
+  --color-lumi-900: oklch(22.09% 0.04 218.05);
+  --color-lumi-950: oklch(17.25% 0.031 218.52);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50 selection:bg-lumi-400/30 selection:text-lumi-50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  body:before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.25;
+    background:
+      radial-gradient(
+        circle at 35% 25%,
+        var(--color-lumi-300) 10%,
+        transparent 55%
+      ),
+      radial-gradient(
+        circle at 75% 70%,
+        var(--color-lumi-500) 8%,
+        transparent 55%
+      ), linear-gradient(180deg, var(--color-lumi-950), var(--color-lumi-900));
+  }
+}
+
+@layer utilities {
+  .glass-nav {
+    @apply backdrop-blur-lg backdrop-saturate-160;
+  }
+
+  .lumi-border {
+    @apply rounded-2xl border hover:border-border-hover transition-colors bg-card;
+  }
+
+  .text-gradient {
+    @apply bg-linear-to-l dark:from-lumi-400 dark:via-lumi-200 dark:to-lumi-400 from-lumi-300 via-lumi-200 to-lumi-300 text-transparent bg-clip-text;
+  }
+
+  .section-title {
+    @apply text-3xl font-semibold;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center py-3 px-6 gap-2 font-semibold rounded-lg bg-linear-to-l from-lumi-500 to-lumi-600;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center py-3 px-6 gap-2 font-semibold rounded-lg bg-border backdrop-blur-md backdrop-saturate-150 border hover:border-border-hover transition-colors;
+  }
+  .btn-social {
+    @apply inline-flex items-center justify-center rounded-full gap-2 px-3.5 border hover:border-border-hover transition-colors bg-card;
+  }
+}

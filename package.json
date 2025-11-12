@@ -1,0 +1,29 @@
+{
+  "name": "lumin-venturus",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "biome lint",
+    "format": "biome format"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@fullcalendar/core": "^6.1.19",
+    "@fullcalendar/daygrid": "^6.1.19",
+    "@google/genai": "^1.29.0",
+    "@supabase/supabase-js": "^2.78.0",
+    "@tailwindcss/vite": "^4.1.16",
+    "@types/node": "^24.9.2",
+    "sweetalert2": "^11.26.3",
+    "tailwindcss": "^4.1.16"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.3.2",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.7.1",
+    "ultracite": "6.1.0",
+    "vite": "npm:rolldown-vite@7.2.2"
+  }
+}
