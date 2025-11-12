@@ -32,6 +32,7 @@
 
     <script type="module" src="../services/supabase.js"></script>
     <script type="module" src="../js/auth-handler.js"></script>
+    <script type="module" src="./js/theme-provider.js"></script>
   </head>
   <body>
     <!-- Left Sidebar -->
@@ -594,7 +595,6 @@
       </div>
     </nav>
 
-    <script type="module" src="../js/theme-provider.js"></script>
     <script type="module" src="../js/nav.js"></script>
     <script type="module">
       import { setupLogout } from './functions/logout.js'
@@ -633,7 +633,9 @@
         renderColumn(columnKey, tasksArray(columnKey))
       }
       function removeTaskFromColumn(columnKey, id) {
-        if (tasksByColumn[columnKey]) delete tasksByColumn[columnKey][id]
+        if (tasksByColumn[columnKey]) {
+          delete tasksByColumn[columnKey][id]
+        }
         renderColumn(columnKey, tasksArray(columnKey))
       }
 
@@ -661,7 +663,9 @@
       }
 
       function openPreview(task) {
-        if (!(pvOverlay && pvDialog)) return
+        if (!(pvOverlay && pvDialog)) {
+          return
+        }
         lastFocused = document.activeElement
 
         pvName.textContent = task?.name || task?.title || 'Sem título'
@@ -690,10 +694,14 @@
       pvCloseX?.addEventListener('click', hidePreview)
       pvCloseBtn?.addEventListener('click', hidePreview)
       pvOverlay?.addEventListener('click', (e) => {
-        if (e.target === pvOverlay) hidePreview()
+        if (e.target === pvOverlay) {
+          hidePreview()
+        }
       })
       document.addEventListener('keydown', (e) => {
-        if (!pvOverlay || pvOverlay.classList.contains('hidden')) return
+        if (!pvOverlay || pvOverlay.classList.contains('hidden')) {
+          return
+        }
         if (e.key === 'Escape') {
           e.preventDefault()
           hidePreview()
@@ -703,7 +711,9 @@
           const focusables = pvDialog.querySelectorAll(
             'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
           )
-          if (!focusables.length) return
+          if (!focusables.length) {
+            return
+          }
           const first = focusables[0]
           const last = focusables[focusables.length - 1]
           if (e.shiftKey && document.activeElement === first) {
@@ -720,9 +730,13 @@
       function renderColumn(columnKey, tasks) {
         const listEl = document.getElementById(`tasks-${columnKey}`)
         const countEl = document.getElementById(`count-${columnKey}`)
-        if (!listEl) return
+        if (!listEl) {
+          return
+        }
         listEl.innerHTML = ''
-        if (countEl) countEl.textContent = tasks.length
+        if (countEl) {
+          countEl.textContent = tasks.length
+        }
 
         // Atualiza cache
         const map = {}
@@ -799,7 +813,9 @@
 
       function initForUser(user) {
         currentUser = user
-        if (!user) return // auth-handler cuidará do redirect
+        if (!user) {
+          return
+        } // auth-handler cuidará do redirect
 
         // Inicializa listeners de cada coluna
         columns.forEach(({ key }) => {
@@ -855,7 +871,9 @@
 
         form?.addEventListener('submit', async (e) => {
           e.preventDefault()
-          if (!currentUser) return
+          if (!currentUser) {
+            return
+          }
           const data = Object.fromEntries(new FormData(form))
           const payload = {
             name: data.name,
@@ -890,7 +908,9 @@
         function setupDnD() {
           columns.forEach(({ key }) => {
             const zone = document.getElementById(`tasks-${key}`)
-            if (!zone) return
+            if (!zone) {
+              return
+            }
             const addHighlight = () =>
               zone.classList.add('outline', 'outline-2', 'outline-lumi-400/50')
             const removeHighlight = () =>
@@ -914,10 +934,14 @@
               try {
                 payload = JSON.parse(e.dataTransfer.getData('text/plain'))
               } catch {}
-              if (!payload) return
+              if (!payload) {
+                return
+              }
               const { id, from } = payload
               const to = key
-              if (!(id && from && currentUser) || from === to) return
+              if (!(id && from && currentUser) || from === to) {
+                return
+              }
               const task = tasksByColumn[from]?.[id]
               if (!task) return
 
