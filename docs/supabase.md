@@ -103,3 +103,4 @@ Agora a autenticação por e-mail está configurada.
 
 - [Configuração da autenticação com Google](./google-oauth.md)
 - [Configuração da autenticação como convidado](./anonymus-signin.md)
+- [Customização de emails](./supabase-custom-emails.md)
