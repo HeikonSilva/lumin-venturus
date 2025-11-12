@@ -12,7 +12,6 @@ import { Calendar } from '@fullcalendar/core'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import { supabase } from '../../services/supabase.js'
 import {
-  createEvent,
   deleteEvent,
   getEventsOnce,
   listenEvents,
@@ -111,20 +110,20 @@ export function initCalendar(el) {
           // console.log(eDate)
 
           if (currentDate > eDate) {
-            return ['!bg-gray-500/10', '!border-gray-500/40', '!text-red-300']
+            return ['bg-gray-500/10', 'border-gray-500/40', 'text-red-300']
           }
           if (p === 'Alta') {
-            return ['!bg-red-500/10', '!border-red-500/40', '!text-red-300']
+            return ['bg-red-500/10', 'border-red-500/40', 'text-red-300']
           }
           if (p === 'Média') {
             return [
-              '!bg-orange-500/10',
-              '!border-orange-500/40',
-              '!text-orange-300',
+              'bg-orange-500/10',
+              'border-orange-500/40',
+              'text-orange-300',
             ]
           }
           if (p === 'Baixa') {
-            return ['!bg-blue-500/10', '!border-blue-500/40', '!text-blue-300']
+            return ['bg-blue-500/10', 'border-blue-500/40', 'text-blue-300']
           }
           return []
         },
@@ -152,40 +151,7 @@ export function initCalendar(el) {
             })
           }
         },
-        async select(info) {
-          if (!currentUser) {
-            return calendar.unselect()
-          }
-          const title = prompt('Título do evento:')
-          if (title) {
-            const toIso = (d, allDay) => {
-              if (!d) {
-                return null
-              }
-              try {
-                return allDay
-                  ? new Date(d).toISOString().slice(0, 10)
-                  : new Date(d).toISOString()
-              } catch {
-                return null
-              }
-            }
-            const payload = {
-              title,
-              start: toIso(info.start, info.allDay),
-              end: toIso(info.end, info.allDay),
-              allDay: info.allDay,
-            }
-            try {
-              const key = await createEvent(currentUser.id, payload)
-              calendar.addEvent({ ...payload, id: key })
-            } catch (err) {
-              console.error('Falha ao criar evento:', err)
-              alert('Não foi possível criar o evento.')
-            }
-          }
-          calendar.unselect()
-        },
+
         eventDrop(info) {
           const ev = info.event
           if (!currentUser) {
@@ -197,23 +163,6 @@ export function initCalendar(el) {
             console.error('Falha ao atualizar evento:', err)
             alert('Não foi possível atualizar o evento.')
             // Em caso de erro, refetch para corrigir posição
-            if (calendar && currentUser) {
-              getEventsOnce(currentUser.id).then((items) => {
-                calendar.getEvents().forEach((e) => e.remove())
-                items.forEach((it) => calendar.addEvent(it))
-              })
-            }
-          })
-        },
-        eventResize(info) {
-          const ev = info.event
-          if (!currentUser) {
-            return
-          }
-          const payload = serializeEvent(ev)
-          updateEvent(currentUser.id, ev.id, payload).catch((err) => {
-            console.error('Falha ao redimensionar evento:', err)
-            alert('Não foi possível redimensionar o evento.')
             if (calendar && currentUser) {
               getEventsOnce(currentUser.id).then((items) => {
                 calendar.getEvents().forEach((e) => e.remove())
