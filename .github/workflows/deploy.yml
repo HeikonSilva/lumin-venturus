@@ -35,7 +35,6 @@ jobs:
         with:
           node-version: lts/*
           cache: 'npm'
-          cache-dependency-path: 'pnpm-lock.yaml'
       - name: Enable Corepack (pnpm)
         run: corepack enable
       - name: Install dependencies
