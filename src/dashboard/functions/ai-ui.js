@@ -103,7 +103,7 @@ export async function initAIPage() {
     feed.scrollTop = feed.scrollHeight
   }
 
-  async function handleAssistantButton(btn) {
+  function handleAssistantButton(btn) {
     if (btn.action === 'open_calendar') {
       window.location.href = '../calendar/'
     } else if (btn.action === 'open_kanban') {
@@ -113,7 +113,6 @@ export async function initAIPage() {
       btn.action === 'apply_operations'
     ) {
       if (btn.payload && Array.isArray(btn.payload.operations)) {
-        const res = await applyOperations(user.id, btn.payload.operations)
         addMessage(
           'assistant',
           'Apliquei as operações do botão. Quer revisar no Calendário ou Kanban?',
@@ -126,13 +125,6 @@ export async function initAIPage() {
           null
         )
       }
-    }
-  }
-
-  async function ensureCurrentChat() {
-    if (!currentChatId) {
-      currentChatId = await ensureChat(user.id, 'Conversa AI')
-      await loadChats()
     }
   }
 
@@ -173,10 +165,14 @@ export async function initAIPage() {
         Array.isArray(parsed.operations) &&
         parsed.operations.length
       ) {
-        applyOperations(user.id, parsed.operations).catch(console.error)
+        applyOperations(user.id, parsed.operations).catch(() => {
+          addMessage(
+            'assistant',
+            'Desculpe, ocorreu um erro ao aplicar as operações.'
+          )
+        })
       }
     } catch (e) {
-      console.error(e)
       addMessage(
         'assistant',
         'Desculpe, ocorreu um erro ao processar sua solicitação.'
@@ -199,10 +195,7 @@ export async function initAIPage() {
   newChatBtn?.addEventListener('click', async () => {
     currentChatId = await ensureChat(user.id, 'Nova conversa')
     feed.innerHTML = ''
-    await loadChats()
   })
-
-  await loadChats()
 }
 
 // Auto-init if on page

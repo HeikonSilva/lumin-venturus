@@ -40,7 +40,9 @@ export async function getEventsOnce(userId) {
     .from('tasks')
     .select('*')
     .eq('user_id', userId)
-  if (error) throw error
+  if (error) {
+    throw error
+  }
   return (data || []).map(toEvent)
 }
 
@@ -68,7 +70,9 @@ export function listenEvents(userId, callback) {
   return () => {
     try {
       supabase.removeChannel(channel)
-    } catch {}
+    } catch {
+      // ignore
+    }
   }
 }
 
@@ -94,7 +98,9 @@ export async function createEvent(userId, event) {
     .insert(payload)
     .select('id')
     .single()
-  if (error) throw error
+  if (error) {
+    throw error
+  }
   return data.id
 }
 
@@ -112,7 +118,9 @@ export async function updateEvent(userId, id, event) {
     })
     .eq('id', id)
     .eq('user_id', userId)
-  if (error) throw error
+  if (error) {
+    throw error
+  }
 }
 
 export async function deleteEvent(userId, id) {
@@ -121,5 +129,7 @@ export async function deleteEvent(userId, id) {
     .delete()
     .eq('id', id)
     .eq('user_id', userId)
-  if (error) throw error
+  if (error) {
+    throw error
+  }
 }

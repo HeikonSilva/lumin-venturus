@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2'
 import { supabase } from '../../services/supabase.js'
 
 const form = document.registerForm
@@ -19,7 +20,12 @@ form.addEventListener('submit', async (event) => {
   })
 
   if (error) {
-    alert(`Erro ao cadastrar: ${error.message || error}`)
+    Swal.fire({
+      theme: 'auto',
+      icon: 'error',
+      title: 'Erro ao cadastrar',
+      text: error.message || error,
+    })
     return
   }
 
@@ -36,7 +42,9 @@ form.addEventListener('submit', async (event) => {
       if (verifyPanel) {
         verifyPanel.classList.remove('hidden')
       }
-    } catch {}
+    } catch {
+      // ignorar erros de UI
+    }
 
     // Caso a sessão já exista (p.ex. confirmação desabilitada), redireciona
     if (data.session) {
@@ -56,8 +64,18 @@ resendBtn?.addEventListener('click', async () => {
     email,
   })
   if (error) {
-    alert(`Não foi possível reenviar: ${error.message || error}`)
+    Swal.fire({
+      theme: 'auto',
+      icon: 'error',
+      title: 'Erro ao reenviar',
+      text: error.message || error,
+    })
   } else {
-    alert('E‑mail reenviado. Verifique sua caixa de entrada (e o spam).')
+    Swal.fire({
+      theme: 'auto',
+      icon: 'success',
+      title: 'E‑mail reenviado',
+      text: 'Verifique sua caixa de entrada (e o spam).',
+    })
   }
 })

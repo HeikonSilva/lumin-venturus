@@ -93,17 +93,6 @@ Exemplo (mode=immediate):
 \`\`\`
 `
 
-function chunk(str, n = 18_000) {
-  if (!str) {
-    return []
-  }
-  const arr = []
-  for (let i = 0; i < str.length; i += n) {
-    arr.push(str.slice(i, i + n))
-  }
-  return arr
-}
-
 export async function loadUserContext(userId) {
   // Load tasks
   const { data: tasks, error: tasksErr } = await supabase
@@ -181,7 +170,9 @@ export async function askAssistant({ userId, query, chatId }) {
     try {
       const history = await getChatMessages(chatId)
       historyText = formatHistory(history)
-    } catch {}
+    } catch {
+      // ignore errors
+    }
   }
   const prompt = buildPrompt({
     userQuery: query,
@@ -221,11 +212,12 @@ export function parseFencedJSON(text) {
   }
   const fenceRe = /```json\n([\s\S]*?)```/i
   const m = text.match(fenceRe)
-  if (!m) return null
+  if (!m) {
+    return null
+  }
   try {
     return JSON.parse(m[1])
   } catch (e) {
-    console.warn('Falha ao parsear JSON da IA:', e)
     return null
   }
 }
@@ -299,7 +291,9 @@ export async function applyOperations(userId, operations = []) {
           break
         }
         case 'update_event': {
-          if (!op.id) throw new Error('update_event requer id')
+          if (!op.id) {
+            throw new Error('update_event requer id')
+          }
           await updateEvent(userId, op.id, op.data || {})
           results.push({ ok: true, type: op.type, id: op.id })
           break

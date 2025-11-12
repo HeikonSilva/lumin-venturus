@@ -78,7 +78,12 @@ Em Project Settings > API Keys (aba "API Keys"), crie uma chave em "Create new A
 
 ![Publishable Key](./images/supabase/publishable-key.png)
 
-Abra o arquivo `services/supabase.js` no seu editor e insira a Project URL e a Publishable Key nos campos correspondentes.
+Crie o arquivo `.env.development.local` dentro da pasta do projeto, e no seu editor e insira a Project URL e a Publishable Key nos campos correspondentes.
+
+```env
+VITE_SUPABASE_URL="sua url do projeto"
+VITE_SUPABASE_KEY="sua chave de api"
+```
 
 ![Supabase Config](./images/supabase/supabase-config.png)
 
@@ -88,7 +93,7 @@ Para habilitar a autenticação como convidado, vá em Authentication > URL Conf
 
 ![URL Configuration](./images/supabase/site-url.png)
 
-No campo "Site URL", escreva o endereço onde você está hospedando o projeto (por exemplo, `http://localhost:5500`).
+No campo "Site URL", escreva o endereço onde você está hospedando o projeto (por exemplo, `http://localhost:5173`).
 
 Depois, em Authentication > Providers, habilite "Allow anonymous sign-ins" e os provedores desejados (Email, Google, etc.).
 

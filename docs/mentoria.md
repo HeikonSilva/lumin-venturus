@@ -62,14 +62,14 @@
 
 ### Checklist de Ajustes
 
-- [ ] Ajustar estrutura CSS
+- [x] Ajustar estrutura CSS
   - Reorganizar arquivos de estilo para melhor manutenibilidade.
 - [x] Uso do Vite Rolldown
   - Correção de erro na etapa de post-install.
 - [x] Remoção do suporte ao TypeScript
   - TypeScript não é permitido no projeto; migrar código para JavaScript puro.
 - [x] Separação do codigo fonte da aplicação para src folder.
-- [ ] Migração do Firebase para AI Studio
+- [x] Migração do Firebase para AI Studio
   - Transição dos serviços de IA para AI Studio.
 
 ### Evidências e Discussões

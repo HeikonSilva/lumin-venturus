@@ -9,7 +9,7 @@ cd lumin-venturus
 
 ### 2. Configuração do Supabase
 
-Defina as credenciais do Supabase em `services/supabase.js` e garanta que `services/db.js` exporta o cliente corretamente.
+Defina as credenciais do Supabase em `.env.development.local`.
 
 ### 3. Execução Local
 
@@ -53,5 +53,5 @@ Para configurar os serviços e a autenticação localmente, consulte os guias co
 
 - Configuração do Supabase: [docs/supabase.md](./supabase.md)
 - Autenticação anônima (Convidado): [docs/anonymus-signin.md](./anonymus-signin.md)
-- Configuração do Firebase (Gemini AI): [docs/firebase.md](./firebase.md)
+- Configuração do Gemini AI (Google AI Studio): [docs/google-ai-studio.md](./google-ai-studio.md)
 - Login com Google (OAuth): [docs/google-oauth.md](./google-oauth.md)

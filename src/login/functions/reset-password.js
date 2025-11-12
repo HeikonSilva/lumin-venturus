@@ -1,13 +1,5 @@
 import { supabase } from '../../services/supabase.js'
 
-function getBasePrefix() {
-  const parts = window.location.pathname.split('/').filter(Boolean)
-  if (parts.length > 1 && /github\.io$/.test(window.location.host)) {
-    return `/${parts[0]}`
-  }
-  return ''
-}
-
 export function setupResetPassword({
   linkId = 'forgotPwd',
   emailInputId = 'email',
@@ -37,9 +29,8 @@ export function setupResetPassword({
     }
     link.setAttribute('disabled', 'true')
     try {
-      const base = getBasePrefix()
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}${base}/login/`,
+        redirectTo: `${window.location.origin}/lumin-venturus/login/`,
       })
       if (error) {
         throw error
@@ -47,7 +38,6 @@ export function setupResetPassword({
       feedback.textContent = 'Enviamos um link de redefinição para seu e-mail.'
       feedback.className = 'mt-3 text-sm text-green-500'
     } catch (err) {
-      console.error(err)
       feedback.textContent = 'Não foi possível enviar o e-mail de redefinição.'
       feedback.className = 'mt-3 text-sm text-red-500'
     } finally {

@@ -57,13 +57,17 @@ export function initCalendar(el) {
     if (calendar) {
       try {
         calendar.destroy()
-      } catch {}
+      } catch {
+        // ignore
+      }
       calendar = null
     }
     if (typeof unsubscribe === 'function') {
       try {
         unsubscribe()
-      } catch {}
+      } catch {
+        // ignore
+      }
       unsubscribe = null
     }
 

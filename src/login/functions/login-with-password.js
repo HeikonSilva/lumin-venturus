@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2'
 import { supabase } from '../../services/supabase.js'
 
 const form = document.loginForm
@@ -16,7 +17,9 @@ const { data: sub } = supabase.auth.onAuthStateChange((event, _session) => {
 window.addEventListener('beforeunload', () => {
   try {
     sub?.subscription?.unsubscribe?.()
-  } catch {}
+  } catch {
+    // ignore errors
+  }
 })
 
 form.addEventListener('submit', async (event) => {
@@ -38,7 +41,12 @@ form.addEventListener('submit', async (event) => {
           : `Falha no login: ${error.message}`
       errorLabel.classList.remove('hidden')
     } else {
-      alert(`Falha no login: ${error.message}`)
+      Swal.fire({
+        theme: 'auto',
+        icon: 'error',
+        title: 'Falha no login',
+        text: `Falha no login: ${error.message}`,
+      })
     }
     return
   }
