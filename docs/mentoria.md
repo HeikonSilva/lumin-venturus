@@ -40,7 +40,7 @@
   - Foi feita a migração do projeto para comportar o vite como bundler e também para servir as páginas durante desenvolvimento e preview das builds
 - [x] Visualização dos outros meses no calendário ([Commit 8988f48](https://github.com/HeikonSilva/lumin-venturus/commit/8988f48732e46870af79c0951bf3ece1ff10902a))
   - Agora é possível trocar de mês.
-- [ ] Notificação de "Fora do Prazo" para tarefas
+- [x] Notificação de "Fora do Prazo" para tarefas
   - Definir comportamento e canais de alerta.
 - [x] Atualização da documentação do projeto ([Commit 88b6397](https://github.com/HeikonSilva/lumin-venturus/commit/88b63973fe85b66874b5b73333b8b81290283b83))
   - Documentação está atualizada de acordo as mudanças.

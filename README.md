@@ -91,6 +91,8 @@ Para configurar e rodar o projeto localmente, consulte os guias abaixo:
 - Configuração do Firebase (Gemini AI): [docs/firebase.md](./docs/firebase.md)
 - Login com Google (OAuth): [docs/google-oauth.md](./docs/google-oauth.md)
 
+Para conferir também os progressos do que foi feito ao longo da mentoria pode entrar em [docs/mentoria.md](./docs/mentoria.md)
+
 ## � Contribuição
 
 Para contribuir com o projeto:
