@@ -10,7 +10,7 @@
 
 **Monitor:** Elmo Ficagna
 
-**Articuladore Iochpe**: Fernanda Santos
+**Equipe vnt/school**: Fernanda Santos
 
 **Integrantes da Equipe:**
 
